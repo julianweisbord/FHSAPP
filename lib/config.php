@@ -3,7 +3,7 @@
 $dbConfig = array(
 	'dbhost' => 'localhost',
 	'database' => 'fhsapp_v2',
-	'username' => 'root',
-	'password' => 'root'
+	'username' => 'fhsapp_v2',
+	'password' => 'rainorshine4'
 );
 
