@@ -1,3 +1,5 @@
+<?php session_start();?>
+
 <!DOCTYPE HTML>
 
 <!--Notes:
@@ -34,7 +36,7 @@
 require_once('lib/config.php');
 require_once('lib/db.class.php');
 
-ini_set('display_errors', 1); //Change from 0 to 1 and back for errors.
+ini_set('display_errors', 0); //Change from 0 to 1 and back for errors.
 error_reporting(E_ALL);
 
 $db = new Db($dbConfig);
@@ -45,12 +47,12 @@ $db = new Db($dbConfig);
 		
 		<?php
 ////////////SESSION VARIABLES//////////////////////////////////////////////////////////////////////////////////////////////////////
-			$user_id = 5; //Change this later, should equal $_SESSION['user_id']. This is linked to Generic User.
+			$user_id = $_SESSION['user_id']; //Change this later, should equal $_SESSION['user_id']. This is linked to Generic User.
 			//Permissions should be global SESSION variables:
-				$admin = 1;
-				$teacher = 1;
-				$club = 1;
-				$sports = 1;
+				$admin = $_SESSION['admin'];
+				$teacher = $_SESSION['teacher'];
+				$club = $_SESSION['club'];
+				$sports = $_SESSION['sports'];
 			//
 			
 			
@@ -71,17 +73,17 @@ $db = new Db($dbConfig);
 							$_REQUEST['p8']
 						);
 						
-						$query = "SELECT id, name, period FROM subtype WHERE author_id = '$user_id' AND type_id = '1';";
+						$query = "SELECT id, name, period FROM subtype WHERE author_id = '$user_id' AND type_id = '2';";
 						$existing_periods = $db->runQuery($query);
 						//echo "<pre>" . print_r($periods) . "</pre>";
 						if(empty($existing_periods)) {
 							for($i = 0; $i < count($periods); $i++) {
 								$period_number = $i + 1;
-								$query = "INSERT INTO subtype(name, type_id, author_id, period) VALUES ('$periods[$i]', '1', '$user_id', '$period_number');";
+								$query = "INSERT INTO subtype(name, type_id, author_id, period) VALUES ('$periods[$i]', '2', '$user_id', '$period_number');";
 								mysql_query($query);
 							}
 							
-							//$query = "INSERT INTO subtype(name, type_id, author_id, period) VALUES ('$p1', '1', '$user_id', '1');";
+							//$query = "INSERT INTO subtype(name, type_id, author_id, period) VALUES ('$p1', '2', '$user_id', '1');";
 							//mysql_query($query);
 							echo "<b>Classes have been inserted!</b><br />";
 						}
@@ -91,7 +93,8 @@ $db = new Db($dbConfig);
 					//*Update your password first
 					$new_password = $_REQUEST['new_password']; //ADD HASHES!!!
 					if(!empty($new_password)) { //*Checks to see if the password has been made
-						$query = "UPDATE users SET password = '$new_password' WHERE id = '$user_id';";
+						$hash = md5($new_password);
+						$query = "UPDATE users SET password = '$hash' WHERE id = '$user_id';";
 						mysql_query($query);
 						echo "<b>Password Set!</b><br />";
 					}
@@ -130,7 +133,7 @@ $db = new Db($dbConfig);
 
 				////Teacher
 				if($teacher) {
-					$result = mysql_query("SELECT * FROM subtype WHERE author_id = '$user_id' AND type_id = '1' ORDER BY period;");
+					$result = mysql_query("SELECT * FROM subtype WHERE author_id = '$user_id' AND type_id = '2' ORDER BY period;");
 					$classes = array();
 					while($rows = mysql_fetch_array($result)) {
 						$classes[] = $rows;
@@ -214,6 +217,7 @@ $db = new Db($dbConfig);
 			
 			
 			<?php 
+			if($teacher) {
 				//Making the class inputs:
 				$i = 1;
 				if(!empty($classes)) { //If the classes exist, put in the values.
@@ -225,11 +229,12 @@ $db = new Db($dbConfig);
 					}
 				} else { //If the classes haven't been made yet, make them empty.
 					for($j=1;$j<9;$j++) {
-						echo "<label>Period $i</label>
+						echo "<label>Period $j</label>
 						<input name='p" . $j . "' type='text' value=''/>
 						<br />";
 					}
 				}
+			}
 			?> 
 			
 			
@@ -239,7 +244,9 @@ $db = new Db($dbConfig);
 			<label>Club:</label>
 			<input name="c1" type="text" value=""/>
 			<br />
-			<!--Note: figure out how to make a button that will add a new club (a (+) button)-->
+			<!--Note: figure out how to make a button that will add a new club (a (+) button)
+				Probably gonna involve js.
+			-->
 			
 			<!--
 			<h2>Sports here:</h2>
@@ -251,6 +258,8 @@ $db = new Db($dbConfig);
 			
 			<input type="submit" value="Save"/>
 		</form>
+		<br />
+		<a href="main.php">Back to Home</a><br />
 	</div>
 </body>
 

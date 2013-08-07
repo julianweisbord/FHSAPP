@@ -1,4 +1,5 @@
 <?php
+session_start();
 include('lib/config.php');
 include('lib/db.class.php');
 
@@ -9,42 +10,56 @@ $db = new Db($dbConfig);
 
 //if($_POST['user'])
 
-login();
-function login(){
+function set_session($typedusername) {
+	$userdata = mysql_fetch_array(mysql_query("SELECT * FROM users WHERE username='$typedusername'"));
+	$_SESSION['user_id'] = $userdata['id'];
+	$_SESSION['admin'] = $userdata['admin'];
+	$_SESSION['teacher'] = $userdata['teacher'];
+	$_SESSION['club'] = $userdata['club'];
+	$_SESSION['sports'] = $userdata['sports'];
+	$_SESSION['username'] = $typedusername;
+}
 
-$typedusername= (addslashes($_POST['user'])); //thought we didn't need the array or slashes -- could be wrong
-//$typedhash = hash('sha256'($_POST['pass']) until we get the hashes working in the db
-$typedhash= md5((addslashes($_POST['pass'])));
-//$con = mysql_connect("alvord.canvashost.com:2083/", "fhsapp", "rainorshine4");
-//$db_select = mysql_select_db("fhsapp_v2", $con); //credentials to connect
-//old connection methods
+if(!empty($_REQUEST)) {
+	login();
+}
+
+function login(){
+$typedusername= (addslashes($_REQUEST['user'])); //thought we didn't need the array or slashes -- could be wrong
+$typedhash= md5((addslashes($_REQUEST['pass'])));
 
 $result = mysql_query("SELECT password FROM users WHERE username='".$typedusername."'");
+
 if(!$result) { die('goofed' . mysql_error() ); }
-$hash = null; //this isn't needed, right?
+
+//$hash = null; //this isn't needed, right?
+
 if($result){
 	$row = mysql_fetch_row($result);
-	$hash = $row[0]; 
-	}else{
-		//echo "Invalid Username.";
-	}
-if($typedhash === $hash){
-	//echo "Login Successful";
-	$_SESSION['user'] = $typedusername;
-	header('Location: loginsuccessful.html');
+	$hash = $row[0];
+	//echo "$hash, $typedhash";
+} else {
+	//echo "Invalid Username.";
+}
+	
+if($typedhash == $hash){
+	echo "Login Successful";
+	set_session($typedusername);
+	header('Location: main.php');
 	exit();
-	}else{
-		//echo "Login Failed."; 
-	}
+} else {
+	//echo "Login Failed."; 
+}
+
 }
 
 ?>
 <!DOCTYPE html>
 <title>Login</title>
 <body>
-<form name=LoginForm action="login.php" method="post">
+<form name='LoginForm' action="login.php" method="get">
 	<label>Username</label><input type="text" name="user">
-	<label>Password</label><input type="text" name="pass">
+	<label>Password</label><input type="password" name="pass">
 	<label>Keep me logged in</label><input type="checkbox" name="staylogged">
 	<input type="submit" name="submit">
 </form>

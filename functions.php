@@ -36,4 +36,17 @@
 	return $aDays;  
 	}
 
+	//For setting session variables at the login
+	function set_session($typedusername) {
+		$userdata = mysql_fetch_array(mysql_query("SELECT * FROM users WHERE username='$typedusername'"));
+		$_SESSION['user_id'] = $userdata['id'];
+		$_SESSION['admin'] = $userdata['admin'];
+		$_SESSION['teacher'] = $userdata['teacher'];
+		$_SESSION['club'] = $userdata['club'];
+		$_SESSION['sports'] = $userdata['sports'];
+		$_SESSION['username'] = $typedusername;
+	}
+
+	
+
 ?>
