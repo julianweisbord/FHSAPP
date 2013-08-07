@@ -30,6 +30,8 @@ Above +
 
 My (Dustin) job:
 
+//Done//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
 ///DONE///
 make a settings screen
 remember: value to fill in inputs
@@ -96,6 +98,13 @@ To do still:
 Add a way to prevent duplicates.
 add the links to the main.php -- Done
 add a reset option to settings.php
+add redirects
 figure out the adding clubs and sports for the settings.php --> Next meeting
+
+Plan for the rest of the month:
+This week: Sort out the settings and new user pages.
+Next week and a half or so: should be spent on the main page and create pages. Make create first, then the main, then the edit functionality of create.
+Last week of Aug: should be spent on the client side, making it accept the json variables that we'll have to figure out how to do.
+After that: Work on improving the client side to it's v2 status, with the fancy 8 period slots, real-time schedule, and other design implementations that are sketched out somewhere.
 
 
