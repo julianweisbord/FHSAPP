@@ -57,7 +57,7 @@ $db = new Db($dbConfig);
 			
 			
 //////////////**SUBMITTING THE FORM**///////////////////////////////////////////////////////////////////////////////////////////////			
-				if(!empty($_REQUEST)) {//Checks if anything has been submitted from the form yet.
+				if(!empty($_REQUEST)) {//*Checks if anything has been submitted from the form yet.
 				
 ////////////////////INSERT STUFF (if it doesn't exist yet) ////////////////////////////////////////////////////////////////////////
 					//*Insert periods for teachers

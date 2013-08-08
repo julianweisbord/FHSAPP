@@ -72,7 +72,7 @@ $db = new Db($dbConfig);
 			if(!empty($_REQUEST)) {
 				$username = $_REQUEST['username'];
 				$e_password = $_REQUEST['password']; //For emailing
-				$password = md5($_REQUEST['password']); //ADD HASHES!!!!
+				$password = md5($_REQUEST['password']);
 				$first_name = $_REQUEST['first_name']; 
 				$last_name = $_REQUEST['last_name']; 
 				$email = $_REQUEST['email']; 
@@ -80,23 +80,36 @@ $db = new Db($dbConfig);
 				$teacher = checkbox_checked($_REQUEST['teacher']);
 				$club = checkbox_checked($_REQUEST['club']);
 				$sports = checkbox_checked($_REQUEST['sports']);
-		
-				//?Add something to prevent duplicates	
-				if($admin||$teacher||$club||$sports) {	
-					$e_subject = "Fhsapp Username and Password";
-					$e_content = "Your login credentials for Fhsapp: \nUsername: $username\n\nPassword: $e_password";
-					$mail = mail($email, $e_subject, $e_content); //EMAIL!!!
-					if($mail) {
-						//*Create the user
-						$query = "INSERT into users(username, password, email, first_name, last_name, admin, teacher, club, sports) VALUES('$username', '$password', '$email', '$first_name', '$last_name', '$admin', '$teacher', '$club', '$sports');";
-						mysql_query($query);
-						echo "<p>New user has been created!</p>";
+				
+				//*Duplicate prevention
+				$already_exists = 0;
+				$existing_users = $db->runQuery('SELECT username FROM users;');
+				foreach($existing_users as $existing_user) {
+					if($existing_user['username'] == $username) {
+						$already_exists = 1;
+						break;
+					}
+				}
+				
+				if(!$already_exists) { //*Check if they exist.
+					if($admin||$teacher||$club||$sports) {	//*Has permission been selected?
+						$e_subject = "Fhsapp Username and Password";
+						$e_content = "Your login credentials for Fhsapp: \nUsername: $username\n\nPassword: $e_password";
+						$mail = mail($email, $e_subject, $e_content); //*EMAIL!!!
+						if($mail) {
+							//*Once the mail has worked
+							//*Create the user
+							$query = "INSERT into users(username, password, email, first_name, last_name, admin, teacher, club, sports) VALUES('$username', '$password', '$email', '$first_name', '$last_name', '$admin', '$teacher', '$club', '$sports');";
+							mysql_query($query);
+							echo "<p>New user has been created!</p>";
+						} else {
+							echo "<p style='color:red;'>Email not valid.</p>";
+						}
 					} else {
-						echo "<p style='color:red;'>Email not valid.</p>";
+						echo "<p style='color:red;'>Please select a permission.</p>";
 					}
 				} else {
-					//?Add something to prevent this from showing up the first time.
-					echo "<p style='color:red;'>Please select a permission.</p>";
+					echo "<p style='color:red;'>This user already exists!</p>";
 				}
 			}	
 		?>
@@ -122,7 +135,7 @@ $db = new Db($dbConfig);
 			<input name="last_name" type="text" value=""/> 
 			<br />
 			
-			<label>Email:</label><!--Do that automatic emailing of password and stuffs.-->
+			<label>Email:</label>
 			<input name="email" type="text" value=""/> 
 			<br />
 			

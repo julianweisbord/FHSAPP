@@ -1,5 +1,6 @@
 <?php
 session_start();
+//$_SESSION['logged_in'] = 0; //IMPO'TANT BIZWAX TO BE DEALT WITH HERE. Ignore for now, but it will eventually turn into some sort of system for the staying logged, etc. May involve cookies.
 include('lib/config.php');
 include('lib/db.class.php');
 
@@ -18,6 +19,7 @@ function set_session($typedusername) {
 	$_SESSION['club'] = $userdata['club'];
 	$_SESSION['sports'] = $userdata['sports'];
 	$_SESSION['username'] = $typedusername;
+	//$_SESSION['logged_in'] = 1;
 }
 
 if(!empty($_REQUEST)) {

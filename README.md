@@ -92,13 +92,15 @@ Do we set the empty subtypes when creating the user, or do we create the subtype
 NOTE TO MENTION:
 Removed the periods from the users table.
 
+///DONE///
+add the links to the main.php
+
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
 To do still:
 Add a way to prevent duplicates.
-add the links to the main.php -- Done
 add a reset option to settings.php
-add redirects
+add redirects at the top as headers (really more of a Griffin thing to do)
 figure out the adding clubs and sports for the settings.php --> Next meeting
 
 Plan for the rest of the month:

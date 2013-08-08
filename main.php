@@ -1,6 +1,6 @@
 <?php 
 	session_start();
-	echo $_SESSION['username']; //Comment out
+	echo $_SESSION['username']; //Comment out eventually
 	
 	include('lib/config.php');
 	include('lib/db.class.php');
