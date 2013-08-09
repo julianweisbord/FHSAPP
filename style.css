@@ -1,0 +1,68 @@
+.login #form-wrap {
+
+/* max width allows the width to become smaller as the page gets smaller*/
+	max-width: 450px;
+	margin: 100px auto;
+	
+
+}
+.login fieldset {
+
+		border: 3px solid;
+}
+		.login label {
+			display: block ; 
+			float: left;
+			width: 70px;/* the length of space between the username/password and the login box*/
+
+		}
+			.login input[type=text]{
+				clear: none;
+				float: left;
+
+			}
+			.login .row{
+					width: 100%;
+					clear: both;
+					float: left;
+
+
+			}
+
+ .sign_up #form-wrap {
+/* max width allows the width to become smaller as the page gets smaller*/
+	max-width: 600px;
+	margin: 100px auto;
+}
+
+.sign_up #categories{
+	text-align: center;
+	
+
+}
+.sign_up fieldset {
+
+		border: 3px solid;
+}
+		.sign_up label {
+			
+			display: block ; 
+			float: left;
+			width: 130px;/* the length of space between the username/password and the login box*/
+
+
+		}
+			.sign_up input[type=text], input[type=password]{
+				clear: none;
+				float: left;
+
+			}
+
+			.sign_up .row{
+					width: 100%;
+					clear: both;
+					float: left;
+
+
+			}
+	

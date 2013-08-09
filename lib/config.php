@@ -2,8 +2,8 @@
 
 $dbConfig = array(
 	'dbhost' => 'localhost',
-	'database' => 'fhsapp',
+	'database' => 'fhsapp_v2',
 	'username' => 'root',
-	'password' => ''
+	'password' => 'root'
 );
 

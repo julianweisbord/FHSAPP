@@ -39,14 +39,38 @@ if($typedhash === $hash){
 }
 
 ?>
-<!DOCTYPE html>
-<title>Login</title>
-<body>
-<form name=LoginForm action="login.php" method="post">
-	<label>Username</label><input type="text" name="user">
-	<label>Password</label><input type="text" name="pass">
-	<label>Keep me logged in</label><input type="checkbox" name="staylogged">
-	<input type="submit" name="submit">
+
+<!DOCTYPE HTML>
+
+<html>
+<head>
+	<title>Log In</title>
+<link rel="stylesheet" type="text/css" href="style.css">
+
+
+</head>
+<body class="login">
+
+
+<div id="form-wrap">
+
+<form action="login.php" method="post" name="login_form">
+
+	<fieldset>
+
+	<legend><h2>Login</h2></legend>
+
+	<div class="row"><input name="q" onblur="if (this.value=='') this.value='Username'" onfocus="if (this.value=='Username') this.value = ''" type="text" value="Username"></div> <!--<label>Username: </label><input type="text" name="user"/>-->
+
+	<div class="row"><input id="password_text" onfocus="this.style.display='none';document.getElementById('password').style.display='block'; document.getElementById('password').focus()" type="text" value="Password"><input onblur="if (this.value==''){this.style.display='none';document.getElementById('password_text').style.display='block'}" id="password" style="display: none" type="password" name="password"/></div><!--<label>Password: </label><input type="password" name="pass"/></div>-->
+		<label>Keep me logged in</label><input type="checkbox" name="staylogged">
+
+	<input type="submit" value="Login"/>
+
+</fieldset>
+	<br/>
+	<input type="checkbox" name="Stay_Logged_In"/> Stay Logged In
 </form>
 
-</body></html>
+</body>
+</html>
