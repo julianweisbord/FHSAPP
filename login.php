@@ -34,7 +34,7 @@ if($typedhash === $hash){
 	header('Location: loginsuccessful.html');
 	exit();
 	}else{
-		//echo "Login Failed."; 
+		 //echo "Login Failed."; 
 	}
 }
 
