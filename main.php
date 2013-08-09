@@ -31,6 +31,7 @@
 			if($_SESSION['admin']) {
 				echo '<a href="new_user.php">New User</a><br />';
 			}
+			echo '<a href="create.php">Add Announcement</a><br />';
 			echo '<a href="login.php">Log out</a><br />';
 		?>
 	</div>
