@@ -95,12 +95,14 @@ Removed the periods from the users table.
 ///DONE///
 add the links to the main.php
 
+///DONE///
+Add a way to prevent duplicates. 
+
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
 To do still:
-Add a way to prevent duplicates.
-add a reset option to settings.php
-add redirects at the top as headers (really more of a Griffin thing to do)
+add a reset option to settings.php //Might not be necessary
+add redirects at the top as headers to prevent accessing the page if not logged in (involves session variables and cookies) (really more of a Griffin thing to do)
 figure out the adding clubs and sports for the settings.php --> Next meeting
 
 Plan for the rest of the month:
@@ -109,4 +111,13 @@ Next week and a half or so: should be spent on the main page and create pages. M
 Last week of Aug: should be spent on the client side, making it accept the json variables that we'll have to figure out how to do.
 After that: Work on improving the client side to it's v2 status, with the fancy 8 period slots, real-time schedule, and other design implementations that are sketched out somewhere.
 
+Look at this for the rich text editor for the announcement. We'll use a normal textarea for now.
+http://stackoverflow.com/questions/8806673/html-how-to-retain-formatting-in-textarea
+http://www.tinymce.com/
+http://ckeditor.com/
 
+Making create page:
+hardcode inputs
+use SELECT query to find the categories (subtypes)
+Generate the checkboxes for the categories
+Figure out the date input as well
