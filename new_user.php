@@ -1,3 +1,5 @@
+<?php session_start();?>
+
 <!DOCTYPE HTML>
 
 <!--Notes:
@@ -68,29 +70,48 @@ $db = new Db($dbConfig);
 				}
 			};
 			if(!empty($_REQUEST)) {
-			//Make associative array??? NAH
-			$username = $_REQUEST['username'];
-			$password = $_REQUEST['password']; //ADD HASHES!!!!
-			$password_2 = $_REQUEST['password_2']; 
-			$first_name = $_REQUEST['first_name']; 
-			$last_name = $_REQUEST['last_name']; 
-			$email = $_REQUEST['email']; 
-			$admin = checkbox_checked($_REQUEST['admin']);
-			$teacher = checkbox_checked($_REQUEST['teacher']);
-			$club = checkbox_checked($_REQUEST['club']);
-			$sports = checkbox_checked($_REQUEST['sports']);
-		
-			//?Add something to prevent duplicates	
-			if($admin||$teacher||$club||$sports) {	
-				$query = "INSERT into users(username, password, email, first_name, last_name, admin, teacher, club, sports) VALUES('$username', '$password', '$email', '$first_name', '$last_name', '$admin', '$teacher', '$club', '$sports');";
-				mysql_query($query);
-				echo "<p>New user has been created!</p>";
-			} else {
-				//?Add something to prevent this from showing up the first time.
-				echo "<p style='color:red;'>Please select a permission.</p>";
-			}
-			}
-			
+				$username = $_REQUEST['username'];
+				$e_password = $_REQUEST['password']; //For emailing
+				$password = md5($_REQUEST['password']);
+				$first_name = $_REQUEST['first_name']; 
+				$last_name = $_REQUEST['last_name']; 
+				$email = $_REQUEST['email']; 
+				$admin = checkbox_checked($_REQUEST['admin']);
+				$teacher = checkbox_checked($_REQUEST['teacher']);
+				$club = checkbox_checked($_REQUEST['club']);
+				$sports = checkbox_checked($_REQUEST['sports']);
+				
+				//*Duplicate prevention
+				$already_exists = 0;
+				$existing_users = $db->runQuery('SELECT username FROM users;');
+				foreach($existing_users as $existing_user) {
+					if($existing_user['username'] == $username) {
+						$already_exists = 1;
+						break;
+					}
+				}
+				
+				if(!$already_exists) { //*Check if they exist.
+					if($admin||$teacher||$club||$sports) {	//*Has permission been selected?
+						$e_subject = "Fhsapp Username and Password";
+						$e_content = "Your login credentials for Fhsapp: \nUsername: $username\n\nPassword: $e_password";
+						$mail = mail($email, $e_subject, $e_content); //*EMAIL!!!
+						if($mail) {
+							//*Once the mail has worked
+							//*Create the user
+							$query = "INSERT into users(username, password, email, first_name, last_name, admin, teacher, club, sports) VALUES('$username', '$password', '$email', '$first_name', '$last_name', '$admin', '$teacher', '$club', '$sports');";
+							mysql_query($query);
+							echo "<p>New user has been created!</p>";
+						} else {
+							echo "<p style='color:red;'>Email not valid.</p>";
+						}
+					} else {
+						echo "<p style='color:red;'>Please select a permission.</p>";
+					}
+				} else {
+					echo "<p style='color:red;'>This user already exists!</p>";
+				}
+			}	
 		?>
 	
 		<form id="form" method="get" action="new_user.php">
@@ -114,7 +135,7 @@ $db = new Db($dbConfig);
 			<input name="last_name" type="text" value=""/> 
 			<br />
 			
-			<label>Email:</label><!--Do that automatic emailing of password and stuffs.-->
+			<label>Email:</label>
 			<input name="email" type="text" value=""/> 
 			<br />
 			
@@ -139,6 +160,8 @@ $db = new Db($dbConfig);
 			
 			<input type="submit" value="Create New User"/>
 		</form>
+		<br />
+		<a href="main.php">Back to Home</a><br />
 	</div>
 </body>
 
