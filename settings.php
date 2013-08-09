@@ -48,12 +48,10 @@ $db = new Db($dbConfig);
 		<?php
 ////////////SESSION VARIABLES//////////////////////////////////////////////////////////////////////////////////////////////////////
 			$user_id = $_SESSION['user_id']; //Change this later, should equal $_SESSION['user_id']. This is linked to Generic User.
-			//Permissions should be global SESSION variables:
-				$admin = $_SESSION['admin'];
-				$teacher = $_SESSION['teacher'];
-				$club = $_SESSION['club'];
-				$sports = $_SESSION['sports'];
-			//
+			$admin = $_SESSION['admin'];
+			$teacher = $_SESSION['teacher'];
+			$club = $_SESSION['club'];
+			$sports = $_SESSION['sports'];
 			
 			
 //////////////**SUBMITTING THE FORM**///////////////////////////////////////////////////////////////////////////////////////////////			
@@ -147,7 +145,11 @@ $db = new Db($dbConfig);
 			<?php //print_r($classes);?>
 		</pre>
 	
-		<form id="form" method="get" action="settings.php">
+		<form id="form" method="post" action="settings.php">
+			<!--<label></label>
+			<input name="" type="text" value=""/>
+			<br />-->
+		
 			<label>Username:</label>
 			<input name="username" type="text" value="<?php echo $username;?>"/> 
 			<br />
@@ -218,16 +220,16 @@ $db = new Db($dbConfig);
 			
 			<?php 
 			if($teacher) {
-				//Making the class inputs:
+				//*Making the class inputs:
 				$i = 1;
-				if(!empty($classes)) { //If the classes exist, put in the values.
+				if(!empty($classes)) { //*If the classes exist, put in the values.
 					foreach($classes as $class) {
 						echo "<label>Period $i</label>
 						<input name='p" . $i . "' type='text' value='".$class['name']."'/>
 						<br />";
 						$i++;
 					}
-				} else { //If the classes haven't been made yet, make them empty.
+				} else { //*If the classes haven't been made yet, make them empty.
 					for($j=1;$j<9;$j++) {
 						echo "<label>Period $j</label>
 						<input name='p" . $j . "' type='text' value=''/>
@@ -237,16 +239,12 @@ $db = new Db($dbConfig);
 			}
 			?> 
 			
-			
-			<!--
 			<h2>Clubs here:</h2>
 			
 			<label>Club:</label>
 			<input name="c1" type="text" value=""/>
 			<br />
-			<!--Note: figure out how to make a button that will add a new club (a (+) button)
-				Probably gonna involve js.
-			-->
+			<!--Note: figure out how to make a button that will add a new club (a (+) button) .Probably gonna involve js.-->
 			
 			<!--
 			<h2>Sports here:</h2>

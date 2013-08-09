@@ -114,7 +114,7 @@ $db = new Db($dbConfig);
 			}	
 		?>
 	
-		<form id="form" method="get" action="new_user.php">
+		<form id="form" method="post" action="new_user.php">
 			<label>Username:</label>
 			<input name="username" type="text" value=""/> 
 			<br />
