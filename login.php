@@ -1,4 +1,5 @@
 <?php
+session_start();
 include('lib/config.php');
 include('lib/db.class.php');
 
@@ -8,32 +9,42 @@ $db = new Db($dbConfig);
 
 
 //if($_POST['user'])
+function set_session($typedusername) {
+		$userdata = mysql_fetch_array(mysql_query("SELECT * FROM users WHERE username='$typedusername'"));
+		$_SESSION['user_id'] = $userdata['id'];
+		$_SESSION['admin'] = $userdata['admin'];
+		$_SESSION['teacher'] = $userdata['teacher'];
+		$_SESSION['club'] = $userdata['club'];
+		$_SESSION['sports'] = $userdata['sports'];
+		$_SESSION['username'] = $typedusername;
+	}
 
-login();
+if(!empty($_REQUEST)) {
+	login();
+}
+
 function login(){
-
+	
 $typedusername= (addslashes($_POST['user'])); //thought we didn't need the array or slashes -- could be wrong
-//$typedhash = hash('sha256'($_POST['pass']) until we get the hashes working in the db
 $typedhash= md5((addslashes($_POST['pass'])));
-//$con = mysql_connect("alvord.canvashost.com:2083/", "fhsapp", "rainorshine4");
-//$db_select = mysql_select_db("fhsapp_v2", $con); //credentials to connect
-//old connection methods
 
 $result = mysql_query("SELECT password FROM users WHERE username='".$typedusername."'");
 if(!$result) { die('goofed' . mysql_error() ); }
+
 $hash = null; //this isn't needed, right?
+
 if($result){
 	$row = mysql_fetch_row($result);
 	$hash = $row[0]; 
-	}else{
+	} else {
 		//echo "Invalid Username.";
 	}
 if($typedhash === $hash){
 	//echo "Login Successful";
-	$_SESSION['user'] = $typedusername;
+	set_session($typedusername);
 	header('Location: loginsuccessful.html');
 	exit();
-	}else{
+	} else {
 		 //echo "Login Failed."; 
 	}
 }
@@ -60,9 +71,14 @@ if($typedhash === $hash){
 
 	<legend><h2>Login</h2></legend>
 
-	<div class="row"><input name="user" onblur="if (this.value=='') this.value='Username'" onfocus="if (this.value=='Username') 		this.value = ''" type="text" value="Username"></div> 
+	<div class="row">
+		<input name="user" onblur="if (this.value=='') this.value='Username'" onfocus="if (this.value=='Username') 		this.value = ''" type="text" value="Username">
+	</div> 
 
-	<div class="row"><input id="password_text" onfocus="this.style.display='none';document.getElementById('password').style.display='block'; document.getElementById('password').focus()" type="text" value="Password"><input onblur="if (this.value==''){this.style.display='none';document.getElementById('password_text').style.display='block'}" id="password" style="display: none" type="password" name="pass"/></div>
+	<div class="row">
+		<input id="password_text" onfocus="this.style.display='none';document.getElementById('password').style.display='block'; document.getElementById('password').focus()" type="text" value="Password">
+		<input onblur="if (this.value==''){this.style.display='none';document.getElementById('password_text').style.display='block'}" id="password" style="display: none" type="password" name="pass"/>
+	</div>
 
 	<input type="submit" value="Login"/>
 
