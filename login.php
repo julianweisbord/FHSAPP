@@ -56,6 +56,37 @@ if($typedhash === $hash){
 <html>
 <head>
 	<title>Log In</title>
+	<script type="text/javascript" src="js/jquery-1.7.2.min.js"></script>
+	<script type="text/javascript" src="js/jquery.validate.min.js"></script>
+	<script type="text/javascript" src="js/scripts.js"></script>
+	<script type="text/javascript"> //The easy way to validate. Credit this later.
+	$(document).ready(
+		function(){	
+				jQuery.validator.addMethod("notEqual", function(value, element, param) {
+  return this.optional(element) || value != param;
+}, "Please specify a different (non-default) value");
+	$("form").validate({
+		 ignore: "",
+		rules: {
+		user: {
+			required: true,
+				'notEqual': "Username"
+			},
+			
+			
+			pass: {
+				required: true,
+
+			},
+			
+			}
+				
+			});
+
+		}
+	);
+	</script>
+
 <link rel="stylesheet" type="text/css" href="style.css">
 
 

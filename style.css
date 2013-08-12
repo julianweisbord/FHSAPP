@@ -6,16 +6,22 @@
 	
 
 }
-.login fieldset {
+		.login fieldset {
 
 		border: 3px solid;
 }
-		.login label {
+		 label {
 			display: block ; 
 			float: left;
-			width: 70px;/* the length of space between the username/password and the login box*/
+			width: 100px;/* the length of space between the username/password and the login box*/
+
 
 		}
+		
+				 label.error{
+				width:250px;
+				font-size: .8em;
+			}
 			.login input[type=text]{
 				clear: none;
 				float: left;
@@ -28,6 +34,8 @@
 
 
 			}
+
+
 
  .new_user #form-wrap {
 	max-width: 600px;
@@ -43,14 +51,9 @@
 
 		border: 3px solid;
 }
-		.new_user label {
-			
-			display: block ; 
-			float: left;
-			width: 130px;/* the length of space between the username/password and the login box*/
+		
 
-
-		}
+		
 			.new_user input[type=text], input[type=password]{
 				clear: none;
 				float: left;

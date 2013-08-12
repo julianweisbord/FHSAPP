@@ -20,7 +20,8 @@
 				jQuery.validator.addMethod("notEqual", function(value, element, param) {
   return this.optional(element) || value != param;
 }, "Please specify a different (non-default) value");
-	$("#form").validate({
+	$("form").validate({
+		ignore: "",
 				rules: {
 					username: {
 						required: true,
@@ -145,7 +146,7 @@ $db = new Db($dbConfig);
 
 	<div class="row"> <input id="password_text" onfocus="this.style.display='none';document.getElementById('password').style.display='block'; document.getElementById('password').focus()" type="text" value="Password"><input onblur="if (this.value==''){this.style.display='none';document.getElementById('password_text').style.display='block'}" id="password" style="display: none" type="password" name="password"/></div>
 
-	<div class="row"> <input id="password_text2" onfocus="this.style.display='none';document.getElementById('password2').style.display='block'; document.getElementById('password2').focus()" type="text" value="Re-enter Password"><input onblur="if (this.value==''){this.style.display='none';document.getElementById('password_text2').style.display='block'}" id="password2" style="display: none" type="password" name="password"/></div>
+	<div class="row"> <input id="password_text2" onfocus="this.style.display='none';document.getElementById('password2').style.display='block'; document.getElementById('password2').focus()" type="text" value="Re-enter Password"><input onblur="if (this.value==''){this.style.display='none';document.getElementById('password_text2').style.display='block'}" id="password2" style="display: none" type="password" name="password_2"/></div>
 
 
 
