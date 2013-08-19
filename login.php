@@ -92,31 +92,42 @@ if($typedhash === $hash){
 
 </head>
 <body class="login">
+	<div class="header">
+		<img class="logo" src="http://fhsapp.com/v2/Images/daytime.png">
+		<div class="buttons">
+			<a href="#">logout</a>
+		</div>	
+	</div>	
+	<div class="columns_wrapper"><div class="columns">
 
+		<form action="login.php" method="post" name="login_form">
+			<div class="column">
+	
 
-<div id="form-wrap">
+				<h2>Login</h2>
 
-<form action="login.php" method="post" name="login_form">
+				<div class="row">
+					<input name="user" onblur="if (this.value=='') this.value='Username'" onfocus="if (this.value=='Username') 		this.value = ''" type="text" value="Username">
+				</div> 
 
-	<fieldset>
+				<div class="row">
+					<input id="password_text" onfocus="this.style.display='none';document.getElementById('password').style.display='block'; document.getElementById('password').focus()" type="text" value="Password">
+					<input onblur="if (this.value==''){this.style.display='none';document.getElementById('password_text').style.display='block'}" id="password" style="display: none" type="password" name="pass"/>
+				</div>
+				<div class="row">
+					<input type="checkbox" id="staylogged" name="staylogged"/> <label for="staylogged">Stay Logged In</label>
+				</div>
+	
+				<div class="row">
+					<input type="submit" value="Login"/>
 
-	<legend><h2>Login</h2></legend>
-
-	<div class="row">
-		<input name="user" onblur="if (this.value=='') this.value='Username'" onfocus="if (this.value=='Username') 		this.value = ''" type="text" value="Username">
-	</div> 
-
-	<div class="row">
-		<input id="password_text" onfocus="this.style.display='none';document.getElementById('password').style.display='block'; document.getElementById('password').focus()" type="text" value="Password">
-		<input onblur="if (this.value==''){this.style.display='none';document.getElementById('password_text').style.display='block'}" id="password" style="display: none" type="password" name="pass"/>
+				</div>
+			</div>
+	
+	
+		</form>
 	</div>
-
-	<input type="submit" value="Login"/>
-
-</fieldset>
-	<br/>
-	<input type="checkbox" id="staylogged" name="staylogged"/> <label for="staylogged">Stay Logged In</label>
-</form>
+	</div>
 
 </body>
 </html>
