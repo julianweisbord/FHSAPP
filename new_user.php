@@ -130,7 +130,7 @@ $db = new Db($dbConfig);
 
 	<fieldset>
 
-	<legend><center><h2>Sign Up</h2></center></legend>
+	<legend><center><h2>New User</h2></center></legend>
 
 	<div class="row"><input name="first_name" onblur="if (this.value=='') this.value='First Name'" onfocus="if (this.value=='First Name') this.value = ''" type="text" value="First Name"></div>
 	 
