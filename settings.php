@@ -155,7 +155,6 @@ $db = new Db($dbConfig);
 					}
 					
 					//*Insert/Update/Delete sports
-					//?!!?!!!???!?!!?! MO' FUNKINESS HERE. When saving more than one, only gives the latest. Dunno why. Better break these down one at a time.
 					if($sports) {
 						if(isset($_REQUEST['sname'])) {
 							$sports_name = $_REQUEST['sname'];
