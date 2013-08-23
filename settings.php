@@ -20,6 +20,9 @@
 				rules: {
 					new_password_2: {
 						equalTo: "input[name=new_password]" //To make sure the new password is working
+					},
+					cname: {
+						required: true
 					}
 				}
 			});
@@ -36,7 +39,7 @@
 require_once('lib/config.php');
 require_once('lib/db.class.php');
 
-ini_set('display_errors', 0); //Change from 0 to 1 and back for errors.
+ini_set('display_errors', 1); //Change from 0 to 1 and back for errors.
 error_reporting(E_ALL);
 
 $db = new Db($dbConfig);
@@ -47,12 +50,11 @@ $db = new Db($dbConfig);
 		
 		<?php
 ////////////SESSION VARIABLES//////////////////////////////////////////////////////////////////////////////////////////////////////
-			$user_id = $_SESSION['user_id']; //Change this later, should equal $_SESSION['user_id']. This is linked to Generic User.
+			$user_id = $_SESSION['user_id']; 
 			$admin = $_SESSION['admin'];
 			$teacher = $_SESSION['teacher'];
-			$club = $_SESSION['club'];
+			$club_p = $_SESSION['club'];
 			$sports = $_SESSION['sports'];
-			
 			
 //////////////**SUBMITTING THE FORM**///////////////////////////////////////////////////////////////////////////////////////////////			
 				if(!empty($_REQUEST)) {//*Checks if anything has been submitted from the form yet.
@@ -86,6 +88,135 @@ $db = new Db($dbConfig);
 							echo "<b>Classes have been inserted!</b><br />";
 						}
 					}
+					
+					//*Insert/Update/Delete clubs
+					if($club_p) {
+						if(isset($_REQUEST['cname'])) {
+							$clubs = $_REQUEST['cname'];
+							/*echo "<p>Club names request variable:</p><br /><pre>";
+							print_r($clubs);
+							echo "</pre>";*/
+						}
+						
+						if(isset($_REQUEST['cid'])) {
+							$clubs_id = $_REQUEST['cid'];
+							/*echo "<pre><p>Club id request variable:</p><br />";
+							print_r($clubs_id);
+							echo "</pre>";*/
+						}
+						
+						if(isset($_REQUEST['cdelete'])) {
+							$clubs_delete = $_REQUEST['cdelete'];
+							/*echo "<pre><p>Club delete request variable:</p><br />";
+							print_r($clubs_delete);
+							echo "</pre>";*/
+						}
+						
+						$query = "SELECT id, name FROM subtype WHERE author_id = '$user_id' AND type_id = '3';";
+						$existing_clubs = $db->runQuery($query);
+						////echo "<pre>" . print_r($clubs) . "</pre>";
+						
+						$club_count = 0;
+						foreach ($clubs as $club) { //*$club is the name of the club
+							if(!empty($club)) {
+								foreach($existing_clubs as $existing_club) { //*$existing_club is an array comprised of id, name
+									if($clubs_id[$club_count] == $existing_club['id']) {
+										$query = "UPDATE subtype SET name='$club' WHERE id='{$existing_club['id']}';";
+										mysql_query($query);
+										$existing = true;
+										echo "Updated $club. <br />";
+										break;
+									} else {
+										$existing = false;
+									}
+								}
+							
+								if(!$existing) {
+									$query = "INSERT INTO subtype(name, type_id, author_id, period) VALUES ('$club', '3', '$user_id', '0');";
+									mysql_query($query);
+									echo "Inserted $club. <br />";
+								}
+							}
+							$club_count++;
+						}
+						
+						//DELETE CLUBS HERE
+						if(!empty($clubs_delete)) {
+							foreach($clubs_delete as $club) {
+								if(!empty($club)) {
+									$query = "DELETE FROM subtype WHERE id='$club';";
+									mysql_query($query);
+									echo "<p>Club Deleted!</p><br />";
+								}
+							}
+						}
+						
+						echo "<b>Club(s) have been updated!</b><br />";
+					}
+					
+					//*Insert/Update/Delete sports
+					//?!!?!!!???!?!!?! MO' FUNKINESS HERE. When saving more than one, only gives the latest. Dunno why. Better break these down one at a time.
+					if($sports) {
+						if(isset($_REQUEST['sname'])) {
+							$sports_name = $_REQUEST['sname'];
+							/*echo "<p>Sports names request variable:</p><br /><pre>";
+							print_r($sports_name);
+							echo "</pre>";*/
+						}
+						
+						if(isset($_REQUEST['sid'])) {
+							$sports_id = $_REQUEST['sid'];
+							/*echo "<p>Sports ids request variable:</p><br /><pre>";
+							print_r($sports_id);
+							echo "</pre>";*/
+						}
+						
+						if(isset($_REQUEST['sdelete'])) {
+							$sports_delete = $_REQUEST['sdelete'];
+							/*echo "<p>Sports delete request variable:</p><br /><pre>";
+							print_r($sports_delete);
+							echo "</pre>";*/
+						}
+						
+						$query = "SELECT id, name FROM subtype WHERE author_id = '$user_id' AND type_id = '4';";
+						$existing_sports = $db->runQuery($query);
+						////echo "<pre>" . print_r($sports) . "</pre>";
+						
+						$sports_count = 0;
+						foreach($sports_name as $sport) { //*$sport is the name of the sport
+							foreach($existing_sports as $existing_sport) { //*$existing_sport is an array comprised of id, name
+								if($sports_id[$sports_count] == $existing_sport['id']) {
+									$query = "UPDATE subtype SET name='$sport' WHERE id='{$existing_sport['id']}'";
+									mysql_query($query);
+									$existing_s = true;
+									echo "Updated $sport. <br />";
+									break;
+								} else {
+									$existing_s = false;
+								}
+							}
+							
+							if(!$existing_s) {
+								$query = "INSERT INTO subtype(name, type_id, author_id, period) VALUES ('$sport', '4', '$user_id', '0');";
+								mysql_query($query);
+								echo "Inserted $sport. <br />";
+							}
+							$sports_count++;
+						}
+						
+						//DELETE SPORTS HERE
+						if(!empty($sports_delete)) {
+							foreach($sports_delete as $sport) {
+								if(!empty($sport)) {
+									$query = "DELETE FROM subtype WHERE id='{$sport}'";
+									mysql_query($query);
+									echo "<p>Sport Deleted!</p><br />";
+								}
+							}
+						}
+						
+						echo "<b>Sport(s) have been updated!</b><br />";
+					}
 				
 ////////////////////UPDATE STUFF///////////////////////////////////////////////////////////////////////////////////////////////////
 					//*Update your password first
@@ -114,8 +245,6 @@ $db = new Db($dbConfig);
 							mysql_query($query);
 						}
 						
-						//$query = "UPDATE subtype SET name = '$p1' WHERE author_id = '$user_id' AND period = '1';";
-						//mysql_query($query);
 						echo "<b>Classes have been updated!</b><br />";
 					}
 				}
@@ -137,27 +266,43 @@ $db = new Db($dbConfig);
 						$classes[] = $rows;
 					}
 				}
+
+				////Club
+				if($club_p) {
+					$club_values = $db->runQuery("SELECT * FROM subtype WHERE author_id = '$user_id' AND type_id = '3' ORDER BY id;");
+					/*echo "<p>Here are the values to be put in the inputs:</p><br />";
+					echo "<pre>";
+					print_r($club_values);
+					echo "</pre>";*/
+				}
+				
+				
+				////Sport
+				if($sports) {
+					$result = mysql_query("SELECT * FROM subtype WHERE author_id = '$user_id' AND type_id = '4' ORDER BY id;");
+					$sports_values = array();
+					while($rows = mysql_fetch_array($result)) {
+						$sports_values[] = $rows;
+					}
+				}
 				
 		?>
 		
 		<pre>
 			<?php //print_r($user_data);?>
 			<?php //print_r($classes);?>
+			<?php //print_r($club_values);?>
+			<?php //print_r($sports_values);?>
 		</pre>
 	
-		<form id="form" method="post" action="settings.php">
+		<form id="form" method="get" action="settings.php">
 			<!--<label></label>
 			<input name="" type="text" value=""/>
 			<br />-->
-		
+			<div id="general_info">
 			<label>Username:</label>
 			<input name="username" type="text" value="<?php echo $username;?>"/> 
 			<br />
-			
-			<!--Hey, probably don't need this.
-			<label>Old Password:</label>
-			<input name="old_password_check" type="password" value=""/> 
-			<br />-->
 			
 			<label>New Password:</label>
 			<input name="new_password" type="password" value=""/> 
@@ -178,53 +323,17 @@ $db = new Db($dbConfig);
 			<label>Email:</label>
 			<input name="email" type="text" value="<?php echo $email;?>"/> 
 			<br />
-			
-			
-			<h2>Your Classes Here:</h2>
-			<p>If you have no class in that period, simply type in "Prep."</p>
-			
-			<!--
-			<label>Period 1</label>
-			<input name="p1" type="text" value="<?=$p1['name']?>"/> 
-			<br />
-			
-			
-			<label>Period 2</label>
-			<input name="p2" type="text" value=""/> 
-			<br />
-			
-			<label>Period 3</label>
-			<input name="p3" type="text" value=""/> 
-			<br />
-			
-			<label>Period 4</label>
-			<input name="p4" type="text" value=""/> 
-			<br />
-			
-			<label>Period 5</label>
-			<input name="p5" type="text" value=""/> 
-			<br />
-			
-			<label>Period 6</label>
-			<input name="p6" type="text" value=""/> 
-			<br />
-			
-			<label>Period 7</label>
-			<input name="p7" type="text" value=""/> 
-			<br />
-			
-			<label>Period 8</label>
-			<input name="p8" type="text" value=""/> 
-			<br /> -->
-			
+			</div>
 			
 			<?php 
 			if($teacher) {
+				echo "<div id='classes_info'><h2>Your Classes Here:</h2><p>If you have no class in that period, simply type in \"Prep.\"</p>";
+				
 				//*Making the class inputs:
 				$i = 1;
 				if(!empty($classes)) { //*If the classes exist, put in the values.
 					foreach($classes as $class) {
-						echo "<label>Period $i</label>
+						echo "<label>Period $i:</label>
 						<input name='p" . $i . "' type='text' value='".$class['name']."'/>
 						<br />";
 						$i++;
@@ -236,24 +345,68 @@ $db = new Db($dbConfig);
 						<br />";
 					}
 				}
+				
+				echo "</div>";
 			}
-			?> 
+			?>
 			
-			<h2>Clubs here:</h2>
+			<?php 
+			if($club_p) {
+				echo "<div id='clubs_info'><h2>Clubs here:</h2>";
+				
+				$i = 1;
+				if(!empty($club_values)) {
+					foreach($club_values as $club_value) {
+						echo '<div class="club_wrapper">
+							<label>Club '.$i.':</label>
+							<input name="cname[]" type="text" value="'. $club_value["name"] .'"/>
+							<input name="cid[]" type="hidden" value="'. $club_value["id"] .'"/>
+							<a href="#" class="delete_club">X</a>
+							<br /></div>';
+						$i++;
+					}
+				} else {
+					echo '<label>Club 1:</label>
+						<input name="cname[]" type="text" value=""/>
+						<input name="cid[]" type="hidden" value=""/>
+						<br />';
+				}
+				
+				echo "</div>";
+				echo "<button id='add_club'>Add new club</button>";
+			}
+			?>
 			
-			<label>Club:</label>
-			<input name="c1" type="text" value=""/>
+			<?php 
+			
+			if($sports) {
+				echo "<div id='sports_info'><h2>Sports here:</h2>";
+				
+				$i = 1;
+				if(!empty($sports_values)) {
+					foreach($sports_values as $sport_value) {
+						echo '<div class="sports_wrapper">
+							<label>Sport '.$i.':</label>
+							<input name="sname[]" type="text" value="'. $sport_value["name"] .'"/>
+							<input name="sid[]" type="hidden" value="'. $sport_value["id"] .'"/>
+							<a href="#" class="delete_sports">X</a>
+							<br /></div>';
+						$i++;
+					}
+				} else {
+					echo '<label>Sport 1:</label>
+						<input name="sname[]" type="text" value=""/>
+						<input name="sid[]" type="hidden" value=""/>
+						<br />';
+				}
+				
+				echo "</div>";
+				echo "<button id='add_sports'>Add new sport</button>";
+			}
+			?>
+			
 			<br />
-			<!--Note: figure out how to make a button that will add a new club (a (+) button) .Probably gonna involve js.-->
-			
-			<!--
-			<h2>Sports here:</h2>
-			
-			<label>Sport:</label>
-			<input name="s1" type="text" value=""/>
 			<br />
-			<!--See note above-->
-			
 			<input type="submit" value="Save"/>
 		</form>
 		<br />
