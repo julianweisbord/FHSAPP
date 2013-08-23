@@ -47,6 +47,11 @@
 		$_SESSION['username'] = $typedusername;
 	}
 
-	
+	function enforce_log() {
+		if(!isset($_SESSION['user_id'])) {
+			header('Location: login.php');
+			exit();
+		}
+	}	
 
 ?>

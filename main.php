@@ -1,5 +1,9 @@
 <?php 
-	session_start();
+session_start(); 
+require_once('functions.php');
+enforce_log();
+
+
 	echo $_SESSION['username']; //Comment out eventually
 	
 	include('lib/config.php');
