@@ -297,6 +297,7 @@ $db = new Db($dbConfig);
 			<?php //print_r($club_values);?>
 			<?php //print_r($sports_values);?>
 		</pre>
+				
 				<div class="columns_wrapper">
 		<div class="columns">
 			<div class="column">
@@ -305,30 +306,37 @@ $db = new Db($dbConfig);
 			<!--<label></label>
 			<input name="" type="text" value=""/>
 			<br />-->
+			<div class="row">
 			<div id="general_info">
 			<label>Username:</label>
 			<input name="username" type="text" value="<?php echo $username;?>"/> 
 			<br />
-			
+			</div>
+			<div class="row">
 			<label>New Password:</label>
 			<input name="new_password" type="password" value=""/> 
 			<br />
-			
+			</div>
+			<div class="row">
 			<label>New Password Verification:</label>
 			<input name="new_password_2" type="password" value=""/> 
 			<br />
-			
+			</div>
+			<div class="row">
 			<label>First Name:</label>
 			<input name="first_name" type="text" value="<?php echo $first_name;?>"/> 
 			<br />
-			
+			</div>
+			<div class="row">
 			<label>Last Name:</label>
 			<input name="last_name" type="text" value="<?php echo $last_name;?>"/> 
 			<br />
-			
+			</div>
+			<div class="row">
 			<label>Email:</label>
 			<input name="email" type="text" value="<?php echo $email;?>"/> 
 			<br />
+			</div>
 			</div>
 			
 			<?php 
@@ -418,6 +426,8 @@ $db = new Db($dbConfig);
 		<br />
 		<a href="main.php">Back to Home</a><br />
 	</div>
+</div>
+</div>
 </body>
 
 </html>

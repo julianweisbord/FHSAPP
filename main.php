@@ -29,16 +29,23 @@ enforce_log();
 </head>
 
 <body>
+	<div class="header">
+		<img class="logo" src="http://fhsapp.com/v2/Images/daytime.png">
+		<div class="buttons">
+			 <a class="logout_button" href="#">Log Out</a>
+		</div>	
+	</div>	
 	<div class="columns_wrapper">
 		<div class="columns">
 			<div class="column">
+
 			<?php 
 				echo '<a href="settings.php">Settings</a><br />';
 				if($_SESSION['admin']) {
 					echo '<a href="new_user.php">New User</a><br />';
 				}
 				echo '<a href="create.php">Add Announcement</a><br />';
-				echo '<a href="login.php">Log out</a><br />';
+				
 			?>
 			</div>
 		</div>

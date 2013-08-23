@@ -57,7 +57,12 @@
 </head>
 
 <body class="new_user">
-
+	<div class="header">
+		<img class="logo" src="http://fhsapp.com/v2/Images/daytime.png">
+		<div class="buttons">
+			 <a class="logout_button" href="#">Log Out</a>
+		</div>	
+	</div>
 <?php
 
 require_once('lib/config.php');
@@ -127,8 +132,8 @@ $db = new Db($dbConfig);
 		?>
 	
 
-		<div id="form-wrap">
-
+		
+		
 <form id="form" action="new_user.php" method="post" name="new_user_form">
 
 	<fieldset>
