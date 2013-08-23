@@ -95,7 +95,7 @@ if($typedhash === $hash){
 	<div class="header">
 		<img class="logo" src="http://fhsapp.com/v2/Images/daytime.png">
 		<div class="buttons">
-			<a href="#">logout</a>
+			 <a class="logout_button" href="#">Log Out</a>
 		</div>	
 	</div>	
 	<div class="columns_wrapper"><div class="columns">
@@ -115,11 +115,11 @@ if($typedhash === $hash){
 					<input onblur="if (this.value==''){this.style.display='none';document.getElementById('password_text').style.display='block'}" id="password" style="display: none" type="password" name="pass"/>
 				</div>
 				<div class="row">
-					<input type="checkbox" id="staylogged" name="staylogged"/> <label for="staylogged">Stay Logged In</label>
+					<input  type="checkbox" id="staylogged" name="staylogged"/> <label for="staylogged">Stay Logged In</label>
 				</div>
 	
 				<div class="row">
-					<input type="submit" value="Login"/>
+					<input class="submit" type="submit" value="Login"/>
 
 				</div>
 			</div>
