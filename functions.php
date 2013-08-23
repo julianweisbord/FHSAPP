@@ -37,7 +37,7 @@
 	}
 
 	//For setting session variables at the login
-	function set_session($typedusername) {
+	/*function set_session($typedusername) {
 		$userdata = mysql_fetch_array(mysql_query("SELECT * FROM users WHERE username='$typedusername'"));
 		$_SESSION['user_id'] = $userdata['id'];
 		$_SESSION['admin'] = $userdata['admin'];
@@ -45,13 +45,29 @@
 		$_SESSION['club'] = $userdata['club'];
 		$_SESSION['sports'] = $userdata['sports'];
 		$_SESSION['username'] = $typedusername;
-	}
+	}*/
 
 	function enforce_log() {
 		if(!isset($_SESSION['user_id'])) {
-			header('Location: login.php');
-			exit();
+			function check_cookie()
 		}
 	}	
-
+	/*
+	function make_cookie($user) {
+		$expire = time()+(60*60*24*150);
+		setcookie("staylogged", $user, $expire);
+	}
+	
+	function check_cookie() {
+		if(isset($_COOKIE['staylogged'])) {
+			$_SESSION[$user];
+			header('Location: main.php');
+		}
+	}
+	
+	function delete_cookie($user) {
+		$expire = time()-1;
+		setcookie("staylogged", $user, $expire);
+	}
+	*/
 ?>

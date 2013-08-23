@@ -10,14 +10,14 @@ $db = new Db($dbConfig);
 
 //if($_POST['user'])
 function set_session($typedusername) {
-		$userdata = mysql_fetch_array(mysql_query("SELECT * FROM users WHERE username='$typedusername'"));
-		$_SESSION['user_id'] = $userdata['id'];
-		$_SESSION['admin'] = $userdata['admin'];
-		$_SESSION['teacher'] = $userdata['teacher'];
-		$_SESSION['club'] = $userdata['club'];
-		$_SESSION['sports'] = $userdata['sports'];
-		$_SESSION['username'] = $typedusername;
-	}
+	$userdata = mysql_fetch_array(mysql_query("SELECT * FROM users WHERE username='$typedusername'"));
+	$_SESSION['user_id'] = $userdata['id'];
+	$_SESSION['admin'] = $userdata['admin'];
+	$_SESSION['teacher'] = $userdata['teacher'];
+	$_SESSION['club'] = $userdata['club'];
+	$_SESSION['sports'] = $userdata['sports'];
+	$_SESSION['username'] = $typedusername;
+}
 
 if(!empty($_REQUEST)) {
 	login();
@@ -42,6 +42,11 @@ if($result){
 if($typedhash === $hash){
 	//echo "Login Successful";
 	set_session($typedusername);
+	/*if($_REQUEST['staylogged'] = "on") {
+		make_cookie($_SESSION['user_id']);
+	} else {
+		delete_cookie($_SESSION['user_id']);
+	}*/
 	header('Location: main.php');
 	exit();
 	} else {
