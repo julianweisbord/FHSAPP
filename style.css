@@ -11,13 +11,13 @@ h2{
 	text-align: center;
 }
 
-	.login .columns_wrapper{
+	 .columns_wrapper{
 		float: left;
 		clear: both;
 		width:100%;
 
 }
-	.login .columns {
+	 .columns {
 
 /* max width allows the width to become smaller as the page gets smaller*/
 	max-width: 450px;

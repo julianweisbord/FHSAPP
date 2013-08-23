@@ -69,7 +69,10 @@ error_reporting(E_ALL);
 $db = new Db($dbConfig);
 ?>
 
-	<div class="wrapper">
+	<div class="columns_wrapper">
+		<div class="columns">
+			<div class="column">
+
 		<?php
 			function checkbox_checked($checkbox_value) {
 				if($checkbox_value == "on") {
@@ -159,7 +162,9 @@ $db = new Db($dbConfig);
 
 </fieldset>
 </form>
-	</div>
+	</div> <!--end column -->
+</div>
+</div>
 </body>
 
 </html>

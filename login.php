@@ -42,7 +42,7 @@ if($result){
 if($typedhash === $hash){
 	//echo "Login Successful";
 	set_session($typedusername);
-	header('Location: loginsuccessful.html');
+	header('Location: main.php');
 	exit();
 	} else {
 		 //echo "Login Failed."; 
