@@ -297,8 +297,11 @@ $db = new Db($dbConfig);
 			<?php //print_r($club_values);?>
 			<?php //print_r($sports_values);?>
 		</pre>
-	
+				<div class="columns_wrapper">
+		<div class="columns">
+			<div class="column">
 		<form id="form" method="get" action="settings.php">
+
 			<!--<label></label>
 			<input name="" type="text" value=""/>
 			<br />-->

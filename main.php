@@ -29,15 +29,19 @@ enforce_log();
 </head>
 
 <body>
-	<div class="wrapper">
-		<?php 
-			echo '<a href="settings.php">Settings</a><br />';
-			if($_SESSION['admin']) {
-				echo '<a href="new_user.php">New User</a><br />';
-			}
-			echo '<a href="create.php">Add Announcement</a><br />';
-			echo '<a href="login.php">Log out</a><br />';
-		?>
+	<div class="columns_wrapper">
+		<div class="columns">
+			<div class="column">
+			<?php 
+				echo '<a href="settings.php">Settings</a><br />';
+				if($_SESSION['admin']) {
+					echo '<a href="new_user.php">New User</a><br />';
+				}
+				echo '<a href="create.php">Add Announcement</a><br />';
+				echo '<a href="login.php">Log out</a><br />';
+			?>
+			</div>
+		</div>
 	</div>
 </body>
 
