@@ -2,6 +2,8 @@
 session_start();
 include('lib/config.php');
 include('lib/db.class.php');
+include_once('functions.php');
+assist_log();
 
 ini_set('display_errors',0);
 error_reporting(E_ALL);
@@ -10,14 +12,14 @@ $db = new Db($dbConfig);
 
 //if($_POST['user'])
 function set_session($typedusername) {
-	$userdata = mysql_fetch_array(mysql_query("SELECT * FROM users WHERE username='$typedusername'"));
-	$_SESSION['user_id'] = $userdata['id'];
-	$_SESSION['admin'] = $userdata['admin'];
-	$_SESSION['teacher'] = $userdata['teacher'];
-	$_SESSION['club'] = $userdata['club'];
-	$_SESSION['sports'] = $userdata['sports'];
-	$_SESSION['username'] = $typedusername;
-}
+		$userdata = mysql_fetch_array(mysql_query("SELECT * FROM users WHERE username='$typedusername'"));
+		$_SESSION['user_id'] = $userdata['id'];
+		$_SESSION['admin'] = $userdata['admin'];
+		$_SESSION['teacher'] = $userdata['teacher'];
+		$_SESSION['club'] = $userdata['club'];
+		$_SESSION['sports'] = $userdata['sports'];
+		$_SESSION['username'] = $typedusername;
+	}
 
 if(!empty($_REQUEST)) {
 	login();
@@ -42,11 +44,7 @@ if($result){
 if($typedhash === $hash){
 	//echo "Login Successful";
 	set_session($typedusername);
-	/*if($_REQUEST['staylogged'] = "on") {
-		make_cookie($_SESSION['user_id']);
-	} else {
-		delete_cookie($_SESSION['user_id']);
-	}*/
+	kLA();
 	header('Location: main.php');
 	exit();
 	} else {
@@ -98,10 +96,7 @@ if($typedhash === $hash){
 </head>
 <body class="login">
 	<div class="header">
-		<img class="logo" src="http://fhsapp.com/v2/Images/daytime.png">
-		<div class="buttons">
-			 <a class="logout_button" href="#">Log Out</a>
-		</div>	
+		<img class="logo" src="http://fhsapp.com/v2/Images/daytime.png">	
 	</div>	
 	<div class="columns_wrapper"><div class="columns">
 
@@ -120,11 +115,11 @@ if($typedhash === $hash){
 					<input onblur="if (this.value==''){this.style.display='none';document.getElementById('password_text').style.display='block'}" id="password" style="display: none" type="password" name="pass"/>
 				</div>
 				<div class="row">
-					<input  type="checkbox" id="staylogged" name="staylogged"/> <label for="staylogged">Stay Logged In</label>
+					<input type="checkbox" id="staylogged" name="staylogged"/> <label for="staylogged">Stay Logged In</label>
 				</div>
 	
 				<div class="row">
-					<input class="submit" type="submit" value="Login"/>
+					<input type="submit" value="Login"/>
 
 				</div>
 			</div>

@@ -49,25 +49,42 @@
 
 	function enforce_log() {
 		if(!isset($_SESSION['user_id'])) {
-			function check_cookie()
+			check_cookie();
 		}
 	}	
-	/*
-	function make_cookie($user) {
+	
+	function make_cookie() {
 		$expire = time()+(60*60*24*150);
-		setcookie("staylogged", $user, $expire);
+		setcookie("staylogged", $_SESSION['user_id'], $expire);
 	}
 	
 	function check_cookie() {
 		if(isset($_COOKIE['staylogged'])) {
-			$_SESSION[$user];
+			$_SESSION['user_id']= $_COOKIE['staylogged'];
+			header('Location: main.php');
+		}else{
+			header('Location: login.php');
+		}
+	}
+	
+	function delete_cookie() {
+		$expire = time()-1;
+		setcookie("staylogged", $_SESSION['user_id'], $expire);
+	}
+	
+	function kLA() {
+		if(isset($_POST['staylogged'])){
+			make_cookie();
+		}else{
+			delete_cookie();
+		}
+	}
+	
+	function assist_log(){
+		if(isset($_COOKIE['staylogged'])){
 			header('Location: main.php');
 		}
 	}
 	
-	function delete_cookie($user) {
-		$expire = time()-1;
-		setcookie("staylogged", $user, $expire);
-	}
-	*/
+	
 ?>

@@ -4,12 +4,13 @@ require_once('functions.php');
 enforce_log();
 
 
-	echo $_SESSION['username']; //Comment out eventually
+	//echo $_SESSION['username']; //Comment out eventually
+	//echo $_COOKIE['staylogged'];
 	
 	include('lib/config.php');
 	include('lib/db.class.php');
 
-	ini_set('display_errors',0);
+	ini_set('display_errors',1);
 	error_reporting(E_ALL);
 	$db = new Db($dbConfig);
 	//Maybe make a function that takes all the Session variables and sticks them into easier to use variable names.
@@ -32,7 +33,7 @@ enforce_log();
 	<div class="header">
 		<img class="logo" src="http://fhsapp.com/v2/Images/daytime.png">
 		<div class="buttons">
-			 <a class="logout_button" href="#">Log Out</a>
+			 <a class="logout_button" href="logout.php">Log Out</a>
 		</div>	
 	</div>	
 	<div class="columns_wrapper">
