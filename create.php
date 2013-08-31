@@ -23,7 +23,34 @@ $sports_p = $_SESSION['sports'];
 ?>
 
 <?php
-
+	//Inserting stuff.
+	if(!empty($_REQUEST)) {
+		$subtype_ids = $_REQUEST['check'];
+		if(!empty($subtype_ids)) {
+			//*Insert the actual announcement into the announcement table
+			$title = $_REQUEST['title'];
+			$description = $_REQUEST['description'];
+			$start_date = $_REQUEST['start_date'];
+			$end_date = $_REQUEST['end_date'];
+			$date = $_REQUEST['date'];
+			$location = $_REQUEST['location'];
+			$time = $_REQUEST['time'];
+			
+			$query = "INSERT INTO announcements(title, description, start_date, end_date, date, location, time, author) VALUES('$title', '$description', '$start_date', '$end_date', '$date', '$location', '$time', '$user_id');";
+			mysql_query($query);
+			
+			//*Insert the anno_subtype relationship into its table
+			$anno_id = mysql_insert_id();
+			//echo $anno_id;
+			foreach($subtype_ids as $subtype_id) {
+				$query = "INSERT INTO anno_subtype(anno_id, subtype_id) VALUES('$anno_id', '$subtype_id');";
+				mysql_query($query);
+			}
+			//redirect here maybe?
+		} //else {
+			//$need_check = true; //*Use this to make a comment that says something needs to be checked.
+		//}
+	}
 
 ?>
 <!DOCTYPE HTML>
@@ -58,12 +85,7 @@ For the checkbox, the values are gonna have to be the ids of the subtypes. So I'
 Okay, now inserting stuff.
 -->
 
-<?php
-	//Inserting stuff.
-	if($_REQUEST) {
-		
-	}
-?>
+
 
 <html>
 
@@ -85,7 +107,7 @@ Okay, now inserting stuff.
 					title: {
 						required: true,
 					},
-					content: {
+					description: {
 						required: true,
 					},
 					start_date: {
@@ -114,8 +136,8 @@ Okay, now inserting stuff.
 			<input name="title" type="text" value="" />
 			<br />
 			
-			<label>Content:</label>
-			<textarea name="content" rows="5" col="50"></textarea>
+			<label>Description:</label>
+			<textarea name="description" rows="5" col="50"></textarea>
 			<br />
 			
 			<label>Announcement Starting Date:</label>
@@ -139,7 +161,7 @@ Okay, now inserting stuff.
 					$number = $period['period'];
 					
 					echo '<label>Period '.$number.': '.$name.'</label>
-					<input name="pcheck[]" type="checkbox" value="'.$id.'" />
+					<input name="check[]" type="checkbox" value="'.$id.'" />
 					<br />';
 				}
 			}
@@ -154,7 +176,7 @@ Okay, now inserting stuff.
 					$name = $club['name'];
 					
 					echo '<label>'.$name.':</label>
-					<input name="ccheck[]" type="checkbox" value="'.$id.'" />
+					<input name="check[]" type="checkbox" value="'.$id.'" />
 					<br />';
 				}
 			}
@@ -168,7 +190,7 @@ Okay, now inserting stuff.
 					$name = $sport['name'];
 					
 					echo '<label>'.$name.':</label>
-					<input name="scheck[]" type="checkbox" value="'.$id.'" />
+					<input name="check[]" type="checkbox" value="'.$id.'" />
 					<br />';
 				}
 			}
