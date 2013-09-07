@@ -43,7 +43,7 @@ enforce_log();
 require_once('lib/config.php');
 require_once('lib/db.class.php');
 
-ini_set('display_errors', 1); //Change from 0 to 1 and back for errors.
+ini_set('display_errors', 0); //Change from 0 to 1 and back for errors.
 error_reporting(E_ALL);
 
 $db = new Db($dbConfig);
@@ -299,74 +299,44 @@ $db = new Db($dbConfig);
 		</pre>
 				
 				<div class="columns_wrapper">
-		<div class="columns">
-			<div class="column">
-		<form id="form" method="get" action="settings.php">
+					<div class="settings_columns">
+						<div class="inner">
 
-			<!--<label></label>
-			<input name="" type="text" value=""/>
-			<br />-->
-			<div class="row">
-			<div id="general_info">
-			<label>Username:</label>
-			<input name="username" type="text" value="<?php echo $username;?>"/> 
-			<br />
-			</div>
-			<div class="row">
-			<label>New Password:</label>
-			<input name="new_password" type="password" value=""/> 
-			<br />
-			</div>
-			<div class="row">
-			<label>New Password Verification:</label>
-			<input name="new_password_2" type="password" value=""/> 
-			<br />
-			</div>
-			<div class="row">
-			<label>First Name:</label>
-			<input name="first_name" type="text" value="<?php echo $first_name;?>"/> 
-			<br />
-			</div>
-			<div class="row">
-			<label>Last Name:</label>
-			<input name="last_name" type="text" value="<?php echo $last_name;?>"/> 
-			<br />
-			</div>
-			<div class="row">
-			<label>Email:</label>
-			<input name="email" type="text" value="<?php echo $email;?>"/> 
-			<br />
-			</div>
-			</div>
+		<div class="settings_column1">
+			
+		<form id="form" method="get" action="settings.php">
+		
+			
 			
 			<?php 
 			if($teacher) {
-				echo "<div id='classes_info'><h2>Your Classes Here:</h2><p>If you have no class in that period, simply type in \"Prep.\"</p>";
+				echo "<div id='classes_info'><h1>Your Classes Here:</h1><p>If you have no class in that period, simply type in \"Prep.\"</p>";
 				
 				//*Making the class inputs:
 				$i = 1;
 				if(!empty($classes)) { //*If the classes exist, put in the values.
 					foreach($classes as $class) {
-						echo "<label>Period $i:</label>
+						echo "<div class='row'><label>Period $i:</label>
 						<input name='p" . $i . "' type='text' value='".$class['name']."'/>
-						<br />";
+						</div>";
 						$i++;
 					}
 				} else { //*If the classes haven't been made yet, make them empty.
 					for($j=1;$j<9;$j++) {
-						echo "<label>Period $j</label>
+						echo "<div class='row'><label>Period $j</label>
 						<input name='p" . $j . "' type='text' value=''/>
-						<br />";
+						</div>";
 					}
 				}
 				
 				echo "</div>";
 			}
 			?>
-			
+		</div>
+			<div class="settings_column2">
 			<?php 
 			if($club_p) {
-				echo "<div id='clubs_info'><h2>Clubs here:</h2>";
+				echo "<div id='clubs_info'><h1>Clubs here:</h1>";
 				
 				$i = 1;
 				if(!empty($club_values)) {
@@ -394,7 +364,7 @@ $db = new Db($dbConfig);
 			<?php 
 			
 			if($sports) {
-				echo "<div id='sports_info'><h2>Sports here:</h2>";
+				echo "<div id='sports_info'><h1>Sports here:</h1>";
 				
 				$i = 1;
 				if(!empty($sports_values)) {
@@ -419,15 +389,13 @@ $db = new Db($dbConfig);
 			}
 			?>
 			
-			<br />
-			<br />
+			
 			<input type="submit" value="Save"/>
 		</form>
-		<br />
-		<a href="main.php">Back to Home</a><br />
-	</div>
-</div>
-</div>
+	
+		</div>
+			</div>		
+				</div>
 </body>
 
 </html>
