@@ -29,7 +29,7 @@ $sports_p = $_SESSION['sports'];
 		if(!empty($subtype_ids)) {
 			//*Insert the actual announcement into the announcement table
 			$title = $_REQUEST['title'];
-			$description = $_REQUEST['description'];
+			$description = mysql_real_escape_string( $_REQUEST['description'] );
 			$start_date = $_REQUEST['start_date'];
 			$end_date = $_REQUEST['end_date'];
 			$date = $_REQUEST['date'];
@@ -93,16 +93,29 @@ Okay, now inserting stuff.
 	<meta http-equiv="Content-type" content="text/html;charset=UTF-8"/>
 	<title>Create Announcement</title>
 	<script type="text/javascript" src="js/jquery-1.7.2.min.js"></script>
+	<!--Credit: http://jqueryvalidation.org/-->
 	<script type="text/javascript" src="js/jquery.validate.min.js"></script>
+	<!--Credit: http://api.jqueryui.com/-->
+	<script type="text/javascript" src="js/jquery-ui-1.10.3.custom.min.js"></script>
+	<!--Credit: http://www.tinymce.com/index.php-->
+	<script type="text/javascript" src="js/tinymce/tinymce.min.js"></script>
 	<script type="text/javascript" src="js/scripts.js"></script>
-	<script type="text/javascript"> //The easy way to validate. Credit this later.
+	<script type="text/javascript">
+		tinymce.init({
+			selector: "textarea",
+			plugins: [
+				"advlist autolink lists link image charmap print preview anchor",
+				"searchreplace visualblocks code fullscreen",
+				//"insertdatetime media table contextmenu paste moxiemanager" //*Don't think this plugin matters
+			],
+			toolbar: "insertfile undo redo | styleselect | bold italic | alignleft aligncenter alignright alignjustify | bullist numlist outdent indent | link image"
+		});
+
 	$(document).ready(
 		function(){	
-				jQuery.validator.addMethod("notEqual", function(value, element, param) {
-  return this.optional(element) || value != param;
-}, "Please specify a different (non-default) value");
-	$("form").validate({
-		ignore: "",
+			jQuery.validator.addMethod("notEqual", function(value, element, param) {return this.optional(element) || value != param;}, "Please specify a different (non-default) value");
+			$("form").validate({
+				ignore: "",
 				rules: {
 					title: {
 						required: true,
@@ -118,11 +131,17 @@ Okay, now inserting stuff.
 					}
 				}
 			});
-
+			
+			$("#start_date").datepicker({ dateFormat: "yy-mm-dd" });
+			$("#end_date").datepicker({ dateFormat: "yy-mm-dd" });
+			$("#date").datepicker({ dateFormat: "yy-mm-dd" });
 		}
+		
+		
 	);
 	</script>
 	<!--<link rel="stylesheet" href="style.css" />-->
+	<link rel="stylesheet" href="css/ui-lightness/jquery-ui-1.10.3.custom.min.css" />
 </head>
 
 <body>
@@ -141,11 +160,11 @@ Okay, now inserting stuff.
 			<br />
 			
 			<label>Announcement Starting Date:</label>
-			<input name="start_date" type="text" value=""/>
+			<input id="start_date" name="start_date" type="text" value=""/>
 			<br />
 			
 			<label>Announcement End Date:</label>
-			<input name="end_date" type="text" value=""/>
+			<input id="end_date" name="end_date" type="text" value=""/>
 			<br />
 			
 			<h3>Categories:</h3>
@@ -198,7 +217,7 @@ Okay, now inserting stuff.
 			
 			<h3>Optional:</h3>
 			<label>Actual Date of Event:</label>
-			<input name="date" type="text" value=""/>
+			<input id="date" name="date" type="text" value=""/>
 			<br />
 			
 			<label>Time of Event:</label>

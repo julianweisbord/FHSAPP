@@ -10,7 +10,7 @@ enforce_log();
 	include('lib/config.php');
 	include('lib/db.class.php');
 
-	ini_set('display_errors',1);
+	ini_set('display_errors',0);
 	error_reporting(E_ALL);
 	$db = new Db($dbConfig);
 	//Maybe make a function that takes all the Session variables and sticks them into easier to use variable names.
