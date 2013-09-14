@@ -55,38 +55,6 @@ $sports_p = $_SESSION['sports'];
 ?>
 <!DOCTYPE HTML>
 
-
-
-<!--This is gonna take some work. 
-
-Form parts:
--title
--content
--start_date
--end_date
--date
--time
--location
--category (cats)
--publish
-
-To do:
--content: Figure out how to make a fancier text editor, with the bold, italic, font size, that stuff. Called a rich text editor, also WYSIWYG. Check out http://www.tinymce.com/ and http://ckeditor.com/
--start and end dates: figure out the formatting and the popup calendar for convenience. Should be YYYY-MM-DD. http://xkcd.com/1179/
--category: will most likely have to be generated dynamically. That's gonna be interesting. Will need arrays and stuff.
--Eventually will need to add edit functionality too. All values are gonna end up php variables once we get the main done.
-
-First, think we need the anno_subtype table to match the ids.
-For inserting, it's going to have to do a few things...
-It'll have to insert into the announcement table all the actual announcement info
-and it'll have to insert into the anno_subtype table the announcement id matched to each subtype
-I think let's start at just teacher functionality first. See if we can make the whole checkbox thing.
-For the checkbox, the values are gonna have to be the ids of the subtypes. So I'm guessing if you do $_REQUEST['p1'], it'll return the value, right? Yes.
-Okay, now inserting stuff.
--->
-
-
-
 <html>
 
 <head>
