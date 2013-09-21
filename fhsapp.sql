@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: 127.0.0.1
--- Generation Time: Aug 23, 2013 at 10:56 PM
+-- Generation Time: Sep 22, 2013 at 12:28 AM
 -- Server version: 5.6.11
 -- PHP Version: 5.5.0
 
@@ -31,29 +31,56 @@ USE `fhsapp`;
 CREATE TABLE IF NOT EXISTS `announcements` (
   `id` int(10) NOT NULL AUTO_INCREMENT,
   `title` varchar(100) NOT NULL,
-  `description` mediumtext NOT NULL,
-  `date` varchar(100) NOT NULL COMMENT 'should we change this??',
-  `place` varchar(100) NOT NULL,
+  `description` longtext NOT NULL,
+  `date` date NOT NULL COMMENT 'should we change this??',
+  `location` varchar(100) NOT NULL,
   `time` varchar(100) NOT NULL,
-  `start_date` varchar(100) NOT NULL COMMENT 'see date',
-  `end_date` varchar(100) NOT NULL COMMENT 'see date',
-  `subtype_id` int(10) NOT NULL COMMENT 'Go by id',
+  `start_date` date NOT NULL COMMENT 'see date',
+  `end_date` date NOT NULL COMMENT 'see date',
   `author` int(10) NOT NULL COMMENT 'Go by id',
+  `timestamp` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM  DEFAULT CHARSET=latin1 AUTO_INCREMENT=8 ;
+) ENGINE=MyISAM  DEFAULT CHARSET=latin1 AUTO_INCREMENT=22 ;
 
 --
 -- Dumping data for table `announcements`
 --
 
-INSERT INTO `announcements` (`id`, `title`, `description`, `date`, `place`, `time`, `start_date`, `end_date`, `subtype_id`, `author`) VALUES
-(1, 'Essay due', 'You''ve got an essay due in two weeks! It counts for over 150% of your grade, so be sure to get it in! If you''re questioning the percentage, please remember that I am a English teacher, not a math teacher. Now work students!', '2013-10-31', 'Rm 242', 'Period 5', '2013-10-17', '2013-11-01', 5, 2),
-(2, 'Read Chpt. 1 - 17 for the next class', 'Please remember we are going to have a very important discussion on the first few chapters of War and Peace. It is essential that you have these chapters read by the next class day.', '2013-10-28', 'Rm 242', 'Period 2', '2013-10-26', '2013-10-29', 2, 2),
-(3, 'English Laser Beam Project', 'The third part in our installment about laser beams, please write a poem describing your average day as a laser beam. You will be graded harshly not only on word choice but technical accuracy. These will be presented.', '7-22-13', 'Auditorium', 'Lunch', '7-15-13', '7-23-13', 8, 2),
-(4, 'Godzilla Attack', 'There will be a drill testing how prepared you are for a possible Godzilla attack. You will not be warned beforehand,and angry, poisonous Komodo Dragons will be released to simulate Godzilla children. The next person to ask "how is this English class" will be assigned a thirteen page essay. ', '2-10-14 -- 2-15-14', 'Ms. Vinger''s Room', '', '2-10-14', '2-16-14', 1, 2),
-(5, '', '', '3/6/14', 'fraklin high school', '12:00', '3/6/14', '3/7/14', 0, 0),
-(6, '', '', '3/6/14', 'fraklin high school', '12:00', '3/6/14', '3/7/14', 0, 0),
-(7, '', '', '3/6/14', 'fraklin high school', '12:00', '3/6/14', '3/7/14', 0, 0);
+INSERT INTO `announcements` (`id`, `title`, `description`, `date`, `location`, `time`, `start_date`, `end_date`, `author`, `timestamp`) VALUES
+(19, 'Club info', '<p>Every Tuesday!</p>', '2013-09-24', 'Rm 273', '', '2013-09-21', '2013-09-25', 1, '2013-09-21 19:57:29'),
+(20, 'Swimming!', '<p>At Mt. Scott.</p>', '2013-09-23', 'Mt. Scott', '', '2013-09-20', '2013-09-24', 1, '2013-09-21 19:58:53'),
+(21, 'Stuff', '<p>Testing if one click works.</p>', '2013-09-23', '', '', '2013-09-20', '2013-09-23', 1, '2013-09-21 20:00:01'),
+(17, 'Test', '<p>Testing things.</p>', '2013-09-13', 'Here', 'Now', '2013-09-12', '2013-09-14', 1, '2013-09-14 01:42:51'),
+(18, 'Another Test', '<p>Stuff</p>', '2013-09-21', 'Here', 'NOW', '2013-09-20', '2013-09-22', 1, '2013-09-21 19:53:47');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `anno_subtype`
+--
+
+CREATE TABLE IF NOT EXISTS `anno_subtype` (
+  `index` int(11) NOT NULL AUTO_INCREMENT,
+  `anno_id` int(10) NOT NULL,
+  `subtype_id` int(10) NOT NULL,
+  PRIMARY KEY (`index`)
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=31 ;
+
+--
+-- Dumping data for table `anno_subtype`
+--
+
+INSERT INTO `anno_subtype` (`index`, `anno_id`, `subtype_id`) VALUES
+(21, 17, 40),
+(22, 17, 41),
+(23, 17, 46),
+(24, 17, 133),
+(25, 17, 137),
+(26, 18, 42),
+(27, 18, 44),
+(28, 19, 133),
+(29, 20, 137),
+(30, 21, 46);
 
 -- --------------------------------------------------------
 
@@ -145,7 +172,7 @@ INSERT INTO `subtype` (`id`, `name`, `type_id`, `author_id`, `period`) VALUES
 (44, 'Testing Testing', 2, 1, 5),
 (45, 'Test Period', 2, 1, 6),
 (46, 'Still Testing', 2, 1, 7),
-(47, 'Prep', 2, 1, 8);
+(47, '', 2, 1, 8);
 
 -- --------------------------------------------------------
 
@@ -194,7 +221,7 @@ CREATE TABLE IF NOT EXISTS `users` (
 --
 
 INSERT INTO `users` (`id`, `username`, `password`, `email`, `first_name`, `last_name`, `teacher`, `admin`, `club`, `sports`) VALUES
-(1, 'fhsapp', 'e91bde1d1f1c4fbab46f3ec44a354f8b', 'dustindiep0@gmail.com', 'Supreme', 'Admin', 1, 1, 1, 1),
+(1, '', 'e91bde1d1f1c4fbab46f3ec44a354f8b', '', '', '', 1, 1, 1, 1),
 (2, 'dvinger', 'qwer', 'dustindiep0@gmail.com', 'Dana', 'Vinger', 1, 0, 0, 0),
 (3, 'ddiep', 'e91bde1d1f1c4fbab46f3ec44a354f8b', 'dustindiep0@gmail.com', 'Dustin', 'Diep', 1, 1, 1, 1),
 (4, 'dvinger2', 'qwer', 'dustindiep0@gmail.com', 'Dana', 'Vinger', 1, 1, 0, 0),
