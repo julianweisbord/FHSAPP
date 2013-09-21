@@ -310,7 +310,7 @@ $db = new Db($dbConfig);
 			
 			<?php 
 			if($teacher) {
-				echo "<div id='classes_info'><h1>Your Classes Here:</h1><p>If you have no class in that period, simply type in \"Prep.\"</p>";
+				echo "<div id='classes_info'><h1>Your Classes Here:</h1><p>If you have no class in that period, leave it blank.</p>";
 				
 				//*Making the class inputs:
 				$i = 1;

@@ -25,7 +25,30 @@ $sports_p = $_SESSION['sports'];
 <?php
 	//Inserting stuff.
 	if(!empty($_REQUEST)) {
-		$subtype_ids = $_REQUEST['check'];
+		//$anno_id = 17;
+		$anno_id = $_REQUEST['anno_id'];
+		
+		$query = "SELECT * FROM announcements WHERE id='$anno_id'";
+		$anno_info = $db->runQuery($query);
+		foreach ($anno_info as $info) {
+			echo "<pre>";
+			print_r($info);
+			echo "</pre>";
+			$title = $info['title'];
+			$description = $info['description'];
+			$start_date = $info['start_date'];
+			$end_date = $info['end_date'];
+			$date = $info['date'];
+			$location = $info['location'];
+			$time = $info['time'];
+		} 
+		
+		
+		//Also gonna need the anno_subtype relationships so you know what to check.
+		//$query = "SELECT * FROM anno_subtype WHERE anno_id='$anno_id'";
+		//$anno_cb = $db->runQuery($query);
+		
+		/*$subtype_ids = $_REQUEST['check'];
 		if(!empty($subtype_ids)) {
 			//*Insert the actual announcement into the announcement table
 			$title = $_REQUEST['title'];
@@ -49,11 +72,17 @@ $sports_p = $_SESSION['sports'];
 			//redirect here maybe?
 		} //else {
 			//$need_check = true; //*Use this to make a comment that says something needs to be checked.
-		//}
+		//}*/
 	}
 
 ?>
 <!DOCTYPE HTML>
+
+<!--
+Okay, this is gonna be more work. The focus of this page is to update the announcements. It's going to be few a variable from the
+main page like ?id=# and this is going to have to grab that variable and use the id to fill up the slots. Then it'll fill up the
+inputs based on that and ONLY UPDATE the announcement when submitted.
+-->
 
 <html>
 
@@ -88,9 +117,9 @@ $sports_p = $_SESSION['sports'];
 					title: {
 						required: true,
 					},
-					/*description: {
+					description: {
 						required: true,
-					},*/
+					},
 					start_date: {
 						required: true,
 					},
@@ -114,31 +143,32 @@ $sports_p = $_SESSION['sports'];
 
 <body>
 	<div class="wrapper">
+		
 		<form id="form" method="get" action="create.php">
 			<!--<label></label>
 			<input name="" type="text" value=""/>
 			<br />-->
 		
 			<label>Title:</label>
-			<input name="title" type="text" value="" />
+			<input name="title" type="text" value="<?php echo $title;?>" />
 			<br />
 			
 			<label>Description:</label>
-			<textarea name="description" rows="5" col="50"></textarea>
+			<textarea name="description" rows="5" col="50"><?php echo $description;?></textarea>
 			<br />
 			
 			<label>Announcement Starting Date:</label>
-			<input id="start_date" name="start_date" type="text" value=""/>
+			<input id="start_date" name="start_date" type="text" value="<?php echo $start_date;?>"/>
 			<br />
 			
 			<label>Announcement End Date:</label>
-			<input id="end_date" name="end_date" type="text" value=""/>
+			<input id="end_date" name="end_date" type="text" value="<?php echo $end_date;?>"/>
 			<br />
 			
 			<h3>Categories:</h3>
-			<!--php must generate these...-->
+			<!--Gonna need to check if these are checked too...-->
 			<?php
-			if($teacher_p) {
+			/*if($teacher_p) {
 				$query = "SELECT * FROM subtype WHERE author_id='$user_id' AND type_id='2'";
 				$periods = $db->runQuery($query);
 				echo "<p>Classes:</p><br />";
@@ -146,11 +176,10 @@ $sports_p = $_SESSION['sports'];
 					$id = $period['id'];
 					$name = $period['name'];
 					$number = $period['period'];
-					if(!empty($name)) {
-						echo '<label>Period '.$number.': '.$name.'</label>
-						<input name="check[]" type="checkbox" value="'.$id.'" />
-						<br />';
-					}
+					
+					echo '<label>Period '.$number.': '.$name.'</label>
+					<input name="check[]" type="checkbox" value="'.$id.'" />
+					<br />';
 				}
 			}
 			
@@ -181,20 +210,20 @@ $sports_p = $_SESSION['sports'];
 					<input name="check[]" type="checkbox" value="'.$id.'" />
 					<br />';
 				}
-			}
+			}*/
 			?>
 			
 			<h3>Optional:</h3>
 			<label>Actual Date of Event:</label>
-			<input id="date" name="date" type="text" value=""/>
+			<input id="date" name="date" type="text" value="<?php echo $date;?>"/>
 			<br />
 			
 			<label>Time of Event:</label>
-			<input name="time" type="text" value=""/>
+			<input name="time" type="text" value="<?php echo $time;?>"/>
 			<br />
 			
 			<label>Location:</label>
-			<input name="location" type="text" value=""/>
+			<input name="location" type="text" value="<?php echo $location;?>"/>
 			<br />
 			
 			<input type="submit" value="Create Announcement" />
