@@ -1,7 +1,7 @@
 <?php 
 session_start(); 
 require_once('functions.php');
-enforce_log();
+
 
 //echo $_SESSION['username']; //Comment out eventually
 //echo $_COOKIE['staylogged'];
@@ -9,11 +9,12 @@ enforce_log();
 include('lib/config.php');
 include('lib/db.class.php');
 
+
 ini_set('display_errors',0);
 error_reporting(E_ALL);
 $db = new Db($dbConfig);
 //Maybe make a function that takes all the Session variables and sticks them into easier to use variable names.
-
+enforce_log();
 $user_id = $_SESSION['user_id'];
 
 //Sorting functionality shall go here.
@@ -32,6 +33,7 @@ if(!$subtype_id) {
 	$query = "SELECT * FROM announcements WHERE author='$user_id'";
 	$announcements=$db->runQuery($query);
 }
+
 ?>
 
 <!DOCTYPE HTML>
@@ -58,6 +60,7 @@ it submit with the variable that tells it to get only the selected categories.
 	Looks like this is all it's gonna take.
 -->
 <html>
+
 
 <head>
 	<meta http-equiv="Content-type" content="text/html;charset=UTF-8"/>
