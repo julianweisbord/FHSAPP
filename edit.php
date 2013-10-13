@@ -26,10 +26,10 @@ $sports_p = $_SESSION['sports'];
 	//Inserting stuff.
 	if(!empty($_REQUEST)) {
 		//$anno_id = 17;
-		$anno_id = $_REQUEST['anno_id'];
+		$anno_id = $_REQUEST['anno_id']; //*Get the announcment id from the address
 		
-		$query = "SELECT * FROM announcements WHERE id='$anno_id'";
-		$anno_info = $db->runQuery($query);
+		$query = "SELECT * FROM announcements WHERE id='$anno_id'"; //*Get the announcement
+		$anno_info = $db->runQuery($query); //*Put the anno info into this array
 		foreach ($anno_info as $info) {
 			/*echo "<pre>";
 			print_r($info);
@@ -44,11 +44,12 @@ $sports_p = $_SESSION['sports'];
 		} 
 		
 		
-		//Also gonna need the anno_subtype relationships so you know what to check.
+		//*Also gonna need the anno_subtype relationships so you know what to check.
 		$query = "SELECT * FROM anno_subtype WHERE anno_id='$anno_id'";
-		$anno_cb = $db->runQuery($query);
+		$anno_cb = $db->runQuery($query); //*This is where the the checkbox info is
 		
-		$subtype_ids = $_REQUEST['check']; //check is the name of the checkbox array
+		//*This is for updating the announcements
+		$subtype_ids = $_REQUEST['check']; //check is the name of the checkbox array. Subtype_ids contains all the subtypes that the announcement is associated with.
 		if(!empty($subtype_ids)) {
 			//*Insert the actual announcement into the announcement table
 			$title = $_REQUEST['title'];
@@ -62,36 +63,22 @@ $sports_p = $_SESSION['sports'];
 			$query = "UPDATE announcements SET title='$title', description='$description', start_date='$start_date', end_date='$end_date', date='$date', location='$location', time='$time' WHERE id='anno_id';";
 			mysql_query($query);
 			
+			//This was breaking.
 			//*Insert the anno_subtype relationship into its table
+			//*First delete all the existing ones
 			$query = "DELETE FROM anno_subtype WHERE anno_id='$anno_id'";
 			mysql_query($query);
 			
+			//*Then, insert the new ones.
 			foreach($subtype_ids as $subtype_id) {
 				$query = "INSERT INTO anno_subtype(anno_id, subtype_id) VALUES('$anno_id', '$subtype_id');";
 				mysql_query($query);
 			}
-			
-			/*foreach($subtype_ids as $subtype_id) {
-				$already_exists = false;
-				/*$query = "INSERT INTO anno_subtype(anno_id, subtype_id) VALUES('$anno_id', '$subtype_id');";
-				mysql_query($query);*/
-				//First thing it should do is loop through and check if the combo already exists. If it does leave it alone.
-				/*foreach($anno_cb as $cb) {
-					if($subtype_id = $cb['anno_id']) {
-						$already_exists = true;
-						break;
-					}
-				}
-				if(!$already_exists) {
-					$query = "INSERT INTO anno_subtype(anno_id, subtype_id) VALUES('$anno_id', '$subtype_id');";
-					mysql_query($query);
-				}
-			}*/
 		}
 			//redirect here maybe?
-		} //else {
-			//$need_check = true; //*Use this to make a comment that says something needs to be checked.
-		//}
+	} //else {
+		//$need_check = true; //*Use this to make a comment that says something needs to be checked.
+	//}
 	
 
 ?>

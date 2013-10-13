@@ -49,11 +49,13 @@
 
 	
 	function set_cookie_session(){
-		$userdata = mysql_fetch_array(mysql_query("SELECT * FROM users WHERE id='{$_SESSION['user_id']}'"));
-		$_SESSION['teacher'] = $userdata['teacher'];
-		$_SESSION['club'] = $userdata['club'];
-		$_SESSION['sports'] = $userdata['sports'];
-		$_SESSION['admin'] = $userdata['admin'];
+		$user_id = $_SESSION['user_id'];
+		$query = "SELECT * FROM users WHERE id='$user_id'";
+		$userdata = mysql_fetch_array(mysql_query($query));
+		$_SESSION['teacher'] = $userdata[0]['teacher'];
+		$_SESSION['club'] = $userdata[0]['club'];
+		$_SESSION['sports'] = $userdata[0]['sports'];
+		$_SESSION['admin'] = $userdata[0]['admin'];
 				
 }	
 	function enforce_log() {
