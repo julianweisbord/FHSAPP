@@ -311,30 +311,36 @@ enforce_log();
 				
 		<div class="settings_column1">
 
+			<div class="row">
 				<label>Username:</label>
 					<input name="username" type="text" value="<?php echo $username;?>"/> 
-					<br />
+			</div>
 
+				<div class="row">
 					<label>Password:</label>
 					<input name="new_password" type="text" value=""/> 
-					<br />
+				</div>	
 					
+				<div class="row">
 					<label>Confirm Password:</label>
 					<input name="new_username_2" type="text" value=""/> 
-					<br />
-					
+				</div>
+
+				<div class="row">
 					<label>First name:</label>
 					<input name="first_name" type="text" value="<?php echo $first_name;?>"/> 
-					<br />
+				</div>
 
+				<div class="row">
 					<label>Last name:</label>
 					<input name="last_name" type="text" value="<?php echo $last_name;?>"/> 
-					<br />
+				</div>
 
-
+				<div class="row">
 					<label>Email:</label>
 					<input name="email" type="text" value="<?php echo $email;?>"/> 
-					<br />
+				</div>
+
 			</div>
 			<div class="settings_column2">
 		
@@ -421,12 +427,16 @@ enforce_log();
 			?>
 			
 			
-			<input type="submit" value="Save"/>
-		</form>
+			
+		
 	
-		</div>
-			</div>		
+
+						</div>
+					</div>		
 				</div>
+
+		</form>
+		<div class="settings_save_div"><input type="submit" value="Save"/></div>
 </body>
 
 </html>
