@@ -47,11 +47,21 @@
 		$_SESSION['username'] = $typedusername;
 	}*/
 
+	
+	function set_cookie_session(){
+		$userdata = mysql_fetch_array(mysql_query("SELECT * FROM users WHERE id='{$_SESSION['user_id']}'"));
+		$_SESSION['teacher'] = $userdata['teacher'];
+		$_SESSION['club'] = $userdata['club'];
+		$_SESSION['sports'] = $userdata['sports'];
+		$_SESSION['admin'] = $userdata['admin'];
+				
+}	
 	function enforce_log() {
 		if(!isset($_SESSION['user_id'])) {
 			check_cookie();
+		}else{ set_cookie_session();
 		}
-	}	
+	}
 	
 	function make_cookie() {
 		$expire = time()+(60*60*24*150);
@@ -61,6 +71,7 @@
 	function check_cookie() {
 		if(isset($_COOKIE['staylogged'])) {
 			$_SESSION['user_id']= $_COOKIE['staylogged'];
+			set_cookie_session();
 			header('Location: main.php');
 		}else{
 			header('Location: login.php');
