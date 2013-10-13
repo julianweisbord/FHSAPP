@@ -298,10 +298,33 @@ $db = new Db($dbConfig);
 			<?php //print_r($sports_values);?>
 		</pre>
 				
-				<div class="columns_wrapper">
+				<div class="columns_wrapper">					
 					<div class="settings_columns">
 						<div class="inner">
+					<label>Username:</label>
+					<input name="username" type="text" value="<?php echo $username;?>"/> 
+					<br />
 
+					<label>Password:</label>
+					<input name="new_password" type="text" value=""/> 
+					<br />
+					
+					<label>Confirm Password:</label>
+					<input name="new_username_2" type="text" value=""/> 
+					<br />
+					
+					<label>First name:</label>
+					<input name="first_name" type="text" value="<?php echo $first_name;?>"/> 
+					<br />
+
+					<label>Last name:</label>
+					<input name="last_name" type="text" value="<?php echo $last_name;?>"/> 
+					<br />
+
+
+					<label>Email:</label>
+					<input name="email" type="text" value="<?php echo $email;?>"/> 
+					<br />
 		<div class="settings_column1">
 			
 		<form id="form" method="get" action="settings.php">

@@ -135,7 +135,7 @@ it submit with the variable that tells it to get only the selected categories.
 							//Use some form of an INNER JOIN here to select announcement category. Joins anno_subtype with subtype.
 							$query = "SELECT * FROM subtype INNER JOIN anno_subtype ON subtype.id = anno_subtype.subtype_id WHERE anno_subtype.anno_id = '{$announcement["id"]}'";
 							$cats = $db->runQuery($query);
-							echo '<td><a href="edit_test.php?anno_id='.$announcement["id"].'">'.$announcement["title"].'</a></td>';
+							echo '<td><a href="edit.php?anno_id='.$announcement["id"].'">'.$announcement["title"].'</a></td>';
 							echo'<td>';
 							foreach ($cats as $cat) {
 								if($cat['period']) {
@@ -147,7 +147,7 @@ it submit with the variable that tells it to get only the selected categories.
 								echo '.<br />';
 							}
 							echo '</td>';
-							echo '<td><!--<a href="edit_test.php?anno_id='.$announcement["id"].'">-->Edit<!--<a>--></td>
+							echo '<td><!--<a href="edit.php?anno_id='.$announcement["id"].'">-->Edit<!--<a>--></td>
 							<td><!--<a href="delete.php?anno_id='.$announcement["id"].'">-->Delete<!--<a>--></td>';
 							echo "</tr>";
 						}

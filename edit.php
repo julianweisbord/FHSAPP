@@ -31,9 +31,9 @@ $sports_p = $_SESSION['sports'];
 		$query = "SELECT * FROM announcements WHERE id='$anno_id'";
 		$anno_info = $db->runQuery($query);
 		foreach ($anno_info as $info) {
-			echo "<pre>";
+			/*echo "<pre>";
 			print_r($info);
-			echo "</pre>";
+			echo "</pre>";*/
 			$title = $info['title'];
 			$description = $info['description'];
 			$start_date = $info['start_date'];
@@ -45,10 +45,10 @@ $sports_p = $_SESSION['sports'];
 		
 		
 		//Also gonna need the anno_subtype relationships so you know what to check.
-		//$query = "SELECT * FROM anno_subtype WHERE anno_id='$anno_id'";
-		//$anno_cb = $db->runQuery($query);
+		$query = "SELECT * FROM anno_subtype WHERE anno_id='$anno_id'";
+		$anno_cb = $db->runQuery($query);
 		
-		/*$subtype_ids = $_REQUEST['check'];
+		$subtype_ids = $_REQUEST['check']; //check is the name of the checkbox array
 		if(!empty($subtype_ids)) {
 			//*Insert the actual announcement into the announcement table
 			$title = $_REQUEST['title'];
@@ -59,21 +59,40 @@ $sports_p = $_SESSION['sports'];
 			$location = $_REQUEST['location'];
 			$time = $_REQUEST['time'];
 			
-			$query = "INSERT INTO announcements(title, description, start_date, end_date, date, location, time, author) VALUES('$title', '$description', '$start_date', '$end_date', '$date', '$location', '$time', '$user_id');";
+			$query = "UPDATE announcements SET title='$title', description='$description', start_date='$start_date', end_date='$end_date', date='$date', location='$location', time='$time' WHERE id='anno_id';";
 			mysql_query($query);
 			
 			//*Insert the anno_subtype relationship into its table
-			$anno_id = mysql_insert_id();
-			//echo $anno_id;
+			$query = "DELETE FROM anno_subtype WHERE anno_id='$anno_id'";
+			mysql_query($query);
+			
 			foreach($subtype_ids as $subtype_id) {
 				$query = "INSERT INTO anno_subtype(anno_id, subtype_id) VALUES('$anno_id', '$subtype_id');";
 				mysql_query($query);
 			}
+			
+			/*foreach($subtype_ids as $subtype_id) {
+				$already_exists = false;
+				/*$query = "INSERT INTO anno_subtype(anno_id, subtype_id) VALUES('$anno_id', '$subtype_id');";
+				mysql_query($query);*/
+				//First thing it should do is loop through and check if the combo already exists. If it does leave it alone.
+				/*foreach($anno_cb as $cb) {
+					if($subtype_id = $cb['anno_id']) {
+						$already_exists = true;
+						break;
+					}
+				}
+				if(!$already_exists) {
+					$query = "INSERT INTO anno_subtype(anno_id, subtype_id) VALUES('$anno_id', '$subtype_id');";
+					mysql_query($query);
+				}
+			}*/
+		}
 			//redirect here maybe?
 		} //else {
 			//$need_check = true; //*Use this to make a comment that says something needs to be checked.
-		//}*/
-	}
+		//}
+	
 
 ?>
 <!DOCTYPE HTML>
@@ -82,13 +101,17 @@ $sports_p = $_SESSION['sports'];
 Okay, this is gonna be more work. The focus of this page is to update the announcements. It's going to be few a variable from the
 main page like ?id=# and this is going to have to grab that variable and use the id to fill up the slots. Then it'll fill up the
 inputs based on that and ONLY UPDATE the announcement when submitted.
+
+To do:
+DONE-Grab the subtypes from db so you can check them. Remember checked="checked"
+-Make it update.
 -->
 
 <html>
 
 <head>
 	<meta http-equiv="Content-type" content="text/html;charset=UTF-8"/>
-	<title>Create Announcement</title>
+	<title>Update Announcement</title>
 	<script type="text/javascript" src="js/jquery-1.7.2.min.js"></script>
 	<!--Credit: http://jqueryvalidation.org/-->
 	<script type="text/javascript" src="js/jquery.validate.min.js"></script>
@@ -144,7 +167,7 @@ inputs based on that and ONLY UPDATE the announcement when submitted.
 <body>
 	<div class="wrapper">
 		
-		<form id="form" method="get" action="create.php">
+		<form id="form" method="get" action="edit.php">
 			<!--<label></label>
 			<input name="" type="text" value=""/>
 			<br />-->
@@ -168,18 +191,29 @@ inputs based on that and ONLY UPDATE the announcement when submitted.
 			<h3>Categories:</h3>
 			<!--Gonna need to check if these are checked too...-->
 			<?php
-			/*if($teacher_p) {
+			if($teacher_p) {
 				$query = "SELECT * FROM subtype WHERE author_id='$user_id' AND type_id='2'";
 				$periods = $db->runQuery($query);
 				echo "<p>Classes:</p><br />";
 				foreach($periods as $period) {
+					$checked = false;
 					$id = $period['id'];
 					$name = $period['name'];
 					$number = $period['period'];
-					
-					echo '<label>Period '.$number.': '.$name.'</label>
-					<input name="check[]" type="checkbox" value="'.$id.'" />
-					<br />';
+					foreach($anno_cb as $anno_cbc) {
+						if($anno_cbc['subtype_id']==$id) {
+							echo '<label>Period '.$number.': '.$name.'</label>
+							<input name="check[]" type="checkbox" value="'.$id.'" checked="checked"/>
+							<br />';
+							$checked = true;
+							break;
+						}
+					}
+					if(!$checked) {
+						echo '<label>Period '.$number.': '.$name.'</label>
+						<input name="check[]" type="checkbox" value="'.$id.'" />
+						<br />';
+					}
 				}
 			}
 			
@@ -189,33 +223,57 @@ inputs based on that and ONLY UPDATE the announcement when submitted.
 				$clubs = $db->runQuery($query);
 				echo "<p>Club(s):</p><br />";
 				foreach($clubs as $club) {
+					$checked = false;
 					$id = $club['id'];
 					$name = $club['name'];
+					foreach($anno_cb as $anno_cbc) {
+						if($anno_cbc['subtype_id']==$id) {
+							echo '<label>'.$name.':</label>
+							<input name="check[]" type="checkbox" value="'.$id.'" checked="checked"/>
+							<br />';
+							$checked = true;
+							break;
+						}
+					}
+					if(!$checked) {
+						echo '<label>'.$name.':</label>
+						<input name="check[]" type="checkbox" value="'.$id.'" />
+						<br />';
+					}
 					
-					echo '<label>'.$name.':</label>
-					<input name="check[]" type="checkbox" value="'.$id.'" />
-					<br />';
 				}
 			}
+			
 			
 			if($sports_p) {
 				$query = "SELECT * FROM subtype WHERE author_id='$user_id' AND type_id='4'";
 				$sports = $db->runQuery($query);
 				echo "<p>Sport(s):</p><br />";
 				foreach($sports as $sport) {
+					$checked = false;
 					$id = $sport['id'];
 					$name = $sport['name'];
-					
-					echo '<label>'.$name.':</label>
-					<input name="check[]" type="checkbox" value="'.$id.'" />
-					<br />';
+					foreach($anno_cb as $anno_cbc) {
+						if($anno_cbc['subtype_id']==$id) {
+							echo '<label>'.$name.':</label>
+							<input name="check[]" type="checkbox" value="'.$id.'" checked="checked"/>
+							<br />';
+							$checked = true;
+							break;
+						}
+					}
+					if(!$checked) {
+						echo '<label>'.$name.':</label>
+						<input name="check[]" type="checkbox" value="'.$id.'" />
+						<br />';
+					}
 				}
-			}*/
+			}
 			?>
 			
 			<h3>Optional:</h3>
 			<label>Actual Date of Event:</label>
-			<input id="date" name="date" type="text" value="<?php echo $date;?>"/>
+			<input id="date" name="date" type="text" value="<?php if($date != "0000-00-00"){echo $date;}?>"/>
 			<br />
 			
 			<label>Time of Event:</label>
@@ -226,7 +284,8 @@ inputs based on that and ONLY UPDATE the announcement when submitted.
 			<input name="location" type="text" value="<?php echo $location;?>"/>
 			<br />
 			
-			<input type="submit" value="Create Announcement" />
+			<input name="anno_id" type="hidden" value="<?php echo $anno_id;?>"/>
+			<input type="submit" value="Update Announcement" />
 			
 			<br /><a href="main.php">Back to Home</a><br />
 		</form>
