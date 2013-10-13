@@ -1,5 +1,10 @@
 <?php 
 session_start(); 
+require_once('lib/config.php');
+require_once('lib/db.class.php');
+ini_set('display_errors', 0); //Change from 0 to 1 and back for errors.
+error_reporting(E_ALL);
+$db = new Db($dbConfig);
 require_once('functions.php');
 enforce_log();
 ?>
@@ -40,13 +45,7 @@ enforce_log();
 
 <?php
 
-require_once('lib/config.php');
-require_once('lib/db.class.php');
 
-ini_set('display_errors', 0); //Change from 0 to 1 and back for errors.
-error_reporting(E_ALL);
-
-$db = new Db($dbConfig);
 
 ?>
 

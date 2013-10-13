@@ -51,7 +51,12 @@
 	function set_cookie_session(){
 		$user_id = $_SESSION['user_id'];
 		$query = "SELECT * FROM users WHERE id='$user_id'";
-		$userdata = mysql_fetch_array(mysql_query($query));
+		$result = mysql_query($query);
+		$userdata = array();
+		while ($rows = mysql_fetch_array($result)) { 
+			$userdata[] = $rows;
+		}
+		//$userdata = mysql_fetch_array(mysql_query($query));
 		$_SESSION['teacher'] = $userdata[0]['teacher'];
 		$_SESSION['club'] = $userdata[0]['club'];
 		$_SESSION['sports'] = $userdata[0]['sports'];
