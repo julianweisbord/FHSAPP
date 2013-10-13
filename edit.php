@@ -23,6 +23,33 @@ $sports_p = $_SESSION['sports'];
 		//$anno_id = 17;
 		$anno_id = $_REQUEST['anno_id']; //*Get the announcment id from the address
 		
+		//*This is for updating the announcements
+		$subtype_ids = $_REQUEST['check']; //check is the name of the checkbox array. Subtype_ids contains all the subtypes that the announcement is associated with.
+		if(!empty($subtype_ids)) {
+			//*Insert the actual announcement into the announcement table
+			$title = $_REQUEST['title'];
+			$description = mysql_real_escape_string( $_REQUEST['description'] );
+			$start_date = $_REQUEST['start_date'];
+			$end_date = $_REQUEST['end_date'];
+			$date = $_REQUEST['date'];
+			$location = $_REQUEST['location'];
+			$time = $_REQUEST['time'];
+			
+			$query = "UPDATE announcements SET title='$title', description='$description', start_date='$start_date', end_date='$end_date', date='$date', location='$location', time='$time' WHERE id='$anno_id';";
+			mysql_query($query);
+
+			//*Insert the anno_subtype relationship into its table
+			//*First delete all the existing ones
+			$query = "DELETE FROM anno_subtype WHERE anno_id='$anno_id'";
+			mysql_query($query);
+			
+			//*Then, insert the new ones.
+			foreach($subtype_ids as $subtype_id) {
+				$query = "INSERT INTO anno_subtype(anno_id, subtype_id) VALUES('$anno_id', '$subtype_id');";
+				mysql_query($query);
+			}
+		}
+		
 		$query = "SELECT * FROM announcements WHERE id='$anno_id'"; //*Get the announcement
 		$anno_info = $db->runQuery($query); //*Put the anno info into this array
 		foreach ($anno_info as $info) {
@@ -38,39 +65,10 @@ $sports_p = $_SESSION['sports'];
 			$time = $info['time'];
 		} 
 		
-		
 		//*Also gonna need the anno_subtype relationships so you know what to check.
 		$query = "SELECT * FROM anno_subtype WHERE anno_id='$anno_id'";
 		$anno_cb = $db->runQuery($query); //*This is where the the checkbox info is
-		
-		//*This is for updating the announcements
-		$subtype_ids = $_REQUEST['check']; //check is the name of the checkbox array. Subtype_ids contains all the subtypes that the announcement is associated with.
-		if(!empty($subtype_ids)) {
-			//*Insert the actual announcement into the announcement table
-			$title = $_REQUEST['title'];
-			$description = mysql_real_escape_string( $_REQUEST['description'] );
-			$start_date = $_REQUEST['start_date'];
-			$end_date = $_REQUEST['end_date'];
-			$date = $_REQUEST['date'];
-			$location = $_REQUEST['location'];
-			$time = $_REQUEST['time'];
-			
-			$query = "UPDATE announcements SET title='$title', description='$description', start_date='$start_date', end_date='$end_date', date='$date', location='$location', time='$time' WHERE id='anno_id';";
-			mysql_query($query);
-			
-			//This was breaking.
-			//*Insert the anno_subtype relationship into its table
-			//*First delete all the existing ones
-			$query = "DELETE FROM anno_subtype WHERE anno_id='$anno_id'";
-			mysql_query($query);
-			
-			//*Then, insert the new ones.
-			foreach($subtype_ids as $subtype_id) {
-				$query = "INSERT INTO anno_subtype(anno_id, subtype_id) VALUES('$anno_id', '$subtype_id');";
-				mysql_query($query);
-			}
-		}
-			//redirect here maybe?
+		//redirect here maybe?
 	} //else {
 		//$need_check = true; //*Use this to make a comment that says something needs to be checked.
 	//}
