@@ -94,7 +94,7 @@ enforce_log();
 							
 							//$query = "INSERT INTO subtype(name, type_id, author_id, period) VALUES ('$p1', '2', '$user_id', '1');";
 							//mysql_query($query);
-							echo "<b>Classes have been inserted!</b><br />";
+							//echo "<b>Classes have been inserted!</b><br />";
 						}
 					}
 					
@@ -133,7 +133,7 @@ enforce_log();
 										$query = "UPDATE subtype SET name='$club' WHERE id='{$existing_club['id']}';";
 										mysql_query($query);
 										$existing = true;
-										echo "Updated $club. <br />";
+										//echo "Updated $club. <br />";
 										break;
 									} else {
 										$existing = false;
@@ -143,7 +143,7 @@ enforce_log();
 								if(!$existing) {
 									$query = "INSERT INTO subtype(name, type_id, author_id, period) VALUES ('$club', '3', '$user_id', '0');";
 									mysql_query($query);
-									echo "Inserted $club. <br />";
+									//echo "Inserted $club. <br />";
 								}
 							}
 							$club_count++;
@@ -155,12 +155,12 @@ enforce_log();
 								if(!empty($club)) {
 									$query = "DELETE FROM subtype WHERE id='$club';";
 									mysql_query($query);
-									echo "<p>Club Deleted!</p><br />";
+									//echo "<p>Club Deleted!</p><br />";
 								}
 							}
 						}
 						
-						echo "<b>Club(s) have been updated!</b><br />";
+						//echo "<b>Club(s) have been updated!</b><br />";
 					}
 					
 					//*Insert/Update/Delete sports
@@ -197,7 +197,7 @@ enforce_log();
 									$query = "UPDATE subtype SET name='$sport' WHERE id='{$existing_sport['id']}'";
 									mysql_query($query);
 									$existing_s = true;
-									echo "Updated $sport. <br />";
+									//echo "Updated $sport. <br />";
 									break;
 								} else {
 									$existing_s = false;
@@ -207,7 +207,7 @@ enforce_log();
 							if(!$existing_s) {
 								$query = "INSERT INTO subtype(name, type_id, author_id, period) VALUES ('$sport', '4', '$user_id', '0');";
 								mysql_query($query);
-								echo "Inserted $sport. <br />";
+								//echo "Inserted $sport. <br />";
 							}
 							$sports_count++;
 						}
@@ -218,12 +218,12 @@ enforce_log();
 								if(!empty($sport)) {
 									$query = "DELETE FROM subtype WHERE id='{$sport}'";
 									mysql_query($query);
-									echo "<p>Sport Deleted!</p><br />";
+									//echo "<p>Sport Deleted!</p><br />";
 								}
 							}
 						}
 						
-						echo "<b>Sport(s) have been updated!</b><br />";
+						//echo "<b>Sport(s) have been updated!</b><br />";
 					}
 				
 ////////////////////UPDATE STUFF///////////////////////////////////////////////////////////////////////////////////////////////////
@@ -233,7 +233,7 @@ enforce_log();
 						$hash = md5($new_password);
 						$query = "UPDATE users SET password = '$hash' WHERE id = '$user_id';";
 						mysql_query($query);
-						echo "<b>Password Set!</b><br />";
+						//echo "<b>Password Set!</b><br />";
 					}
 					
 					//*Update the user.
@@ -243,7 +243,7 @@ enforce_log();
 					$email = $_REQUEST['email'];
 					$query = "UPDATE users SET username = '$username', first_name = '$first_name', last_name = '$last_name', email = '$email' WHERE id = '$user_id';";
 					mysql_query($query);
-					echo "<b>Your user account information has been updated!</b><br />";
+					//echo "<b>Your user account information has been updated!</b><br />";
 					
 					//*Update teacher periods
 					if($teacher) {
@@ -253,7 +253,7 @@ enforce_log();
 							mysql_query($query);
 						}
 						
-						echo "<b>Classes have been updated!</b><br />";
+						//echo "<b>Classes have been updated!</b><br />";
 					}
 				}
 				
@@ -308,132 +308,129 @@ enforce_log();
 				<div class="columns_wrapper">					
 					<div class="settings_columns">
 						<div class="inner">
-				
-		<div class="settings_column1">
+							<div class="column">
+								<div class="row">
+									<label>Username:</label>
+									<input name="username" type="text" value="<?php echo $username;?>"/> 
+								</div>
 
-			<div class="row">
-				<label>Username:</label>
-					<input name="username" type="text" value="<?php echo $username;?>"/> 
-			</div>
+								<div class="row">
+									<label>Password:</label>
+									<input name="new_password" type="text" value=""/> 
+								</div>	
+										
+								<div class="row">
+									<label>Confirm Password:</label>
+									<input name="new_username_2" type="text" value=""/> 
+								</div>
 
-				<div class="row">
-					<label>Password:</label>
-					<input name="new_password" type="text" value=""/> 
-				</div>	
-					
-				<div class="row">
-					<label>Confirm Password:</label>
-					<input name="new_username_2" type="text" value=""/> 
-				</div>
+								<div class="row">
+									<label>First name:</label>
+									<input name="first_name" type="text" value="<?php echo $first_name;?>"/> 
+								</div>
 
-				<div class="row">
-					<label>First name:</label>
-					<input name="first_name" type="text" value="<?php echo $first_name;?>"/> 
-				</div>
+								<div class="row">
+									<label>Last name:</label>
+									<input name="last_name" type="text" value="<?php echo $last_name;?>"/> 
+								</div>
 
-				<div class="row">
-					<label>Last name:</label>
-					<input name="last_name" type="text" value="<?php echo $last_name;?>"/> 
-				</div>
+								<div class="row">
+									<label>Email:</label>
+									<input name="email" type="text" value="<?php echo $email;?>"/> 
+								</div>
 
-				<div class="row">
-					<label>Email:</label>
-					<input name="email" type="text" value="<?php echo $email;?>"/> 
-				</div>
+							</div>
+							<div class="column">
+								<?php 
+								if($teacher) {
+									echo "<div id='classes_info'><h1>Your Classes Here:</h1><p>If you have no class in that period, leave it blank.</p>";
+									
+									//*Making the class inputs:
+									$i = 1;
+									if(!empty($classes)) { //*If the classes exist, put in the values.
+										foreach($classes as $class) {
+											echo "<div class='row'><label>Period $i:</label>
+											<input name='p" . $i . "' type='text' value='".$class['name']."'/>
+											</div>";
+											$i++;
+										}
+									} else { //*If the classes haven't been made yet, make them empty.
+										for($j=1;$j<9;$j++) {
+											echo "<div class='row'><label>Period $j</label>
+											<input name='p" . $j . "' type='text' value=''/>
+											</div>";
+										}
+									}
+									
+									echo "</div>";
+								}
+								?>
+							</div>
+							<div class="column">
+								<?php 
+								if($club_p) {
+									echo "<div id='clubs_info'><h1>Clubs here:</h1>";
+									
+									$i = 1;
+									if(!empty($club_values)) {
+										foreach($club_values as $club_value) {
+											echo '<div class="club_wrapper">
+												<label>Club '.$i.':</label>
+												<input name="cname[]" type="text" value="'. $club_value["name"] .'"/>
+												<input name="cid[]" type="hidden" value="'. $club_value["id"] .'"/>
+												<a href="#" class="delete_club">X</a>
+												<br /></div>';
+											$i++;
+										}
+									} else {
+										echo '<label>Club 1:</label>
+											<input name="cname[]" type="text" value=""/>
+											<input name="cid[]" type="hidden" value=""/>
+											<br />';
+									}
+									
+									echo "</div>";
+									echo "<button id='add_club'>Add new club</button>";
+								}
+								?>
+								
+								<?php 
+								
+								if($sports) {
+									echo "<div id='sports_info'><h1>Sports here:</h1>";
+									
+									$i = 1;
+									if(!empty($sports_values)) {
+										foreach($sports_values as $sport_value) {
+											echo '<div class="sports_wrapper">
+												<label>Sport '.$i.':</label>
+												<input name="sname[]" type="text" value="'. $sport_value["name"] .'"/>
+												<input name="sid[]" type="hidden" value="'. $sport_value["id"] .'"/>
+												<a href="#" class="delete_sports">X</a>
+												<br /></div>';
+											$i++;
+										}
+									} else {
+										echo '<label>Sport 1:</label>
+											<input name="sname[]" type="text" value=""/>
+											<input name="sid[]" type="hidden" value=""/>
+											<br />';
+									}
+									
+									echo "</div>";
+									echo "<button id='add_sports'>Add new sport</button>";
+								}
+								?>
+							</div>
+								
+								
+								
+							
+						
 
-			</div>
-			<div class="settings_column2">
-		
-			
-			
-			<?php 
-			if($teacher) {
-				echo "<div id='classes_info'><h1>Your Classes Here:</h1><p>If you have no class in that period, leave it blank.</p>";
-				
-				//*Making the class inputs:
-				$i = 1;
-				if(!empty($classes)) { //*If the classes exist, put in the values.
-					foreach($classes as $class) {
-						echo "<div class='row'><label>Period $i:</label>
-						<input name='p" . $i . "' type='text' value='".$class['name']."'/>
-						</div>";
-						$i++;
-					}
-				} else { //*If the classes haven't been made yet, make them empty.
-					for($j=1;$j<9;$j++) {
-						echo "<div class='row'><label>Period $j</label>
-						<input name='p" . $j . "' type='text' value=''/>
-						</div>";
-					}
-				}
-				
-				echo "</div>";
-			}
-			?>
-		
-			<?php 
-			if($club_p) {
-				echo "<div id='clubs_info'><h1>Clubs here:</h1>";
-				
-				$i = 1;
-				if(!empty($club_values)) {
-					foreach($club_values as $club_value) {
-						echo '<div class="club_wrapper">
-							<label>Club '.$i.':</label>
-							<input name="cname[]" type="text" value="'. $club_value["name"] .'"/>
-							<input name="cid[]" type="hidden" value="'. $club_value["id"] .'"/>
-							<a href="#" class="delete_club">X</a>
-							<br /></div>';
-						$i++;
-					}
-				} else {
-					echo '<label>Club 1:</label>
-						<input name="cname[]" type="text" value=""/>
-						<input name="cid[]" type="hidden" value=""/>
-						<br />';
-				}
-				
-				echo "</div>";
-				echo "<button id='add_club'>Add new club</button>";
-			}
-			?>
-			
-			<?php 
-			
-			if($sports) {
-				echo "<div id='sports_info'><h1>Sports here:</h1>";
-				
-				$i = 1;
-				if(!empty($sports_values)) {
-					foreach($sports_values as $sport_value) {
-						echo '<div class="sports_wrapper">
-							<label>Sport '.$i.':</label>
-							<input name="sname[]" type="text" value="'. $sport_value["name"] .'"/>
-							<input name="sid[]" type="hidden" value="'. $sport_value["id"] .'"/>
-							<a href="#" class="delete_sports">X</a>
-							<br /></div>';
-						$i++;
-					}
-				} else {
-					echo '<label>Sport 1:</label>
-						<input name="sname[]" type="text" value=""/>
-						<input name="sid[]" type="hidden" value=""/>
-						<br />';
-				}
-				
-				echo "</div>";
-				echo "<button id='add_sports'>Add new sport</button>";
-			}
-			?>
-			
-			
-			
-		
-	
-
+											
+							</div>		
 						</div>
-					</div>		
-				</div>
 
 		</form>
 		<div class="settings_save_div"><input type="submit" value="Save"/></div>
