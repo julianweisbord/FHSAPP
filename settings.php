@@ -49,7 +49,13 @@ error_reporting(E_ALL);
 $db = new Db($dbConfig);
 
 ?>
-<br />
+
+	<div class="header">
+		<img class="logo" src="http://fhsapp.com/v2/Images/daytime.png">
+		<div class="buttons">
+			 <a class="logout_button" href="logout.php">Log Out</a>
+		</div>	
+	</div>	
 	<div class="wrapper">
 		
 		<?php
@@ -297,11 +303,16 @@ $db = new Db($dbConfig);
 			<?php //print_r($club_values);?>
 			<?php //print_r($sports_values);?>
 		</pre>
-				
+
+
+			<form id="form" method="get" action="settings.php">
 				<div class="columns_wrapper">					
 					<div class="settings_columns">
 						<div class="inner">
-					<label>Username:</label>
+				
+		<div class="settings_column1">
+
+				<label>Username:</label>
 					<input name="username" type="text" value="<?php echo $username;?>"/> 
 					<br />
 
@@ -325,9 +336,8 @@ $db = new Db($dbConfig);
 					<label>Email:</label>
 					<input name="email" type="text" value="<?php echo $email;?>"/> 
 					<br />
-		<div class="settings_column1">
-			
-		<form id="form" method="get" action="settings.php">
+			</div>
+			<div class="settings_column2">
 		
 			
 			
@@ -355,8 +365,7 @@ $db = new Db($dbConfig);
 				echo "</div>";
 			}
 			?>
-		</div>
-			<div class="settings_column2">
+		
 			<?php 
 			if($club_p) {
 				echo "<div id='clubs_info'><h1>Clubs here:</h1>";
