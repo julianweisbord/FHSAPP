@@ -11,212 +11,194 @@ h2{
 	text-align: center;
 }
 
-	 .columns_wrapper{
-		float: left;
-		clear: both;
-		width:100%;
-		margin-bottom: 50px;
-		
-
+.columns_wrapper{
+	float: left;
+	clear: both;
+	width:100%;
+	margin-bottom: 50px;
 }
-	 .columns {
 
-/* max width allows the width to become smaller as the page gets smaller*/
+.columns {
+	/*max width allows the width to become smaller as the page gets smaller*/
 	max-width: 450px;
 	margin: 100px auto;
 	box-sizing: border-box;
-	
-	
-
-		
 }
-	.header{
-		background: rgb(150,150,150);
-		clear: both;
-		float:left;
-		width: 100%;
-		box-sizing: border-box;
-		position: fixed;
-		box-shadow: 0 2px 2px rgb(24,24,24);
-	}
+
+.header{
+	background: rgb(150,150,150);
+	clear: both;
+	float:left;
+	width: 100%;
+	box-sizing: border-box;
+	position: fixed;
+	box-shadow: 0 2px 2px rgb(24,24,24);
+}
 	
-
+.settings_button {
+	float: right;
+	border-right: 1px solid rgb(200,200,200);
+	border-left: 1px solid rgb(200,200,200); /*Temp border*/
+	padding: 0;
+	margin-right: 10px;
+	background-color: ;
+	line-height: 0.000001em;
+	font-size: 0.000001em;
+}
 	
-	.settings_button {
-		float: right;
-		border-right: 1px solid rgb(200,200,200);
-		border-left: 1px solid rgb(200,200,200); /*Temp border*/
-		padding: 0;
-		margin-right: 10px;
-		background-color: ;
-		line-height: 0.000001em;
-		font-size: 0.000001em;
-	}
+.new_user_button {
+	float: right;
+	font-size:1em;
+	background-color: white;
+	color: black;
+	border: 1px solid #bbb;
+	border-radius: 10px;
+	display: block;
+	margin: 7px 10px .1em 0em;
+	padding: .2em .2em;
+	text-decoration: none;
+}
+
+.new_user_button:hover{
+	color: blue;
+}
+
+.add_announcements_wrapper {
+	float:right;
+	height: 40px;
+	border-right: 1px solid rgb(200,200,200);
+	border-left: 1px solid rgb(200,200,200);
+	padding: 0 1px;
+	padding-left: 5px;
+	margin-right: 10px
+}
+
+.add_image {
+	float: right;
+	margin-top: 3px;
+	margin-right: 4px;
+}
+
+.add_announcements_button {
+	float: right;
+	font-size:1em;
+	background-color: white;
+	color: black;
+	border: 1px solid #bbb;
+	border-radius: 10px;
+	display: block;
+	margin: 7px .3em .1em 0em;
+	padding: .2em .2em;
+	text-decoration: none;
+}
+
+.add_announcements_button:hover{
+	color: blue;
+}
+
+.header .buttons{
+	float: right;
+	clear: none;
+	width: auto;
+}
+
+.header .logo{
+	height: 40px;
+	width: auto;
+	float: left;
+}
+
+.column{
+	border: 3px solid;
+	clear: none;
+	float: left;
+	width: 100%;
+	background-color: rgb(150,150,150);
+	padding: 15px 30px;
+	box-sizing: border-box;
+}
+
+label {
+	display: block ; 
+	float: left;
+	width: 100px;/* the length of space between the username/password and the login box*/
+	margin: .3em;
+}
+
+input[type=checkbox]{
+	float: left;
+	margin-top: .7em;
+}
 	
-	.new_user_button {
-		float: right;
-		font-size:1em;
-		background-color: white;
-		color: black;
-		border: 1px solid #bbb;
-		border-radius: 10px;
-		display: block;
-		margin: 7px 10px .1em 0em;
-		padding: .2em .2em;
-		text-decoration: none;
-	}
-	
-	.new_user_button:hover{
-		color: blue;
-	}
-	
-	.add_announcements_wrapper {
-		float:right;
-		height: 40px;
-		border-right: 1px solid rgb(200,200,200);
-		border-left: 1px solid rgb(200,200,200);
-		padding: 0 1px;
-		padding-left: 5px;
-		margin-right: 10px
-	}
-	
-	.add_image {
-		float: right;
-		margin-top: 3px;
-		margin-right: 4px;
-	}
-	
-	.add_announcements_button {
-		float: right;
-		font-size:1em;
-		background-color: white;
-		color: black;
-		border: 1px solid #bbb;
-		border-radius: 10px;
-		display: block;
-		margin: 7px .3em .1em 0em;
-		padding: .2em .2em;
-		text-decoration: none;
-	}
-	
-	.add_announcements_button:hover{
-		color: blue;
-	}
-	
-	.header .buttons{
-		float: right;
-		clear: none;
-		width: auto;
-	}
+label.error{
+	width:250px;
+	font-size: .8em;
+}
 
+.login input[type=text], .login input[type=password]{
+	clear: none;
+	float: left;
+	box-sizing: border-box;
+	width: 100%;
+	font-size: 1.5em;
+}
 
-	.header .logo{
-		height: 40px;
-		width: auto;
-		float: left;
+ .row{
+	width: 100%;
+	clear: both;
+	float: left;
+}
 
+input[type=submit]  {
+	font-size:1em;
+	border-radius: 15px;
+	border: 1px solid #bbb;
+	background-color: white;
+	color: black;
+	display: block;
+	padding: .5em .5em;
+	margin: .9em 0em;
+	cursor: pointer;
+	float: right;
+}
 
-	}
-	.column{
-		border: 3px solid;
-		clear: none;
-		float: left;
-		width: 100%;
-		background-color: rgb(150,150,150);
-		padding: 15px 30px;
-		box-sizing: border-box;
+input[type=submit]:hover{
+	color: blue;
+}
 
-	}
-		 label {
-			display: block ; 
-			float: left;
-			width: 100px;/* the length of space between the username/password and the login box*/
-			margin: .3em;
+.logout_button{
+	font-size:1em;
+	background-color: white;
+	color: black;
+	border: 1px solid #bbb;
+	border-radius: 15px;
+	display: block;
+	margin: 7px .3em .1em 0em;
+	padding: .2em .2em;
+	text-decoration: none;
+	float: right;
+}
 
+.logout_button:hover{
+	color: blue;
+}
 
+.home_button{
+	font-size:1em;
+	background-color: white;
+	color: black;
+	border: 1px solid #bbb;
+	border-radius: 15px;
+	display: block;
+	margin: 7px .5em .1em 0em;
+	padding: .2em .2em;
+	float:right;
+	text-decoration: none;
+}
 
-		}
-		input[type=checkbox]{
-			float: left;
-			margin-top: .7em;
-
-		}
-		
-				 label.error{
-				width:250px;
-				font-size: .8em;
-			}
-			.login input[type=text],
-			.login input[type=password]{
-				clear: none;
-				float: left;
-				box-sizing: border-box;
-				width: 100%;
-				font-size: 1.5em;
-
-			}
-
-			 .row{
-					width: 100%;
-					clear: both;
-					float: left;
-
-
-
-
-			}
-
-			input[type=submit]  {
-				font-size:1em;
-				border-radius: 15px;
-				border: 1px solid #bbb;
-				background-color: white;
-				color: black;
-				display: block;
-				padding: .5em .5em;
-				margin: .9em 0em;
-				cursor: pointer;
-				float: right;
-			}
-			input[type=submit]:hover{
-				color: blue;
-
-			}
-
-			.logout_button{
-				font-size:1em;
-				background-color: white;
-				color: black;
-				border: 1px solid #bbb;
-				border-radius: 15px;
-				display: block;
-				margin: 7px .3em .1em 0em;
-				padding: .2em .2em;
-				text-decoration: none;
-				float: right;
-
-			}
-			.logout_button:hover{
-				color: blue;
-				
-			}
-			.home_button{
-				font-size:1em;
-				background-color: white;
-				color: black;
-				border: 1px solid #bbb;
-				border-radius: 15px;
-				display: block;
-				margin: 7px .5em .1em 0em;
-				padding: .2em .2em;
-				float:right;
-				text-decoration: none;
-			}
-			.home_button:hover{
-				color: blue;
-				
-			}
-
+.home_button:hover{
+	color: blue;
+}
 
  .new_user #form-wrap {
 	max-width: 600px;
@@ -225,89 +207,80 @@ h2{
 
 .new_user #categories{
 	text-align: center;
-	
-
 }
+
 .new_user fieldset {
-
-		border: 3px solid;
+	border: 3px solid;
 }
-		
 
-		
-			.new_user input[type=text], input[type=password]{
-				clear: none;
-				float: left;
+.new_user input[type=text], input[type=password]{
+	clear: none;
+	float: left;
+}
 
-			}
+.new_user .row{
+	width: 100%;
+	clear: both;
+	float: left;
+}
 
-			.new_user .row{
-					width: 100%;
-					clear: both;
-					float: left;
+#classes_info{
+	text-align: left;
+}
 
+.settings_columns{
+	max-width: 900px;
+	margin: 100px auto;
+	box-sizing: border-box;
+	background-color: rgb(150,150,150);
+}
 
-			}
-			#classes_info{
-				text-align: left;
+.settings_columns > .inner{
+	clear: both;
+	float: left;
+	background-color: rgb(150,150,150);
+}
 
-			}
+.settings_columns .column{
+	float: left;
+	width: 33.3%;
+	border:none;
+	border-right: 1px solid #000;
+	height: 400px;
+}
 
-			.settings_columns{
-				max-width: 900px;
-				margin: 100px auto;
-				box-sizing: border-box;
-				background-color: rgb(150,150,150);
-			}
-			.settings_columns > .inner{
-				clear: both;
-				float: left;
-				background-color: rgb(150,150,150);
+/*.settings_column1{
+	float: left;
+	border: 1px solid orange;
+	display: block;
+	width: 50%;
+	height: 100%;
+}
 
-			}
-			.settings_columns .column{
-				float: left;
-				width: 33.3%;
-				border:none;
-				border-right: 1px solid #000;
-				height: 400px;
+.settings_column2{
+	border: 1px solid blue;
+	float: left;
+	display: block;
+	width: 50%;
+	height: 100%;
+}*/
 
-			}
-			/*.settings_column1{
-				float: left;
-				border: 1px solid orange;
-				display: block;
-				width: 50%;
-				height: 100%;
-				
-				
-			}
-			.settings_column2{
-				border: 1px solid blue;
-				float: left;
-				display: block;
-				width: 50%;
-				height: 100%;
-				
+.settings_save_div{
+	border-top: 1px black solid;
+	display: block;
+	float: left;
+	padding: 7px;
+	width:100%;
+	box-sizing: border-box;
+}
 
-			}*/
-			.settings_save_div{
-				border-top: 1px black solid;
-				display: block;
-				float: left;
-				padding: 7px;
-				width:100%;
-				box-sizing: border-box;
+#settings_save_button{
+	margin-right: 30px;
+}
 
-			}
-			#settings_save_button{
-				margin-right: 30px;
-			}
-
-			pre {
-				width: 100%;
-				float: left;
-				clear: both;
-				color: white;
-			}
-
+pre {
+	width: 100%;
+	float: left;
+	clear: both;
+	color: white;
+}
