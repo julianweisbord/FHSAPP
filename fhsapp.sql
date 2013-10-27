@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: 127.0.0.1
--- Generation Time: Oct 13, 2013 at 09:22 PM
+-- Generation Time: Oct 27, 2013 at 09:09 PM
 -- Server version: 5.6.11
 -- PHP Version: 5.5.0
 
@@ -40,22 +40,14 @@ CREATE TABLE IF NOT EXISTS `announcements` (
   `author` int(10) NOT NULL COMMENT 'Go by id',
   `timestamp` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM  DEFAULT CHARSET=latin1 AUTO_INCREMENT=26 ;
+) ENGINE=MyISAM  DEFAULT CHARSET=latin1 AUTO_INCREMENT=27 ;
 
 --
 -- Dumping data for table `announcements`
 --
 
 INSERT INTO `announcements` (`id`, `title`, `description`, `date`, `location`, `time`, `start_date`, `end_date`, `author`, `timestamp`) VALUES
-(23, 'Stuff', '<p>Stuff</p>', '0000-00-00', '', '', '2013-09-02', '2013-09-11', 1, '2013-09-21 23:54:21'),
-(22, 'Testing Checkboxes', '<p>Stuff</p>', '0000-00-00', '', '', '2013-09-20', '2013-09-23', 1, '2013-09-21 23:26:41'),
-(19, 'Club info', '<p>Every Tuesday!</p>', '2013-09-24', 'Rm 273', '', '2013-09-21', '2013-09-25', 1, '2013-09-21 19:57:29'),
-(20, 'Swimming!', '<p>At Mt. Scott.</p>', '2013-09-23', 'Mt. Scott', '', '2013-09-20', '2013-09-24', 1, '2013-09-21 19:58:53'),
-(21, 'Stuff', '<p>Testing if one click works.</p>', '2013-09-23', '', '', '2013-09-20', '2013-09-23', 1, '2013-09-21 20:00:01'),
-(17, 'Test', '<p>Testing things.</p>', '2013-09-13', 'Here', 'Now', '2013-09-12', '2013-09-14', 1, '2013-09-14 01:42:51'),
-(18, 'Another Test', '<p>Stuff</p>', '2013-09-21', 'Here', 'NOW', '2013-09-20', '2013-09-22', 1, '2013-09-21 19:53:47'),
-(24, 'Stuff', '<p>Stuff</p>', '0000-00-00', '', '', '2013-09-02', '2013-09-11', 1, '2013-09-22 00:09:17'),
-(25, 'Testing Checkboxes', '<p>Changed stuff</p>', '0000-00-00', '', '', '2013-09-20', '2013-09-23', 1, '2013-09-22 00:10:24');
+(26, 'Main Tester Change', '<p>This shall be used for testing everything. Right now, testing the edit functionality in the checkbox. Start with checking everything. For change, only check the first one. 1</p>', '2013-10-03', '', '', '2013-10-11', '2013-10-15', 1, '2013-10-13 19:57:23');
 
 -- --------------------------------------------------------
 
@@ -68,55 +60,14 @@ CREATE TABLE IF NOT EXISTS `anno_subtype` (
   `anno_id` int(10) NOT NULL,
   `subtype_id` int(10) NOT NULL,
   PRIMARY KEY (`index`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=91 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=130 ;
 
 --
 -- Dumping data for table `anno_subtype`
 --
 
 INSERT INTO `anno_subtype` (`index`, `anno_id`, `subtype_id`) VALUES
-(21, 17, 40),
-(22, 17, 41),
-(23, 17, 46),
-(24, 17, 133),
-(25, 17, 137),
-(26, 18, 42),
-(27, 18, 44),
-(29, 20, 137),
-(30, 21, 46),
-(37, 23, 40),
-(38, 23, 42),
-(39, 23, 44),
-(40, 23, 46),
-(41, 23, 133),
-(42, 23, 137),
-(43, 24, 40),
-(44, 24, 42),
-(45, 24, 44),
-(46, 24, 46),
-(47, 24, 133),
-(48, 24, 137),
-(49, 25, 40),
-(50, 25, 42),
-(51, 25, 44),
-(52, 25, 46),
-(53, 25, 47),
-(54, 25, 133),
-(55, 25, 137),
-(56, 0, 40),
-(57, 0, 42),
-(58, 0, 44),
-(59, 0, 46),
-(60, 0, 133),
-(61, 0, 137),
-(81, 22, 40),
-(82, 22, 42),
-(83, 22, 44),
-(84, 22, 46),
-(85, 22, 133),
-(86, 22, 137),
-(89, 19, 46),
-(90, 19, 133);
+(129, 26, 40);
 
 -- --------------------------------------------------------
 
