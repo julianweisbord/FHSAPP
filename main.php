@@ -73,24 +73,35 @@ it submit with the variable that tells it to get only the selected categories.
 <body>
 	<div class="header">
 		<img class="logo" src="http://fhsapp.com/v2/Images/daytime.png">
+		
 		<div class="buttons">
 			 <a class="logout_button" href="logout.php">Log Out</a>
 		</div>	
+		
+		<div class="settings_button" >
+			<a href="settings.php"><img src="images/settings_gear.png" width="40" height="40"/></a>
+		</div>
+		
+		<?php
+		if($_SESSION['admin']) {
+			echo '<div class="new_user_button" >';
+			echo '<a href="new_user.php">Create New User</a><br />';
+			echo '</div>';
+		}
+		?>
+		
+		
+		<a href="create.php">
+			<div class="add_announcements_wrapper">
+			<div class="add_announcements_button">Add Announcement</div>
+			<img class="add_image" src="images/add.png" /> <!--Icons by DryIcons-->
+			</div>
+		</a>
+		
 	</div>	
 	<div class="columns_wrapper">
 		<div class="columns">
-			<div class="column">
-			
-			<?php 
-				echo '<a href="settings.php">Settings</a><br />';
-				if($_SESSION['admin']) {
-					echo '<a href="new_user.php">New User</a><br />';
-				}
-				echo '<a href="create.php">Add Announcement</a><br />';
-				
-			?>
-			<br />
-			
+			<div class="column">			
 			<li id="category_buttons">
 			<?php
 				$query = "SELECT * FROM subtype WHERE author_id = '$user_id'";
