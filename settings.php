@@ -54,6 +54,8 @@ enforce_log();
 		<div class="buttons">
 			 <a class="logout_button" href="logout.php">Log Out</a>
 			 <a class="home_button" href="main.php">Home</a>
+			 <a class="new_user_button" href="new_user.php">Create New User</a>
+			 <a class="add_announcements_button" href="create.php">Add Announcement</a>
 		</div>	
 	</div>	
 	<div class="wrapper">
