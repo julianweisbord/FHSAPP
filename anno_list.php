@@ -6,14 +6,35 @@ $db = new Db($dbConfig); //boilerplate stuff
 
 
 
-$query = "SELECT * FROM announcements";
-$announcements=$db->runQuery($query);
+$query1 = "SELECT * FROM announcements";
+$announcements=$db->runQuery($query1);
+/*$query2 = "SELECT * FROM anno_subtype";
+$anno_subtype=$db->runQuery($query2);
+$query3 = "SELECT * FROM subtype";
+$subtypes=$db->runQuery($query3); */
+
+
+
+//$query = "SELECT * FROM announcements INNER JOIN anno_subtype ON announcements.id = anno_subtype.anno_id WHERE anno_subtype.subtype_id = '$subtype_id'";
+//	$announcements=$db->runQuery($query);
 
 
 $entries=array();
 foreach($announcements as $announcement) {
-	array_push($entries,array("catId"=>$announcement['id']));	
+	$annoData = array();
+		array_push($annoData,array("catId"=>$announcement['id']));
+		array_push($annoData,array("title"=>$announcement['title']));
+		$query = "SELECT * FROM subtype INNER JOIN anno_subtype ON subtype.id = anno_subtype.subtype_id WHERE anno_id = '{$announcement['id']}'";
+		$subtype=$db->runQuery($query);
+		array_push($annoData,array("category"=>$subtype['name']));
+		//array_push($annoData,array("feedUrl"=>$announcement['feedurl'])); -- this doesn't exist yet. 
+		//foreach($subtypes as $subtype){
+			//array_push($annoData,array("category"=>$subtype['id'])); -- failed teratomas of evil code
+	array_push($entries,$annoData);
+	
+ 
 }
+
 
 $query = "SELECT * FROM type";   //grabs the types
 $types=$db->runQuery($query);
@@ -25,6 +46,8 @@ foreach($types as $type){
 	
 	));
 }
+
+
 $massive_array=array(  //a massive array full of everything good
 	"feed"=>array(
 		"entries"=>$entries, 
