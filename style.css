@@ -193,10 +193,26 @@ h2{
 				margin: 7px .3em .1em 0em;
 				padding: .2em .2em;
 				text-decoration: none;
-
+				float: right;
 
 			}
 			.logout_button:hover{
+				color: blue;
+				
+			}
+			.home_button{
+				font-size:1em;
+				background-color: white;
+				color: black;
+				border: 1px solid #bbb;
+				border-radius: 15px;
+				display: block;
+				margin: 7px .5em .1em 0em;
+				padding: .2em .2em;
+				float:right;
+				text-decoration: none;
+			}
+			.home_button:hover{
 				color: blue;
 				
 			}

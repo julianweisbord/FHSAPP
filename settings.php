@@ -53,6 +53,7 @@ enforce_log();
 		<img class="logo" src="http://fhsapp.com/v2/Images/daytime.png">
 		<div class="buttons">
 			 <a class="logout_button" href="logout.php">Log Out</a>
+			 <a class="home_button" href="main.php">Home</a>
 		</div>	
 	</div>	
 	<div class="wrapper">
