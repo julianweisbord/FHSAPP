@@ -307,9 +307,12 @@ enforce_log();
 			<form id="form" method="get" action="settings.php">
 				<div class="columns_wrapper">					
 					<div class="settings_columns">
+
 						<div class="inner">
+
 							<div class="column">
 								<div class="row">
+									<h1>General:</h1>
 									<label>Username:</label>
 									<input name="username" type="text" value="<?php echo $username;?>"/> 
 								</div>
@@ -343,7 +346,7 @@ enforce_log();
 							<div class="column">
 								<?php 
 								if($teacher) {
-									echo "<div id='classes_info'><h1>Your Classes Here:</h1><p>If you have no class in that period, leave it blank.</p>";
+									echo "<div id='classes_info'><h1>Your Classes:</h1><p>If you have no class in a period, leave it blank.</p>";
 									
 									//*Making the class inputs:
 									$i = 1;
@@ -369,7 +372,7 @@ enforce_log();
 							<div class="column">
 								<?php 
 								if($club_p) {
-									echo "<div id='clubs_info'><h1>Clubs here:</h1>";
+									echo "<div id='clubs_info'><h1>Clubs:</h1>";
 									
 									$i = 1;
 									if(!empty($club_values)) {
@@ -397,7 +400,7 @@ enforce_log();
 								<?php 
 								
 								if($sports) {
-									echo "<div id='sports_info'><h1>Sports here:</h1>";
+									echo "<div id='sports_info'><h1>Sports:</h1>";
 									
 									$i = 1;
 									if(!empty($sports_values)) {
@@ -428,12 +431,12 @@ enforce_log();
 							
 						
 
-											
-							</div>		
+								<div class="settings_save_div"><input id="settings_save_button" type="submit" value="Save"/></div>			
+							</div>	<!--end inner-->	
 						</div>
 
 		</form>
-		<div class="settings_save_div"><input type="submit" value="Save"/></div>
+		
 </body>
 
 </html>
