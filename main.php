@@ -101,7 +101,7 @@ it submit with the variable that tells it to get only the selected categories.
 	<div class="main_wrapper">		
 		<div class="category_wrapper">
 		<ul class="category_buttons">
-			<li class="category_button"><a href='main.php'>All</a></li>
+			<a href='main.php'><li class="category_button">All</li></a>
 			<?php
 				$query = "SELECT * FROM subtype WHERE author_id = '$user_id'";
 				$cat_buttons = $db->runQuery($query);
@@ -112,13 +112,13 @@ it submit with the variable that tells it to get only the selected categories.
 					
 					if(!empty($name)) {
 						if($period) {
-							echo "<li class='category_button'>";
-							echo "<a href='main.php?subtype_id=".$id."'><span class='period_number'>".$period."</span>: $name</a>";
-							echo "</li>";
+							echo "<a href='main.php?subtype_id=".$id."'><li class='category_button'>";
+							echo "<span class='period_number'>".$period."</span>: $name";
+							echo "</li></a>";
 						} else {
-							echo "<li class='category_button'>";
-							echo "<a href='main.php?subtype_id=".$id."'>$name</a>";
-							echo "</li>";
+							echo "<a href='main.php?subtype_id=".$id."'><li class='category_button'>";
+							echo "$name";
+							echo "</li></a>";
 						}
 					}
 				}
