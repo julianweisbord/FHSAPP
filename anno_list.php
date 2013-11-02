@@ -24,18 +24,18 @@ foreach($announcements as $announcement) {
 	$annoData = array();
 		array_push($annoData,array("catId"=>$announcement['id']));
 		array_push($annoData,array("title"=>$announcement['title']));
-		/*$query = "SELECT * FROM subtype INNER JOIN anno_subtype ON subtype.id = anno_subtype.subtype_id WHERE anno_id = '{$announcement['id']}'";
-		joinfermet
-		SELECT Orders.OrderID, Customers.CustomerName, Orders.OrderDate
-		FROM Orders
-		INNER JOIN Customers 
-		ON Orders.CustomerID=Customers.CustomerID; */
-		$query = "SELECT announcements.id, anno_subtype.anno_id, anno_subtype.subtype_id,  " 
-		$category=$db->runQuery($query);
-		//array_push($annoData,array("category"=>$subtype['name']));
-		//array_push($annoData,array("feedUrl"=>$announcement['feedurl'])); -- this doesn't exist yet. 
-		//foreach($subtypes as $subtype){
-			//array_push($annoData,array("category"=>$subtype['id'])); -- failed teratomas of evil code
+//yo it's a triple join-- please be impressed 
+		$query1 = "SELECT type.name, type.id FROM type 
+				INNER JOIN subtype
+					ON type.id=subtype.type_id
+				INNER JOIN anno_subtype
+					ON subtype.id = anno_subtype.subtype_id
+				INNER JOIN announcements
+					ON anno_subtype.anno_id = announcements.id
+				WHERE announcements.id = '{$announcement['id']}'";
+		$category=$db->runQuery($query1); 
+		array_push($annoData,array("category"=>$category[0]['name']));
+		
 	array_push($entries,$annoData);
 	
  
@@ -63,7 +63,7 @@ $massive_array=array(  //a massive array full of everything good
 	);
 echo "<pre>";
 print_r($massive_array); //--better for testing
-echo "</pre>";
+echo "</pre>"; 
 //echo json_encode($massive_array); //final product
 
 ?>
