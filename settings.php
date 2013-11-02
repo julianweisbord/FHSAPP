@@ -48,16 +48,35 @@ enforce_log();
 
 
 ?>
-
-	<div class="header">
+<div class="header">
 		<img class="logo" src="http://fhsapp.com/v2/Images/daytime.png">
+		
 		<div class="buttons">
 			 <a class="logout_button" href="logout.php">Log Out</a>
-			 <a class="home_button" href="main.php">Home</a>
-			 <a class="new_user_button" href="new_user.php">Create New User</a>
-			 <a class="add_announcements_button" href="create.php">Add Announcement</a>
 		</div>	
+
+		<div class="home_button_div">
+		 <a class="home_button" href="main.php">Home</a>
+		</div>
+		
+		<?php
+		if($_SESSION['admin']) {
+			echo '<div class="new_user_button" >';
+			echo '<a href="new_user.php">Create New User</a><br />';
+			echo '</div>';
+		}
+		?>
+		
+		<a href="create.php">
+			<div class="add_announcements_wrapper">
+			<div class="add_announcements_button">Add Announcement</div>
+			<img class="add_image" src="images/add.png" /> <!--Icons by DryIcons-->
+			</div>
+		</a>
+		
 	</div>	
+
+	
 	<div class="wrapper">
 		
 		<?php

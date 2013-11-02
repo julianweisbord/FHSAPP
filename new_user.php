@@ -59,10 +59,29 @@
 <body class="new_user">
 	<div class="header">
 		<img class="logo" src="http://fhsapp.com/v2/Images/daytime.png">
+		
 		<div class="buttons">
-			 <a class="logout_button" href="#">Log Out</a>
+			 <a class="logout_button" href="logout.php">Log Out</a>
 		</div>	
-	</div>
+		
+		<div class="settings_button" >
+			<a href="settings.php"><img src="images/settings_gear.png" width="40" height="40"/></a>
+		</div>
+		
+		<div class="home_button_div">
+		 <a class="home_button" href="main.php">Home</a>
+		</div>
+
+	
+		
+		<a href="create.php">
+			<div class="add_announcements_wrapper">
+			<div class="add_announcements_button">Add Announcement</div>
+			<img class="add_image" src="images/add.png" /> <!--Icons by DryIcons-->
+			</div>
+		</a>
+		
+	</div>	
 <?php
 
 require_once('lib/config.php');
