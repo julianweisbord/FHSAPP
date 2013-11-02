@@ -11,6 +11,75 @@ h2{
 	text-align: center;
 }
 
+.main_wrapper {
+	background-color: white;
+	float: left;
+	clear: both;
+	width:100%;
+	margin-bottom: 50px;
+	margin-top: 40px;
+}
+
+.category_wrapper {
+	width: 15%;
+	box-sizing: border-box;
+	float: left;
+}
+
+.category_buttons {
+	
+}
+
+.category_button {
+	list-style: none;
+	border: 1px solid black;
+	padding: 1em;
+}
+
+.table_wrapper {
+	width: 85%;
+	box-sizing: border-box;
+	float: right;
+	
+}
+
+.anno_table {
+	width: 100%;
+	margin: 1em auto;
+	border: 1px solid black;
+	border-collapse: collapse;
+}
+
+.anno_header_row {
+	border: 1px solid black;
+	background-color: gray;
+	
+}
+
+.anno_header {
+	padding: .25em;
+}
+
+.anno_row {
+	border: 1px solid black;
+}
+
+.anno_row_title {
+	padding: .5em;
+}
+
+.anno_row_cats {
+	padding: .5em;
+}
+
+.anno_row_edit {
+	padding: .5em;
+}
+
+.anno_row_delete {
+	padding: .8em;
+}
+
 .columns_wrapper{
 	float: left;
 	clear: both;

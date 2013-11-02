@@ -90,7 +90,6 @@ it submit with the variable that tells it to get only the selected categories.
 		}
 		?>
 		
-		
 		<a href="create.php">
 			<div class="add_announcements_wrapper">
 			<div class="add_announcements_button">Add Announcement</div>
@@ -99,10 +98,10 @@ it submit with the variable that tells it to get only the selected categories.
 		</a>
 		
 	</div>	
-	<div class="columns_wrapper">
-		<div class="columns">
-			<div class="column">			
-			<li id="category_buttons">
+	<div class="main_wrapper">		
+		<div class="category_wrapper">
+		<ul class="category_buttons">
+			<li class="category_button"><a href='main.php'>All</a></li>
 			<?php
 				$query = "SELECT * FROM subtype WHERE author_id = '$user_id'";
 				$cat_buttons = $db->runQuery($query);
@@ -113,62 +112,65 @@ it submit with the variable that tells it to get only the selected categories.
 					
 					if(!empty($name)) {
 						if($period) {
-							echo "<ul>";
+							echo "<li class='category_button'>";
 							echo "<a href='main.php?subtype_id=".$id."'>Period ".$period.": $name</a>";
-							echo "</ul>";
+							echo "</li>";
 						} else {
-							echo "<ul>";
+							echo "<li class='category_button'>";
 							echo "<a href='main.php?subtype_id=".$id."'>$name</a>";
-							echo "</ul>";
+							echo "</li>";
 						}
 					}
 				}
 			?>
-			</li>
-			
-			<div class="wrapper">
-				<!--<pre>
-					<?php print_r($announcements);?>
-				</pre>-->
-				<table border="1">
-					<tr>
-						<th>Name</th>
-						<th>Categories</th>
-						<th>Edit</th>
-						<th>Delete</th>
-					</tr>
-					<!--<tr>
-						<td><a href="edit_test.php?anno_id=17">Test Announcement</a></td>
-						<td>Test</td>
-						<td><a href="edit_test.php?anno_id=17">Edit<<a></td>
-						<td><<a href="delete.php?anno_id=17">Delete<a></td>
-					</tr>-->
-					<?php 
-						foreach($announcements as $announcement) {
-							echo "<tr>";
-							//Use some form of an INNER JOIN here to select announcement category. Joins anno_subtype with subtype.
-							$query = "SELECT * FROM subtype INNER JOIN anno_subtype ON subtype.id = anno_subtype.subtype_id WHERE anno_subtype.anno_id = '{$announcement["id"]}'";
-							$cats = $db->runQuery($query);
-							echo '<td><a href="edit.php?anno_id='.$announcement["id"].'">'.$announcement["title"].'</a></td>';
-							echo'<td>';
-							foreach ($cats as $cat) {
-								if($cat['period']) {
-									echo "Period ";
-									echo $cat['period'];
-									echo ": ";
-								}
-								echo $cat['name'];
-								echo '.<br />';
+		</ul>
+		</div>
+		
+		<div class="table_wrapper">
+			<!--<pre>
+				<?php print_r($announcements);?>
+			</pre>-->
+			<table class="anno_table">
+				<tr class="anno_header_row"> <!--Headers-->
+					<th class="anno_header">Name</th>
+					<th class="anno_header">Categories</th>
+					<th class="anno_header">Edit</th>
+					<th class="anno_header">Delete</th>
+				</tr>
+				
+				<!--The rows-->
+				<?php 
+					foreach($announcements as $announcement) {
+						echo "<tr class='anno_row'>";
+						//*Uses some form of an INNER JOIN here to select announcement categories. Joins anno_subtype with subtype.
+						$query = "SELECT * FROM subtype INNER JOIN anno_subtype ON subtype.id = anno_subtype.subtype_id WHERE anno_subtype.anno_id = '{$announcement["id"]}'";
+						$cats = $db->runQuery($query);
+						
+						//*Title
+						echo '<td class="anno_row_title"><a href="edit.php?anno_id='.$announcement["id"].'">'.$announcement["title"].'</a></td>';
+						
+						//*Categories
+						echo'<td class="anno_row_cats">';
+						foreach ($cats as $cat) {
+							if($cat['period']) {
+								echo "Period ";
+								echo $cat['period'];
+								echo ": ";
 							}
-							echo '</td>';
-							echo '<td><!--<a href="edit.php?anno_id='.$announcement["id"].'">-->Edit<!--<a>--></td>
-							<td><!--<a href="delete.php?anno_id='.$announcement["id"].'">-->Delete<!--<a>--></td>';
-							echo "</tr>";
+							echo $cat['name'];
+							echo '.<br />';
 						}
-					?>
-				</table>
-			</div>
-			</div>
+						echo '</td>';
+						
+						//*Edit link
+						echo '<td class="anno_row_edit"><a href="edit.php?anno_id='.$announcement["id"].'">Edit<a></td>';
+						
+						//*Delete link (still need to write this)
+						echo '<td class="anno_row_delete"><!--<a href="delete.php?anno_id='.$announcement["id"].'">-->Delete<!--<a>--></td>';
+						echo "</tr>";
+					}
+				?>
+			</table>
 		</div>
 	</div>
 	
