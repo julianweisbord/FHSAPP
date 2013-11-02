@@ -5,6 +5,10 @@
 function delete_club_input() {
 
 }*/
+function initTable() {
+	var docHeight = $(window).height();
+	$(".category_wrapper, .table_wrapper").css("height", docHeight - 40);
+}
 
 function init_delete_clubs() { 
 	$(".delete_club").each( 

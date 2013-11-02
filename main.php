@@ -65,8 +65,8 @@ it submit with the variable that tells it to get only the selected categories.
 <head>
 	<meta http-equiv="Content-type" content="text/html;charset=UTF-8"/>
 	<title></title>
-	<script type="text/javascript" src="js/scripts.js"></script>
 	<script type="text/javascript" src="js/jquery-1.7.2.min.js"></script>
+	<script type="text/javascript" src="js/scripts.js"></script>
 	<link rel="stylesheet" href="style.css" />
 </head>
 
@@ -113,7 +113,7 @@ it submit with the variable that tells it to get only the selected categories.
 					if(!empty($name)) {
 						if($period) {
 							echo "<li class='category_button'>";
-							echo "<a href='main.php?subtype_id=".$id."'>Period ".$period.": $name</a>";
+							echo "<a href='main.php?subtype_id=".$id."'><span class='period_number'>".$period."</span>: $name</a>";
 							echo "</li>";
 						} else {
 							echo "<li class='category_button'>";
@@ -157,8 +157,8 @@ it submit with the variable that tells it to get only the selected categories.
 								echo $cat['period'];
 								echo ": ";
 							}
-							echo $cat['name'];
-							echo '.<br />';
+							echo $cat['name'].". ";
+							//echo '.<br />';
 						}
 						echo '</td>';
 						
@@ -173,7 +173,9 @@ it submit with the variable that tells it to get only the selected categories.
 			</table>
 		</div>
 	</div>
-	
+	<script type="text/javascript">
+		initTable();
+	</script>
 </body>
 
 </html>
