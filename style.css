@@ -530,3 +530,11 @@ pre {
 	clear: both;
 	color: white;
 }
+
+#sports_info input[type=text], #clubs_info input[type=text]{
+ width: 90px;
+
+
+
+
+}
