@@ -12,7 +12,7 @@ h2{
 }
 
 .main_wrapper {
-	background-color: white;
+	/*background-color: white;*/
 	float: left;
 	clear: both;
 	width:100%;
@@ -21,9 +21,11 @@ h2{
 }
 
 .category_wrapper {
+	background-color: white;
 	width: 15%;
 	box-sizing: border-box;
 	float: left;
+	
 }
 
 .category_buttons {
@@ -34,12 +36,15 @@ h2{
 	list-style: none;
 	border: 1px solid black;
 	padding: 1em;
+	margin: .25em 0;
 }
 
 .table_wrapper {
+	background-color: white;
 	width: 85%;
 	box-sizing: border-box;
 	float: right;
+	border: 1px solid black;
 	
 }
 
