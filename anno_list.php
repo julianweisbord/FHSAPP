@@ -24,9 +24,8 @@ foreach($announcements as $announcement) {
 	$annoData = array();
 		array_push($annoData,array("catId"=>$announcement['id']));
 		array_push($annoData,array("title"=>$announcement['title']));
-
 //yo it's a triple join-- please be impressed 
-		$query = "SELECT type.name, type.id FROM type 
+		$query1 = "SELECT type.name, type.id FROM type 
 				INNER JOIN subtype
 					ON type.id=subtype.type_id
 				INNER JOIN anno_subtype
@@ -34,11 +33,9 @@ foreach($announcements as $announcement) {
 				INNER JOIN announcements
 					ON anno_subtype.anno_id = announcements.id
 				WHERE announcements.id = '{$announcement['id']}'";
-		$category=$db->runQuery($query); 
+		$category=$db->runQuery($query1); 
 		array_push($annoData,array("category"=>$category[0]['name']));
-		//array_push($annoData,array("feedUrl"=>$announcement['feedurl'])); -- this doesn't exist yet. 
-		//foreach($subtypes as $subtype){
-			//array_push($annoData,array("category"=>$subtype['id'])); -- failed teratomas of evil code
+		
 	array_push($entries,$annoData);
 	
  
