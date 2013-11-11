@@ -387,9 +387,10 @@ enforce_log();
 										}
 									}
 									
-									echo "</div>";
+									echo "<br style='clear: both' clear='all'/></div>";
 								}
 								?>
+								
 							</div>
 							<div class="column">
 								<?php 
@@ -458,6 +459,10 @@ enforce_log();
 						</div>
 
 		</form>
+		
+		<script type="text/javascript">
+			initSettingsColumns();
+		</script>
 		
 </body>
 

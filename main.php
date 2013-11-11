@@ -97,14 +97,14 @@ it submit with the variable that tells it to get only the selected categories.
 			</div>
 		</a>
 		
-	</div>	
+	</div>
 	<div class="main_wrapper">	
 		<div class="category_wrapper">
 		<div class="category_title">
 			<p>Your Categories:</p>
 		</div>	
 		<ul class="category_buttons">
-			<a href='main.php'><li class="category_button">All</li></a>
+			<a href='main.php'><li class="category_button <?php if(!$subtype_id) {echo 'active_category';}?>">All</li></a>
 			<?php
 				$query = "SELECT * FROM subtype WHERE author_id = '$user_id'";
 				$cat_buttons = $db->runQuery($query);
@@ -115,11 +115,19 @@ it submit with the variable that tells it to get only the selected categories.
 					
 					if(!empty($name)) {
 						if($period) {
-							echo "<a href='main.php?subtype_id=".$id."'><li class='category_button'>";
+							if($id == $subtype_id) {
+								echo "<a href='main.php?subtype_id=".$id."'><li class='category_button active_category'>";
+							} else {
+								echo "<a href='main.php?subtype_id=".$id."'><li class='category_button'>";
+							}
 							echo "<span class='period_number'>".$period."</span>: $name";
 							echo "</li></a>";
 						} else {
-							echo "<a href='main.php?subtype_id=".$id."'><li class='category_button'>";
+							if($id == $subtype_id) {
+								echo "<a href='main.php?subtype_id=".$id."'><li class='category_button active_category'>";
+							} else {
+								echo "<a href='main.php?subtype_id=".$id."'><li class='category_button'>";
+							}
 							echo "$name";
 							echo "</li></a>";
 						}
@@ -171,7 +179,7 @@ it submit with the variable that tells it to get only the selected categories.
 						echo '<td class="anno_row_edit"><a href="edit.php?anno_id='.$announcement["id"].'">Edit<a></td>';
 						
 						//*Delete link (still need to write this)
-						echo '<td class="anno_row_delete"><a href="delete.php?anno_id='.$announcement["id"].'&current_id='.$subtype_id.'">Delete<a></td>';
+						echo '<td class="anno_row_delete"><a href="delete.php?anno_id='.$announcement["id"].'&current_id='.$subtype_id.'" class="delete_link">Delete<a></td>';
 						echo "</tr>";
 					}
 				?>
@@ -181,6 +189,7 @@ it submit with the variable that tells it to get only the selected categories.
 	<script type="text/javascript">
 		initTable();
 		initTitles();
+		initDeletes();
 	</script>
 </body>
 

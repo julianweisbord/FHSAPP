@@ -59,6 +59,29 @@ function init_delete_sports() {
 	);
 }
 
+function initDeletes() {
+	$(".delete_link").click(
+		function(e) {
+			e.preventDefault();
+			if(confirm("Confirm Delete?")) {
+				window.location = $(this).prop("href");
+			}
+		}
+	);
+}
+
+function initSettingsColumns() {
+	var maxHeight = 0;
+	$(".settings_columns .column").each(
+		function() {
+			if($(this).height() > maxHeight){
+				maxHeight = $(this).height();
+			};
+		}
+	);
+	$(".settings_columns .column").height(maxHeight);
+}
+
 $(document).ready( function() {
 	init_delete_clubs();
 	init_delete_sports();

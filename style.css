@@ -17,11 +17,25 @@ h2{
 	clear: both;
 	width:100%;
 	margin-top: 40px;
+	z-index: 0;
 }
 .category_title {
 	position: fixed;
+	padding-left: 1em;
+	background-color: rgb(200,200,200);
+	width: 15%;
+	box-shadow: 0 2px 2px rgb(24,24,24);
+	z-index: 50;
+	box-sizing: border-box
 }
 
+.table_title {
+	position: fixed;
+	padding-left: 1em;
+	background-color: rgb(200,200,200);
+	width: 85%;
+	box-shadow: 0 2px 2px rgb(24,24,24);
+}
 
 .category_wrapper {
 	
@@ -33,6 +47,12 @@ h2{
 
 .category_buttons {
 	margin-top: 1em;
+	z-index: 40;
+}
+
+.category_buttons a {
+	text-decoration: none;
+	color: black;
 }
 
 .category_button {
@@ -43,9 +63,13 @@ h2{
 	padding: 1em;
 	margin: .25em 0;
 	background-color: white;
+	opacity: .8;
 }
-.table_title {
-	position: fixed;
+
+.active_category {
+	background-color: rgb(256, 256, 256);
+	font-weight: bold;
+	opacity: 1;
 }
 
 .table_wrapper {
@@ -54,6 +78,7 @@ h2{
 	float: right;
 	border: 1px solid black;
 	overflow: auto;
+	z-index: 60
 }
 
 .anno_table {
@@ -119,6 +144,7 @@ h2{
 	box-sizing: border-box;
 	position: fixed;
 	box-shadow: 0 2px 2px rgb(24,24,24);
+	z-index:999;
 }
 	
 .settings_button {
@@ -520,7 +546,7 @@ input[type=submit]:hover{
 	width: 33.3%;
 	border:none;
 	border-right: 1px solid #000;
-	height: 400px;
+	
 }
 
 /*.settings_column1{
@@ -559,12 +585,16 @@ pre {
 	color: white;
 }
 
-#sports_info input[type=text], #clubs_info input[type=text]{
- width: 90px;
 
 
-
-
+.settings_columns input[type=text]{
+	width: 45%;
+	box-sizing: border-box;
+}
+.settings_columns label {
+	width: 45%;
+	box-sizing: border-box;
+	display: block;
 }
 
 ::-webkit-scrollbar {  
