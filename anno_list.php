@@ -48,22 +48,38 @@ $allcats=array();      //puts the types forcefully into an array
 foreach($types as $type){  
 	//echo "<p>{$type['name']}</p>";
 	array_push($allcats,array( //places that array into an array
-		"title"=>$type['name']  //sets the name to match our 
+		$type['name']  //sets the name to match our 
 	
 	));
 }
+
+$query = "SELECT * FROM users WHERE teacher='1'"; //grabs the users by the shoulders
+$teachers =$db->runQuery($query);
+$allteachers=array(); 
+foreach($teachers as $teacher){
+	array_push($allteachers,array(
+	$teacher['last_name'].", ".$teacher['first_name']
+	));
+}
+
+$query = "SELECT value FROM misc WHERE name='SurveyUrl'";
+$surveyUrl=$db->runQuery($query);
+$surveyUrl = $surveyUrl[0]["value"];
+
+		
 
 
 $massive_array=array(  //a massive array full of everything good
 	"feed"=>array(
 		"entries"=>$entries, 
-		"allcats"=>$allcats
-		
+		"allcats"=>$allcats,
+		"allteachers"=>$allteachers,
+		"surveyUrl"=>$surveyUrl		
 		)
 	);
-echo "<pre>";
+/*echo "<pre>";
 print_r($massive_array); //--better for testing
-echo "</pre>"; 
-//echo json_encode($massive_array); //final product
+echo "</pre>";*/
+echo json_encode($massive_array); //final product
 
 ?>
