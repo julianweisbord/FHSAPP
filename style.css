@@ -18,6 +18,10 @@ h2{
 	width:100%;
 	margin-top: 40px;
 }
+.category_title {
+	position: fixed;
+}
+
 
 .category_wrapper {
 	
@@ -28,7 +32,7 @@ h2{
 }
 
 .category_buttons {
-	
+	margin-top: 1em;
 }
 
 .category_button {
@@ -39,6 +43,9 @@ h2{
 	padding: 1em;
 	margin: .25em 0;
 	background-color: white;
+}
+.table_title {
+	position: fixed;
 }
 
 .table_wrapper {
@@ -51,7 +58,7 @@ h2{
 
 .anno_table {
 	width: 100%;
-	margin: 1em 0;
+	margin: 4em 0 1em 0;
 	border: 1px solid black;
 	border-collapse: collapse;
 }

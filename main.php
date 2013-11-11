@@ -98,8 +98,11 @@ it submit with the variable that tells it to get only the selected categories.
 		</a>
 		
 	</div>	
-	<div class="main_wrapper">		
+	<div class="main_wrapper">	
 		<div class="category_wrapper">
+		<div class="category_title">
+			<p>Your Categories:</p>
+		</div>	
 		<ul class="category_buttons">
 			<a href='main.php'><li class="category_button">All</li></a>
 			<?php
@@ -125,11 +128,13 @@ it submit with the variable that tells it to get only the selected categories.
 			?>
 		</ul>
 		</div>
-		
 		<div class="table_wrapper">
 			<!--<pre>
 				<?php print_r($announcements);?>
 			</pre>-->
+			<div class="table_title">
+				<p>Announcements:</p>
+			</div>
 			<table class="anno_table">
 				<tr class="anno_header_row"> <!--Headers-->
 					<th class="anno_header">Name</th>
@@ -175,6 +180,7 @@ it submit with the variable that tells it to get only the selected categories.
 	</div>
 	<script type="text/javascript">
 		initTable();
+		initTitles();
 	</script>
 </body>
 

@@ -10,6 +10,11 @@ function initTable() {
 	$(".category_wrapper, .table_wrapper").css("height", docHeight - 40);
 }
 
+function initTitles() {
+	var titleHeight = $(".category_title").height();
+	$(".category_buttons, .anno_table").css("margin-top", titleHeight);
+}
+
 function init_delete_clubs() { 
 	$(".delete_club").each( 
 		function() {
