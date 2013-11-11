@@ -25,12 +25,12 @@ if(isset($_REQUEST['subtype_id'])) {
 }
 
 if($subtype_id) {
-	$query = "SELECT * FROM announcements INNER JOIN anno_subtype ON announcements.id = anno_subtype.anno_id WHERE anno_subtype.subtype_id = '$subtype_id'";
+	$query = "SELECT * FROM announcements INNER JOIN anno_subtype ON announcements.id = anno_subtype.anno_id WHERE anno_subtype.subtype_id = '$subtype_id' ORDER BY id DESC";
 	$announcements=$db->runQuery($query);
 } 
 
 if(!$subtype_id) {
-	$query = "SELECT * FROM announcements WHERE author='$user_id'";
+	$query = "SELECT * FROM announcements WHERE author='$user_id' ORDER BY id DESC";
 	$announcements=$db->runQuery($query);
 }
 
@@ -166,7 +166,7 @@ it submit with the variable that tells it to get only the selected categories.
 						echo '<td class="anno_row_edit"><a href="edit.php?anno_id='.$announcement["id"].'">Edit<a></td>';
 						
 						//*Delete link (still need to write this)
-						echo '<td class="anno_row_delete"><!--<a href="delete.php?anno_id='.$announcement["id"].'">-->Delete<!--<a>--></td>';
+						echo '<td class="anno_row_delete"><a href="delete.php?anno_id='.$announcement["id"].'&current_id='.$subtype_id.'">Delete<a></td>';
 						echo "</tr>";
 					}
 				?>

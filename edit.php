@@ -171,6 +171,32 @@ DONE-Grab the subtypes from db so you can check them. Remember checked="checked"
 			<h3>Categories:</h3>
 			<!--Gonna need to check if these are checked too...-->
 			<?php
+			if($admin_p) {
+				$query = "SELECT * FROM subtype WHERE author_id='$user_id' AND type_id='1'";
+				$generals = $db->runQuery($query);
+				echo "<p>General(s):</p><br />";
+				foreach($generals as $general) {
+					$checked = false;
+					$id = $general['id'];
+					$name = $general['name'];
+					foreach($anno_cb as $anno_cbc) {
+						if($anno_cbc['subtype_id']==$id) {
+							echo '<label>'.$name.':</label>
+							<input name="check[]" type="checkbox" value="'.$id.'" checked="checked"/>
+							<br />';
+							$checked = true;
+							break;
+						}
+					}
+					if(!$checked) {
+						echo '<label>'.$name.':</label>
+						<input name="check[]" type="checkbox" value="'.$id.'" />
+						<br />';
+					}
+					
+				}
+			}
+			
 			if($teacher_p) {
 				$query = "SELECT * FROM subtype WHERE author_id='$user_id' AND type_id='2'";
 				$periods = $db->runQuery($query);

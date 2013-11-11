@@ -133,6 +133,21 @@ $sports_p = $_SESSION['sports'];
 			<h3>Categories:</h3>
 			<!--php must generate these...-->
 			<?php
+			if($admin_p) {
+				$query = "SELECT * FROM subtype WHERE type_id = '1'";
+				$generals = $db->runQuery($query);
+				echo "<p>General:</p><br />";
+				foreach($generals as $general) {
+					$id = $general['id'];
+					$name = $general['name'];
+					if(!empty($name)) {
+						echo '<label>'.$name.':</label>
+						<input name="check[]" type="checkbox" value="'.$id.'" />
+						<br />';
+					}
+				}
+			}
+			
 			if($teacher_p) {
 				$query = "SELECT * FROM subtype WHERE author_id='$user_id' AND type_id='2'";
 				$periods = $db->runQuery($query);
