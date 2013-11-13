@@ -121,3 +121,10 @@ hardcode inputs
 use SELECT query to find the categories (subtypes)
 Generate the checkboxes for the categories
 Figure out the date input as well
+
+More stuff:
+The main page is gonna need some sorting functionality.
+-Oldest to newest
+-1 - 20, 21 - 40...
+-Something to routinely clear out and archive old announcements that have reached their expiration date
+-Searching? (AAAAAAAAAAAAAHHHHHHHHH)
