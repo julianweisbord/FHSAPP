@@ -12,7 +12,7 @@ function initTable() {
 
 function initTitles() {
 	var titleHeight = $(".category_title").height();
-	$(".category_buttons, .anno_table").css("margin-top", titleHeight);
+	$(".category_buttons, #anno_table").css("margin-top", titleHeight + 5);
 }
 
 function init_delete_clubs() { 
