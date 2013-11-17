@@ -327,8 +327,19 @@ enforce_log();
 
 
 			<form id="form" method="get" action="settings.php">
-				<div class="columns_wrapper">					
-					<div class="settings_columns">
+				<div class="columns_wrapper">	
+				<?php 
+				//determine number of columns
+				if($teacher) { 
+					$number_columns= 3;
+				}
+				else {
+					$number_columns= 2;
+				}
+
+
+				?>				
+					<div class="settings_columns <?php echo "number_columns_$number_columns"?>">
 
 						<div class="inner">
 
@@ -365,9 +376,10 @@ enforce_log();
 								</div>
 
 							</div>
-							<div class="column">
-								<?php 
+							<?php 
 								if($teacher) {
+									echo '<div class="column">';
+								
 									echo "<div id='classes_info'><h1>Your Classes:</h1><p>If you have no class in a period, leave it blank.</p>";
 									
 									//*Making the class inputs:
@@ -388,10 +400,12 @@ enforce_log();
 									}
 									
 									echo "<br style='clear: both' clear='all'/></div>";
-								}
-								?>
 								
-							</div>
+								
+								
+									echo "</div>";
+										}
+									?>
 							<div class="column">
 								<?php 
 								if($club_p) {

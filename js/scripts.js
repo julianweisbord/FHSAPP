@@ -74,8 +74,8 @@ function initSettingsColumns() {
 	var maxHeight = 0;
 	$(".settings_columns .column").each(
 		function() {
-			if($(this).height() > maxHeight){
-				maxHeight = $(this).height();
+			if($(this).outerHeight() > maxHeight){
+				maxHeight = $(this).outerHeight();
 			};
 		}
 	);
