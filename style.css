@@ -548,7 +548,6 @@ input[type=submit]:hover{
 
 .settings_columns .column{
 	float: left;
-	width: 33.3%;
 	border:none;
 	border-right: 1px solid #000;
 	
@@ -612,3 +611,15 @@ pre {
 ::-webkit-scrollbar-thumb {  
     background-color: gray;  
 } 
+
+.number_columns_3 .column {
+
+	width: 33.3%;
+
+}
+.number_columns_2 .column{
+	width: 50%;
+}
+#form {
+	width: 100%;
+}
