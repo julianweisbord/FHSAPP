@@ -124,7 +124,11 @@ Figure out the date input as well
 
 More stuff:
 The main page is gonna need some sorting functionality.
--Oldest to newest
--1 - 20, 21 - 40...
+-Oldest to newest - This can easily be done by changing the order by statement.
+-1 - 20, 21 - 40... - Gonna have to change all the beautiful "foreach" loops into "for" loops probably, then add some 
+	variables that'll get parsed out from the browser or something that give it a min/max range.
 -Something to routinely clear out and archive old announcements that have reached their expiration date
+	-Do by grabbing the date that it's set to expire, converting it to a timestamp, checking it against the current
+	timestamp, and seeing if it fits. We'll also make a box with the archive of everything, which simply won't
+	include the timestamp checking functionality.
 -Searching? (AAAAAAAAAAAAAHHHHHHHHH)
