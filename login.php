@@ -45,7 +45,7 @@ if($typedhash === $hash){
 	//echo "Login Successful";
 	set_session($typedusername);
 	kLA();
-	header('Location: main.php');
+	header('Location: main.php?current=1');
 	exit();
 	} else {
 		 //echo "Login Failed."; 

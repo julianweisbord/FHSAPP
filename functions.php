@@ -100,7 +100,7 @@
 	
 	function assist_log(){
 		if(isset($_COOKIE['staylogged'])){
-			header('Location: main.php');
+			header('Location: main.php?current=1');
 		}
 	}
 	
