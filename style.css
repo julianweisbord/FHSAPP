@@ -46,7 +46,7 @@ h2{
 }
 
 .category_buttons {
-	margin-top: 1em;
+	margin-top: 1em; /*Dis bit no matter, all set w/ javascript*/
 	z-index: 40;
 }
 
@@ -81,7 +81,7 @@ h2{
 	z-index: 60
 }
 
-.anno_table {
+#anno_table {
 	width: 100%;
 	margin: 4em 0 1em 0;
 	border: 1px solid black;
@@ -104,22 +104,27 @@ h2{
 
 .anno_row_title {
 	padding: .5em;
-	width: 25%
+	width: 20%
 }
 
 .anno_row_cats {
 	padding: .5em;
-	width: 59%
+	width: 55%
+}
+
+.anno_row_end_date {
+	padding: .5em;
+	width: 13%;
 }
 
 .anno_row_edit {
 	padding: .5em;
-	width: 8%;
+	width: 6%;
 }
 
 .anno_row_delete {
 	padding: .8em;
-	width: 8%;
+	width: 6%;
 }
 
 .columns_wrapper{
