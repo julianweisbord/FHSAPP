@@ -155,7 +155,7 @@ $db = new Db($dbConfig);
 		
 <form id="form" action="new_user.php" method="post" name="new_user_form">
 
-	<fieldset>
+	
 
 	<legend><center><h2>New User</h2></center></legend>
 
@@ -176,15 +176,16 @@ $db = new Db($dbConfig);
 	<div class="row"> <input id="password_text2" onfocus="this.style.display='none';document.getElementById('password2').style.display='block'; document.getElementById('password2').focus()" type="text" value="Re-enter Password"><input onblur="if (this.value==''){this.style.display='none';document.getElementById('password_text2').style.display='block'}" id="password2" style="display: none" type="password" name="password_2"/></div>
 
 
-
+		<div class="row inline_checkboxes">
 		<div id="categories">I Am A:<br/>
 		<input type="checkbox" name="teacher"/> Teacher
-		<input type="checkbox" name="coach"/> Coach
-		<input type="checkbox" name="club_leader"/> Club Leader
+		<input type="checkbox" name="coach"/> Coach 
+		<input type="checkbox" name="club_leader"/> Club Leader 
 		</div>
+		</div>
+
 		<div><input type="submit" value="Submit"/></div>
 
-</fieldset>
 </form>
 	</div> <!--end column -->
 </div>
