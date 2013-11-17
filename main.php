@@ -17,6 +17,12 @@ $db = new Db($dbConfig);
 enforce_log();
 $user_id = $_SESSION['user_id'];
 
+if(isset($_REQUEST['current'])) {
+	$current = $_REQUEST['current'];
+} else {
+	$current = 0;
+}
+
 //Sorting functionality shall go here.
 if(isset($_REQUEST['subtype_id'])) {
 	$subtype_id = $_REQUEST['subtype_id'];
@@ -66,6 +72,7 @@ it submit with the variable that tells it to get only the selected categories.
 	<meta http-equiv="Content-type" content="text/html;charset=UTF-8"/>
 	<title></title>
 	<script type="text/javascript" src="js/jquery-1.7.2.min.js"></script>
+	<script type="text/javascript" src="js/__jquery.tablesorter/jquery.tablesorter.min.js"></script>
 	<script type="text/javascript" src="js/scripts.js"></script>
 	<link rel="stylesheet" href="style.css" />
 </head>
@@ -104,7 +111,8 @@ it submit with the variable that tells it to get only the selected categories.
 			<p>Your Categories:</p>
 		</div>	
 		<ul class="category_buttons">
-			<a href='main.php'><li class="category_button <?php if(!$subtype_id) {echo 'active_category';}?>">All</li></a>
+			<a href='main.php?current=1'><li class="category_button <?php if(!$subtype_id && $current) {echo 'active_category';}?>">All Current</li></a>
+			<a href='main.php?current=0'><li class="category_button <?php if(!$subtype_id && !$current) {echo 'active_category';}?>">Archive</li></a>
 			<?php
 				$query = "SELECT * FROM subtype WHERE author_id = '$user_id'";
 				$cat_buttons = $db->runQuery($query);
@@ -143,46 +151,91 @@ it submit with the variable that tells it to get only the selected categories.
 			<div class="table_title">
 				<p>Announcements:</p>
 			</div>
-			<table class="anno_table">
+			<table id="anno_table" class="tablesorter">
+				<thead>
 				<tr class="anno_header_row"> <!--Headers-->
 					<th class="anno_header">Name</th>
 					<th class="anno_header">Categories</th>
+					<th class="anno_header">Expiration Date</th>
 					<th class="anno_header">Edit</th>
 					<th class="anno_header">Delete</th>
 				</tr>
-				
+				</thead>
 				<!--The rows-->
+				<tbody>
 				<?php 
 					foreach($announcements as $announcement) {
-						echo "<tr class='anno_row'>";
-						//*Uses some form of an INNER JOIN here to select announcement categories. Joins anno_subtype with subtype.
-						$query = "SELECT * FROM subtype INNER JOIN anno_subtype ON subtype.id = anno_subtype.subtype_id WHERE anno_subtype.anno_id = '{$announcement["id"]}'";
-						$cats = $db->runQuery($query);
+						if($current) {
+							$anno_end_date = $announcement["end_date"];
+							$anno_end_timestamp = strtotime($anno_end_date);
+							$current_timestamp = time();
+							if($anno_end_timestamp > $current_timestamp) {
+								echo "<tr class='anno_row'>";
+								//*Uses some form of an INNER JOIN here to select announcement categories. Joins anno_subtype with subtype.
+								$query = "SELECT * FROM subtype INNER JOIN anno_subtype ON subtype.id = anno_subtype.subtype_id WHERE anno_subtype.anno_id = '{$announcement["id"]}'";
+								$cats = $db->runQuery($query);
+							
+								//*Title
+								echo '<td class="anno_row_title"><a href="edit.php?anno_id='.$announcement["id"].'">'.$announcement["title"].'</a></td>';
+							
+								//*Categories
+								echo'<td class="anno_row_cats">';
+								foreach ($cats as $cat) {
+									if($cat['period']) {
+										echo "Period ";
+										echo $cat['period'];
+										echo ": ";
+									}
+									echo $cat['name'].". ";
+									//echo '.<br />';
+								}	
+								echo '</td>';
 						
-						//*Title
-						echo '<td class="anno_row_title"><a href="edit.php?anno_id='.$announcement["id"].'">'.$announcement["title"].'</a></td>';
+								echo '<td class="anno_row_end_date">'.$announcement["end_date"].'</td>'; //?make betterer later
 						
-						//*Categories
-						echo'<td class="anno_row_cats">';
-						foreach ($cats as $cat) {
-							if($cat['period']) {
-								echo "Period ";
-								echo $cat['period'];
-								echo ": ";
+								//*Edit link
+								echo '<td class="anno_row_edit"><a href="edit.php?anno_id='.$announcement["id"].'">Edit<a></td>';
+						
+								//*Delete link (still need to write this)
+								echo '<td class="anno_row_delete"><a href="delete.php?anno_id='.$announcement["id"].'&current_id='.$subtype_id.'" class="delete_link">Delete<a></td>';
+								echo "</tr>";
 							}
-							echo $cat['name'].". ";
-							//echo '.<br />';
+						} else if(!$current){
+							echo "<tr class='anno_row'>";
+							//*Uses some form of an INNER JOIN here to select announcement categories. Joins anno_subtype with subtype.
+							$query = "SELECT * FROM subtype INNER JOIN anno_subtype ON subtype.id = anno_subtype.subtype_id WHERE anno_subtype.anno_id = '{$announcement["id"]}'";
+							$cats = $db->runQuery($query);
+							
+							//*Title
+							echo '<td class="anno_row_title"><a href="edit.php?anno_id='.$announcement["id"].'">'.$announcement["title"].'</a></td>';
+							
+							//*Categories
+							echo'<td class="anno_row_cats">';
+							foreach ($cats as $cat) {
+								if($cat['period']) {
+									echo "Period ";
+									echo $cat['period'];
+									echo ": ";
+								}
+								echo $cat['name'].". ";
+								//echo '.<br />';
+							}
+							echo '</td>';
+						
+							echo '<td class="anno_row_end_date">'.$announcement["end_date"].'</td>'; //?make betterer later
+						
+							//*Edit link
+							echo '<td class="anno_row_edit"><a href="edit.php?anno_id='.$announcement["id"].'">Edit<a></td>';
+						
+							//*Delete link (still need to write this)
+							echo '<td class="anno_row_delete"><a href="delete.php?anno_id='.$announcement["id"].'&current_id='.$subtype_id.'" class="delete_link">Delete<a></td>';
+							echo "</tr>";
 						}
-						echo '</td>';
-						
-						//*Edit link
-						echo '<td class="anno_row_edit"><a href="edit.php?anno_id='.$announcement["id"].'">Edit<a></td>';
-						
-						//*Delete link (still need to write this)
-						echo '<td class="anno_row_delete"><a href="delete.php?anno_id='.$announcement["id"].'&current_id='.$subtype_id.'" class="delete_link">Delete<a></td>';
-						echo "</tr>";
-					}
+							
+						}
+					
 				?>
+				</tbody>
 			</table>
 		</div>
 	</div>
@@ -190,6 +243,7 @@ it submit with the variable that tells it to get only the selected categories.
 		initTable();
 		initTitles();
 		initDeletes();
+		//$("#anno_table").tablesorter(); 
 	</script>
 </body>
 

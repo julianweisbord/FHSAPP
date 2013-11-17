@@ -79,7 +79,7 @@
 		if(isset($_COOKIE['staylogged'])) {
 			$_SESSION['user_id']= $_COOKIE['staylogged'];
 			set_cookie_session();
-			header('Location: main.php');
+			header('Location: main.php?current=1');
 		}else{
 			header('Location: login.php');
 		}
