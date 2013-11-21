@@ -5,12 +5,14 @@ body {
 	padding: 0;
 	font-family: "lucida grande", tahoma, sans-serif;
 }
+
 h2{
 	margin: .5em 0em;
 	font-size: 1.4em;
 	text-align: center;
 }
 
+/*Main Page CSS*/
 .main_wrapper {
 	/*background-color: white;*/
 	float: left;
@@ -127,6 +129,7 @@ h2{
 	width: 6%;
 }
 
+/*Column stuff, important for settings and new_user (I think)*/
 .columns_wrapper{
 	float: left;
 	clear: both;
@@ -141,6 +144,7 @@ h2{
 	box-sizing: border-box;
 }
 
+/*Header stuff*/
 .header{
 	background: rgb(150,150,150);
 	clear: both;
@@ -151,7 +155,7 @@ h2{
 	box-shadow: 0 2px 2px rgb(24,24,24);
 	z-index:999;
 }
-	
+
 .settings_button {
 	float: right;
 	border-right: 1px solid rgb(200,200,200);
@@ -637,3 +641,143 @@ pre {
 .inline_checkboxes{
 	margin-top: 1em;
 }
+
+/*Create Announcement CSS*/
+.create_wrapper {
+	margin-top: 40px;
+	float:left;
+	width: 100%;
+}
+
+.anno_form {
+
+}
+
+.anno_left {
+	width: 84.5%;
+	float: left;
+	background-color: white;
+	border: 1px solid black;
+}
+
+.anno_right {
+	width: 15%;
+	float:right;
+	background-color: white;
+	border: 1px solid black;
+}
+
+.anno_form label {
+
+}
+
+.anno_form input[type=submit] {
+
+}
+
+.anno_text {
+
+}
+
+.anno_title {
+	float:left;
+	width: 100%;
+}
+
+.anno_title_label {
+
+}
+
+.anno_description {
+	float:left;
+	clear: left;
+	width: 100%;
+}
+
+.anno_description_label {
+
+}
+
+.anno_textarea {
+
+}
+
+.anno_start_end {
+	float:left;
+	clear: left;
+	width: 100%;
+}
+
+.anno_start_date {
+	float:left;
+	
+}
+
+.anno_start_date_label {
+
+}
+
+.anno_end_date {
+	float:left;
+	
+}
+
+.anno_end_date_label {
+
+}
+
+.anno_cats {
+
+}
+
+.cat_div {
+
+}
+
+.cat_label {
+
+}
+
+.cat_subtype_label {
+
+}
+
+.anno_optional {
+	float:left;
+	clear: left;
+	width: 100%;
+}
+
+.anno_date {
+	float:left;
+}
+
+.anno_date_label {
+	float:left;
+}
+
+.anno_time {
+	float:left;
+}
+
+.anno_time_label {
+
+}
+
+.anno_location {
+
+}
+
+.anno_location_label {
+
+}
+
+.anno_submit {
+
+}
+
+/*
+. {
+
+}
+*/
