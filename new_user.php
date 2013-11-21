@@ -79,7 +79,7 @@ $db = new Db($dbConfig);
 		</div>
 		
 		<div class="home_button_div">
-		 <a class="home_button" href="main.php">Home</a>
+		 <a class="home_button" href="main.php?current=1">Home</a>
 		</div>
 		
 		<a href="create.php">
