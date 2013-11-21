@@ -2,13 +2,11 @@
 session_start(); 
 require_once('functions.php');
 
-
 //echo $_SESSION['username']; //Comment out eventually
 //echo $_COOKIE['staylogged'];
 	
 include('lib/config.php');
 include('lib/db.class.php');
-
 
 ini_set('display_errors',0);
 error_reporting(E_ALL);
@@ -235,6 +233,14 @@ it submit with the variable that tells it to get only the selected categories.
 						}
 					
 				?>
+				
+				<script type="text/javascript">
+					/*function initEmptyTable() {	
+						$("tbody:empty").html("<tr class='table_empty'><td>No announcements! To make some, go to \"Add Announcement\"</td></tr>"); //Make something so that it shows a row that says "MAKE A NEW ANNOUNCMENT"
+					}
+					
+					initEmptyTable();*/
+				</script>
 				</tbody>
 			</table>
 		</div>
