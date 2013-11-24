@@ -21,14 +21,37 @@ foreach($catids as $catid){
 				ON announcements.id = anno_subtype.anno_id
 			WHERE anno_subtype.subtype_id = $catid";
 	$annos=$db->runQuery($query1); 
-	//var_dump($annos); LAME
-		foreach($annos as $anno) {
+	//var_dump($annos); temporary annos proving ground
+		foreach($annos as $anno) { //more joins -- linking announcement data with catid 
 			$query2="SELECT users.first_name, users.last_name, users.id FROM users
-					INNER JOIN announcements
+					INNER JOIN announcements 
 						ON users.id = announcements.author
 					WHERE announcements.id = {$anno['id']}";
+			$author=$db->runQuery($query2); //brutal, without remorse author grabs
+			$authordata=array();
+				array_push($authordata,array("name"=>$author[0]['first_name']." ".$author[0]['last_name'])); //pushes to the authordata array in the entries array
 			
-			array_push($annoData,array("title"=>$anno['title']));
+			$query3="SELECT type.name,type.id FROM type
+					INNER JOIN subtype
+						ON type.id=subtype.type_id
+					WHERE subtype.id = $catid";
+			$topCat=$db->runQuery($query3);
+			
+			
+			
+			array_push($annoData,array(
+			"title"=>$anno['title'],
+			"id"=>$anno['id'],
+			"content"=>$anno['description'],
+			"startDate"=>$anno['start_date'],
+			"endDate"=>$anno['end_date'],
+			"eventDate"=>$anno['date'],
+			"eventTime"=>$anno['time'],
+			"eventLocation"=>$anno['location'],
+			"author"=>$authordata,
+			"topCategory"=>$topCat[0]['name']
+			
+			));
 	
 		}
 	
@@ -39,32 +62,7 @@ foreach($catids as $catid){
 array_push($massive_array_dos,$entries);
 
 
- /*$massive_array_dos=array( //where everything goes quando quetzal returns
-	"feeds"=>array( //commented out stuff is being worked on, stored temp. in mystic granaries
-		"feedUrl"=>$feedUrl,
-		"entries"=>array(
-			"title"=>$title, may be replaced entirely with annodata
-			"id"=>$id,
-			"summary"=>$summary,
-			"content"=>$content,
-			"startDate"=>$startdate,
-			"expirationDate"=>$expdate,
-			"eventDate"=>$eventdate,
-			"eventTime"=>$eventtime,
-			"eventLocation"=>$eventloc,
-			"author"=>$auth,
-			"topCategory"=>$topcat,
-			"category"=>$cat,
-			"catId"=>$catidz 
-		"feeds"=>array(
-			"title"=$feedstitle,
-			"catId"=$feedscatidz,
-			topCategory=$feedstopcat  
-			
-		)
-	)
-);		*/
-
+ 
 
 
 echo"<pre>"; 
