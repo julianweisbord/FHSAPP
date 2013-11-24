@@ -228,6 +228,12 @@ h2{
 	width: auto;
 	float: left;
 }
+.header .beta{
+	height: 40px;
+	float: left;
+	width: auto;
+
+}
 
 .column{
 	border: 3px solid;
@@ -478,10 +484,6 @@ input[type=submit]:hover{
 	text-align: left;
 	float: left;
 	clear: both;
-}
-
-.new_user fieldset {
-	border: 3px solid;
 }
 
 .new_user input[type=text], input[type=password]{

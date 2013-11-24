@@ -78,6 +78,7 @@ it submit with the variable that tells it to get only the selected categories.
 <body>
 	<div class="header">
 		<img class="logo" src="http://fhsapp.com/v2/Images/daytime.png">
+		<img class="beta" src="http://fhsapp.com/v2/Images/betterbeta.png">
 		
 		<div class="buttons">
 			 <a class="logout_button" href="logout.php">Log Out</a>

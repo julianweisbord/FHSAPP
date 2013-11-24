@@ -50,6 +50,7 @@ enforce_log();
 ?>
 <div class="header">
 		<img class="logo" src="http://fhsapp.com/v2/Images/daytime.png">
+		<img class="beta" src="http://fhsapp.com/v2/Images/betterbeta.png">
 		
 		<div class="buttons">
 			 <a class="logout_button" href="logout.php">Log Out</a>
