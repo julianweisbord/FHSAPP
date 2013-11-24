@@ -71,6 +71,7 @@ it submit with the variable that tells it to get only the selected categories.
 	<title></title>
 	<script type="text/javascript" src="js/jquery-1.7.2.min.js"></script>
 	<script type="text/javascript" src="js/__jquery.tablesorter/jquery.tablesorter.min.js"></script>
+	<script type="text/javascript" src="js/jquery.hmc-paginatetable.js"></script>
 	<script type="text/javascript" src="js/scripts.js"></script>
 	<link rel="stylesheet" href="style.css" />
 </head>
@@ -149,6 +150,8 @@ it submit with the variable that tells it to get only the selected categories.
 			</pre>-->
 			<div class="table_title">
 				<p>Announcements:</p>
+			</div>
+			<div class="table_spacer">
 			</div>
 			<table id="anno_table" class="tablesorter">
 				<thead>
@@ -250,6 +253,10 @@ it submit with the variable that tells it to get only the selected categories.
 		initTable();
 		initTitles();
 		initDeletes();
+		$("#anno_table").paginator( {
+			'navPosition': 'top',
+			'rowsPerPage': 15
+		});
 		//$("#anno_table").tablesorter(); 
 	</script>
 </body>
