@@ -151,7 +151,7 @@ $sports_p = $_SESSION['sports'];
 			<div class="anno_left">
 			<div class="anno_title">
 				<label class="anno_title_label">Title:</label>
-				<input name="title" type="text" value="" class="anno_text"/>
+				<input name="title" type="text" value="" class="anno_text_title"/>
 				<br />
 			</div>
 			
@@ -164,35 +164,35 @@ $sports_p = $_SESSION['sports'];
 			<div class="anno_start_end">
 				<div class="anno_start_date">
 					<label class="anno_start_date_label">Announcement Starting Date:</label>
-					<input id="start_date" name="start_date" type="text" value="" class="anno_text"/>
+					<input id="start_date" name="start_date" type="text" value="" class="anno_text_start_date"/>
 					<br />
 				</div>
 			
 				<div class="anno_end_date">
 					<label class="anno_end_date_label">Announcement End Date:</label>
-					<input id="end_date" name="end_date" type="text" value="" class="anno_text"/>
+					<input id="end_date" name="end_date" type="text" value="" class="anno_text_end_date"/>
 					<br />
 				</div>
 			</div>
 			
 			<div class="anno_optional">
-				<h3>Optional:</h3>
+				<label class="anno_optional_label">Optional:</label>
 				
 				<div class="anno_date">
 					<label class="anno_date_label">Actual Date of Event:</label>
-					<input id="date" name="date" type="text" value=""/>
+					<input id="date" name="date" type="text" value="" class="anno_text_date"/>
 					<br />
 				</div>
 				
 				<div class="anno_time">
 					<label class="anno_time_label">Time of Event:</label>
-					<input name="time" type="text" value=""/>
+					<input name="time" type="text" value="" class="anno_text_time"/>
 					<br />
 				</div>
 				
 				<div class="anno_location">
 					<label class="anno_location_label">Location:</label>
-					<input name="location" type="text" value=""/>
+					<input name="location" type="text" value="" class="anno_text_location"/>
 					<br />
 				</div>
 			</div>
@@ -275,6 +275,9 @@ $sports_p = $_SESSION['sports'];
 			<br />
 		</form>
 	</div>
+	<script type="text/javascript">
+		initLRHeight();
+	</script>
 </body>
 
 </html>

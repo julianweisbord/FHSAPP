@@ -85,9 +85,14 @@ h2{
 
 #anno_table {
 	width: 100%;
-	margin: 4em 0 1em 0;
+	/*margin: 4em 0 1em 0;*/
 	border: 1px solid black;
 	border-collapse: collapse;
+	padding-top: .5em;
+}
+
+.table_spacer{
+	height: 4em;
 }
 
 .anno_header_row {
@@ -127,6 +132,37 @@ h2{
 .anno_row_delete {
 	padding: .8em;
 	width: 6%;
+}
+
+.pag {
+	width: 100%;
+	float: right;
+	clear: both;
+	text-align:right;
+	box-sizing: border-box;
+	margin: 0;
+	text-decoration: none;
+	padding: .5em 0;
+}
+
+.pag li{
+	list-style: none;
+	display: inline;
+	font-size:1em;
+	background-color: white;
+	border: 1px solid #bbb;
+	border-radius: 4px;
+	margin: 7px .3em .1em 0em;
+	padding: .2em .2em;
+}
+
+.pag a:hover{
+	color: blue;
+}
+
+.pag a{
+	text-decoration: none;
+	color: black;
 }
 
 /*Column stuff, important for settings and new_user (I think)*/
@@ -626,8 +662,9 @@ pre {
 .anno_left {
 	width: 84.5%;
 	float: left;
-	background-color: white;
+	background-color: rgb(76,16,9);
 	border: 1px solid black;
+	overflow: auto;	
 }
 
 .anno_right {
@@ -635,65 +672,181 @@ pre {
 	float:right;
 	background-color: white;
 	border: 1px solid black;
+	overflow: auto;	
 }
 
 .anno_form label {
 
 }
 
-.anno_form input[type=submit] {
-
-}
-
-.anno_text {
-
+.anno_form input[type=text] {
+	
 }
 
 .anno_title {
 	float:left;
 	width: 100%;
+	padding: 1em 0;
+	margin-top: .5em;
+	border-top: 1px solid rgb(200,200,200);
+	border-bottom: 1px solid rgb(200,200,200);
+	background: white url(images/gradient-lightgray.png) repeat-x top;
 }
 
 .anno_title_label {
+	font-size: 20px;
+	font-weight: bold;
+}
 
+.anno_text_title {
+	height: 2em;
+	font-size: 16px;
+	width: 88%;
 }
 
 .anno_description {
 	float:left;
 	clear: left;
 	width: 100%;
+	border-top: 1px solid rgb(200,200,200);
+	border-bottom: 1px solid rgb(200,200,200);
+	background: white url(images/gradient-lightgray.png) repeat-x top;
+	margin-top: .5em;
 }
 
 .anno_description_label {
-
+	font-size: 20px;
+	font-weight: bold;
 }
 
 .anno_textarea {
+}
 
+#mce_29 {
+	width: 97%;
+	clear: both;
+	margin: 1em 1.5% 0 1.5%;
 }
 
 .anno_start_end {
 	float:left;
 	clear: left;
 	width: 100%;
+	padding: .5em 0;
+	border-top: 1px solid rgb(200,200,200);
+	border-bottom: 1px solid rgb(200,200,200);
+	background-color: rgb(76,16,9);
 }
 
 .anno_start_date {
 	float:left;
-	
+	width: 100%;
+	padding: .5em 0;
+	border-top: 1px solid rgb(200,200,200);
+	border-bottom: 1px solid rgb(200,200,200);
+	background: white url(images/gradient-lightgray.png) repeat-x top;
 }
 
 .anno_start_date_label {
+	width: 20%;
+}
 
+.anno_text_start_date {
+	height: 1em;
+	font-size: 16px;
+	width: 75%;
 }
 
 .anno_end_date {
 	float:left;
-	
+	width: 100%;
+	padding: .5em 0;
+	border-top: 1px solid rgb(200,200,200);
+	border-bottom: 1px solid rgb(200,200,200);
+	background: white url(images/gradient-lightgray.png) repeat-x top;
 }
 
 .anno_end_date_label {
+	width: 20%;
+}
 
+.anno_text_end_date {
+	height: 1em;
+	font-size: 16px;
+	width: 75%;
+}
+
+.anno_optional {
+	float:left;
+	clear: left;
+	width: 100%;
+	border-top: 1px solid rgb(200,200,200);
+	border-bottom: 1px solid rgb(200,200,200);
+	background: white url(images/gradient-lightgray.png) repeat-x top;
+}
+
+.anno_optional_label{
+	font-size: 20px;
+	font-weight: bold;
+}
+
+.anno_date {
+	float:left;
+	width: 95%;
+	padding: .5em 0;
+	margin: 0 2.5%;
+	border: 1px solid rgb(160,160,160);
+	background: white url(images/gradient-lightgray.png) repeat-x top;
+}
+
+.anno_date_label {
+	float:left;
+	width: 20%;
+}
+
+.anno_text_date {
+	height: 1em;
+	font-size: 16px;
+	width: 75%;
+}
+
+.anno_time {
+	float:left;
+	width: 95%;
+	padding: .5em 0;
+	margin: 0 2.5%;
+	border: 1px solid rgb(160,160,160);
+	background: white url(images/gradient-lightgray.png) repeat-x top;
+}
+
+.anno_time_label {
+	float:left;
+	width: 20%;
+}
+
+.anno_text_time {
+	height: 1em;
+	font-size: 16px;
+	width: 75%;
+}
+
+.anno_location {
+	float:left;
+	width: 95%;
+	padding: .5em 0;
+	margin: 0 2.5%;
+	border: 1px solid rgb(160,160,160);
+	background: white url(images/gradient-lightgray.png) repeat-x top;
+}
+
+.anno_location_label {
+	width: 20%;
+}
+
+.anno_text_location {
+	height: 1em;
+	font-size: 16px;
+	width: 75%;
 }
 
 .anno_cats {
@@ -705,41 +858,9 @@ pre {
 }
 
 .cat_label {
-
 }
 
 .cat_subtype_label {
-
-}
-
-.anno_optional {
-	float:left;
-	clear: left;
-	width: 100%;
-}
-
-.anno_date {
-	float:left;
-}
-
-.anno_date_label {
-	float:left;
-}
-
-.anno_time {
-	float:left;
-}
-
-.anno_time_label {
-
-}
-
-.anno_location {
-
-}
-
-.anno_location_label {
-
 }
 
 .anno_submit {

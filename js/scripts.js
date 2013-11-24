@@ -12,7 +12,13 @@ function initTable() {
 
 function initTitles() {
 	var titleHeight = $(".category_title").height();
-	$(".category_buttons, #anno_table").css("margin-top", titleHeight + 5);
+	$(".category_buttons").css("margin-top", titleHeight + 5);
+	$(".table_spacer").css("height", titleHeight);
+}
+
+function initLRHeight() {
+	var docHeight = $(window).height();
+	$(".anno_left, .anno_right").css("height", docHeight - 40);
 }
 
 function init_delete_clubs() { 
