@@ -98,7 +98,7 @@ if($typedhash === $hash){
 	<div class="header">
 		<img class="logo" src="http://fhsapp.com/v2/Images/daytime.png">
 		<img class="beta" src="http://fhsapp.com/v2/Images/betterbeta.png">
-			
+		<h1>FHS APP	</h1>
 	</div>	
 	<div class="columns_wrapper"><div class="columns">
 
