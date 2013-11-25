@@ -79,7 +79,7 @@ $massive_array=array(  //a massive array full of everything good
 	);
 /*echo "<pre>";
 print_r($massive_array); //--better for testing
-echo "</pre>";*/
+echo "</pre>"; */
 echo json_encode($massive_array); //final product
 
 ?>
