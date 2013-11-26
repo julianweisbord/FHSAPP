@@ -18,7 +18,53 @@ function initTitles() {
 
 function initLRHeight() {
 	var docHeight = $(window).height();
-	$(".anno_left, .anno_right").css("height", docHeight - 40);
+	var titleHeight = $(".create_title").outerHeight();
+	var totalHeight = docHeight - 40 - titleHeight - 2 - 40;
+	$(".anno_left, .anno_right").css("height", totalHeight);
+}
+//205
+function initDescrHeight() {
+	var LHeight = $(".anno_left").height();
+	var aTitleHeight = $(".anno_title").outerHeight();
+	var aSEHeight = $(".anno_start_end").outerHeight();
+	var aOptHeight = $(".anno_optional").outerHeight();
+	var aCalcDescrHeight = LHeight - aTitleHeight - aSEHeight - aOptHeight - 2;
+	console.log(aCalcDescrHeight);
+	var aDescrLabelHeight = $(".anno_description_label").outerHeight();
+	if (aCalcDescrHeight > aDescrLabelHeight + 210) { //*If the height of the mce is smaller than the actual descr div, then resize it to the div
+		$(".anno_description").css("height", aCalcDescrHeight);
+		console.log("resizing mce");
+		var aDescrHeight = $(".anno_description").outerHeight();
+		var aDescrLabelHeight = $(".anno_description_label").outerHeight();
+		var mceHeight = aDescrHeight - aDescrLabelHeight - 35 - 34 - 34 - 32; //vicious vicious hack. The mceHeight only does it for the white space, so I had to subtract the height of the headers and footers. Must fix later.
+		tinymce.init({
+		selector: "textarea",
+		plugins: [
+			"advlist autolink lists link image charmap print preview anchor",
+			"searchreplace visualblocks code fullscreen",
+			//"insertdatetime media table contextmenu paste moxiemanager" //*Don't think this plugin matters
+		],
+		toolbar: "insertfile undo redo | styleselect | bold italic | alignleft aligncenter alignright alignjustify | bullist numlist outdent indent | link image",
+		height: mceHeight,
+	});
+	} else { //If the height of the mce is bigger than the actual descr div, then resize the div to the mce
+		/*console.log("resizing div");
+		var aDescrLabelHeight = $(".anno_description_label").outerHeight();
+		console.log("Description Height: " + aDescrLabelHeight);*/
+		tinymce.init({
+			selector: "textarea",
+			plugins: [
+				"advlist autolink lists link image charmap print preview anchor",
+				"searchreplace visualblocks code fullscreen",
+				//"insertdatetime media table contextmenu paste moxiemanager" //*Don't think this plugin matters
+			],
+			toolbar: "insertfile undo redo | styleselect | bold italic | alignleft aligncenter alignright alignjustify | bullist numlist outdent indent | link image",
+			//height: mceHeight,
+		});
+		/*var mceHeight = $(".mcedummy").height();
+		console.log("mce Height: " + mceHeight);
+		$(".anno_description").css("height", aDescrLabelHeight + mceHeight);*/
+	}
 }
 
 function init_delete_clubs() { 

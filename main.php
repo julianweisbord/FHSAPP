@@ -255,7 +255,7 @@ it submit with the variable that tells it to get only the selected categories.
 		initDeletes();
 		$("#anno_table").paginator( {
 			'navPosition': 'top',
-			'rowsPerPage': 15
+			'rowsPerPage': 20
 		});
 		//$("#anno_table").tablesorter(); 
 	</script>

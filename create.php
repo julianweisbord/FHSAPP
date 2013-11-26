@@ -64,15 +64,7 @@ $sports_p = $_SESSION['sports'];
 	<script type="text/javascript" src="js/tinymce/tinymce.min.js"></script>
 	<script type="text/javascript" src="js/scripts.js"></script>
 	<script type="text/javascript">
-		tinymce.init({
-			selector: "textarea",
-			plugins: [
-				"advlist autolink lists link image charmap print preview anchor",
-				"searchreplace visualblocks code fullscreen",
-				//"insertdatetime media table contextmenu paste moxiemanager" //*Don't think this plugin matters
-			],
-			toolbar: "insertfile undo redo | styleselect | bold italic | alignleft aligncenter alignright alignjustify | bullist numlist outdent indent | link image"
-		});
+		
 
 	$(document).ready(
 		function(){	
@@ -144,6 +136,11 @@ $sports_p = $_SESSION['sports'];
 	</div>	
 
 	<div class="create_wrapper">
+		<div class="create_title">
+			<img class="add_image_title" src="images/add.png" /> <!--Icons by DryIcons-->
+			<h1>Add Announcement</h1>
+		</div>
+	
 		<form id="form" method="get" action="create.php" class="anno_form">
 			<!--<label></label>
 			<input name="" type="text" value=""/>
@@ -157,7 +154,9 @@ $sports_p = $_SESSION['sports'];
 			
 			<div class="anno_description">
 				<label class="anno_description_label">Description:</label>
-				<textarea name="description" rows="5" col="50" class="anno_textarea"></textarea>
+				<div class="mcedummy">
+					<textarea name="description" rows="5" col="50" class="anno_textarea"></textarea>
+				</div>
 				<br />
 			</div>
 			
@@ -206,13 +205,13 @@ $sports_p = $_SESSION['sports'];
 				if($admin_p) {
 					$query = "SELECT * FROM subtype WHERE type_id = '1'";
 					$generals = $db->runQuery($query);
-					echo "<div class='cat_div'><p class='cat_label'>General:</p><br />";
+					echo "<div class='cat_div'><label class='cat_label'>General:</label><br />";
 					foreach($generals as $general) {
 						$id = $general['id'];
 						$name = $general['name'];
 						if(!empty($name)) {
 							echo '<label class="cat_subtype_label">'.$name.':</label>
-							<input name="check[]" type="checkbox" value="'.$id.'" />
+							<input class="cat_check" name="check[]" type="checkbox" value="'.$id.'" />
 							<br />';
 						}
 					}
@@ -222,14 +221,14 @@ $sports_p = $_SESSION['sports'];
 				if($teacher_p) {
 					$query = "SELECT * FROM subtype WHERE author_id='$user_id' AND type_id='2'";
 					$periods = $db->runQuery($query);
-					echo "<div class='cat_div'><p class='cat_label'>Classes:</p><br />";
+					echo "<div class='cat_div'><label class='cat_label'>Classes:</label><br />";
 						foreach($periods as $period) {
 						$id = $period['id'];
 						$name = $period['name'];
 						$number = $period['period'];
 						if(!empty($name)) {
 							echo '<label class="cat_subtype_label">Period '.$number.': '.$name.'</label>
-							<input name="check[]" type="checkbox" value="'.$id.'" />
+							<input class="cat_check" name="check[]" type="checkbox" value="'.$id.'" />
 							<br />';
 						}
 					}
@@ -239,12 +238,12 @@ $sports_p = $_SESSION['sports'];
 				if($club_p) {
 					$query = "SELECT * FROM subtype WHERE author_id='$user_id' AND type_id='3'";
 					$clubs = $db->runQuery($query);
-					echo "<div class='cat_div'><p class='cat_label'>Club(s):</p><br />";
+					echo "<div class='cat_div'><label class='cat_label'>Club(s):</label><br />";
 					foreach($clubs as $club) {
 						$id = $club['id'];
 						$name = $club['name'];
 						echo '<label class="cat_subtype_label">'.$name.':</label>
-						<input name="check[]" type="checkbox" value="'.$id.'" />
+						<input class="cat_check" name="check[]" type="checkbox" value="'.$id.'" />
 						<br />';
 					}
 					echo "</div>";
@@ -253,12 +252,12 @@ $sports_p = $_SESSION['sports'];
 				if($sports_p) {
 					$query = "SELECT * FROM subtype WHERE author_id='$user_id' AND type_id='4'";
 					$sports = $db->runQuery($query);
-					echo "<div class='cat_div'><p class='cat_label'>Sport(s):</p><br />";
+					echo "<div class='cat_div'><label class='cat_label'>Sport(s):</label><br />";
 					foreach($sports as $sport) {
 						$id = $sport['id'];
 						$name = $sport['name'];
 						echo '<label class="cat_subtype_label">'.$name.':</label>
-						<input name="check[]" type="checkbox" value="'.$id.'" />
+						<input class="cat_check" name="check[]" type="checkbox" value="'.$id.'" />
 						<br />';
 					}
 					echo "</div>";
@@ -277,6 +276,8 @@ $sports_p = $_SESSION['sports'];
 	</div>
 	<script type="text/javascript">
 		initLRHeight();
+		initDescrHeight();
+		
 	</script>
 </body>
 
