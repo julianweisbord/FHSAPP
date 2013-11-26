@@ -5,7 +5,7 @@ include('lib/db.class.php');
 $db = new Db($dbConfig); //boilerplate stuff
 
 
-
+$entry_count=0;
 $query1 = "SELECT * FROM announcements";
 $announcements=$db->runQuery($query1);
 /*$query2 = "SELECT * FROM anno_subtype";
@@ -20,10 +20,9 @@ $subtypes=$db->runQuery($query3); */
 
 
 $entries=array();
+
 foreach($announcements as $announcement) {
-	$annoData = array();
-		array_push($annoData,array("catId"=>$announcement['id']));
-		array_push($annoData,array("title"=>$announcement['title']));
+$entry_count++;
 //yo it's a triple join-- please be impressed 
 		$query1 = "SELECT type.name, type.id FROM type 
 				INNER JOIN subtype
@@ -34,12 +33,16 @@ foreach($announcements as $announcement) {
 					ON anno_subtype.anno_id = announcements.id
 				WHERE announcements.id = '{$announcement['id']}'";
 		$category=$db->runQuery($query1); 
-		array_push($annoData,array("category"=>$category[0]['name']));
+		array_push($entries,array(
+			"catId"=>$announcement['id'],
+			"title"=>$announcement['title'],
+			"category"=>$category[0]['name']));
 		
-	array_push($entries,$annoData);
+	
 	
  
 }
+
 
 
 $query = "SELECT * FROM type";   //grabs the types
@@ -47,19 +50,18 @@ $types=$db->runQuery($query);
 $allcats=array();      //puts the types forcefully into an array
 foreach($types as $type){  
 	//echo "<p>{$type['name']}</p>";
-	array_push($allcats,array( //places that array into an array
+	array_push($allcats, //places that array into an array
 		$type['name']  //sets the name to match our 
 	
-	));
+	);
 }
 
 $query = "SELECT * FROM users WHERE teacher='1'"; //grabs the users by the shoulders
 $teachers =$db->runQuery($query);
 $allteachers=array(); 
 foreach($teachers as $teacher){
-	array_push($allteachers,array(
-	$teacher['last_name'].", ".$teacher['first_name']
-	));
+	array_push($allteachers, $teacher['last_name'].", ".$teacher['first_name']
+	);
 }
 
 $query = "SELECT value FROM misc WHERE name='SurveyUrl'";
@@ -72,6 +74,7 @@ $surveyUrl = $surveyUrl[0]["value"];
 $massive_array=array(  //a massive array full of everything good
 	"feed"=>array(
 		"entries"=>$entries, 
+		"entryCount"=>$entry_count,
 		"allcats"=>$allcats,
 		"allteachers"=>$allteachers,
 		"surveyUrl"=>$surveyUrl		
