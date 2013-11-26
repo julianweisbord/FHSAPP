@@ -706,11 +706,12 @@ pre {
 
 .anno_title {
 	float:left;
-	width: 100%;
+	width: 98.7%;
 	padding: 1em 0;
-	/*margin-top: .5em;*/
+	margin: .5em;
 	border-top: 1px solid rgb(200,200,200);
 	border-bottom: 1px solid rgb(200,200,200);
+	border-radius: 8px;
 	background: white url(images/gradient-lightgray.png) repeat-x top;
 }
 
@@ -728,9 +729,11 @@ pre {
 .anno_description {
 	float:left;
 	clear: left;
-	width: 100%;
+	width: 98.7%;
+	margin: .5em;
 	border-top: 1px solid rgb(200,200,200);
 	border-bottom: 1px solid rgb(200,200,200);
+	border-radius: 8px;
 	background: white url(images/gradient-lightgray.png) repeat-x top;
 	/*margin-top: .5em;*/
 }
@@ -738,6 +741,7 @@ pre {
 .anno_description_label {
 	font-size: 20px;
 	font-weight: bold;
+	margin-left: 2%;
 }
 
 .anno_textarea {
@@ -752,19 +756,22 @@ pre {
 .anno_start_end {
 	float:left;
 	clear: left;
-	width: 100%;
-	/*padding: .5em 0;*/
-	border-top: 1px solid rgb(200,200,200);
-	border-bottom: 1px solid rgb(200,200,200);
-	background-color: rgb(76,16,9);
+	width: 98.7%;
+	margin: .5em;
+	border-top: 1px solid rgb(150,150,150);
+	border-bottom: 1px solid rgb(150,150,150);
+	border-radius: 8px;
+	background-color: rgb(150,150,150);
+	/*background: white url(images/gradient-lightgray.png) repeat-x top;*/
 }
 
 .anno_start_date {
 	float:left;
-	width: 100%;
+	width: 95%;
 	padding: .5em 0;
-	border-top: 1px solid rgb(200,200,200);
-	border-bottom: 1px solid rgb(200,200,200);
+	margin: 1em 2.5% 0 2.5%;
+	border: 1px solid rgb(200,200,200);
+	border-radius: 6px;
 	background: white url(images/gradient-lightgray.png) repeat-x top;
 }
 
@@ -780,10 +787,11 @@ pre {
 
 .anno_end_date {
 	float:left;
-	width: 100%;
+	width: 95%;
 	padding: .5em 0;
-	border-top: 1px solid rgb(200,200,200);
-	border-bottom: 1px solid rgb(200,200,200);
+	margin: 0 2.5% 1em 2.5%;
+	border: 1px solid rgb(200,200,200);
+	border-radius: 6px;
 	background: white url(images/gradient-lightgray.png) repeat-x top;
 }
 
@@ -800,15 +808,20 @@ pre {
 .anno_optional {
 	float:left;
 	clear: left;
-	width: 100%;
-	border-top: 1px solid rgb(200,200,200);
-	border-bottom: 1px solid rgb(200,200,200);
-	background: white url(images/gradient-lightgray.png) repeat-x top;
+	width: 98.7%;
+	padding-bottom: 1em;
+	margin: .5em;
+	border-top: 1px solid rgb(150,150,150);
+	border-bottom: 1px solid rgb(150,150,150);
+	border-radius: 8px;
+	/*background: white url(images/gradient-lightgray.png) repeat-x top;*/
+	background: rgb(150,150,150);
 }
 
 .anno_optional_label{
 	font-size: 20px;
 	font-weight: bold;
+	margin-left: 2.5%;
 }
 
 .anno_date {
@@ -817,6 +830,7 @@ pre {
 	padding: .5em 0;
 	margin: 0 2.5%;
 	border: 1px solid rgb(160,160,160);
+	border-radius: 6px;
 	background: white url(images/gradient-lightgray.png) repeat-x top;
 }
 
@@ -837,6 +851,7 @@ pre {
 	padding: .5em 0;
 	margin: 0 2.5%;
 	border: 1px solid rgb(160,160,160);
+	border-radius: 6px;
 	background: white url(images/gradient-lightgray.png) repeat-x top;
 }
 
@@ -857,6 +872,7 @@ pre {
 	padding: .5em 0;
 	margin: 0 2.5%;
 	border: 1px solid rgb(160,160,160);
+	border-radius: 6px;
 	background: white url(images/gradient-lightgray.png) repeat-x top;
 }
 
