@@ -5,14 +5,13 @@ include('lib/db.class.php');
 $db = new Db($dbConfig); //boilerplate stuff FOR moctezuma
 
 
-$massive_array_dos = array(); //Bak'tun based array
-$entries = array();
-$feeds= array();
+
+
 $catids = explode(',', $_REQUEST['catids']); //sacrifical captives were made of the catids, their individual strings quartered at each comma
 //PRINT_R($catids); //temporary ceremonial display pyramid
 
 $feedUrl ="http://$_SERVER[HTTP_HOST]$_SERVER[REQUEST_URI]";  //seedlings to quetzalcoatl 
-array_push($massive_array_dos, array("feedUrl"=>$feedUrl));
+//array_push($massive_array_dos, array("feedUrl"=>$feedUrl));
 
 
 foreach($catids as $catid){
@@ -38,12 +37,12 @@ foreach($catids as $catid){
 					WHERE subtype.id = $catid";
 			$topCat=$db->runQuery($query3);
 			
-			$query4="SELECT * FROM subtype WHERE id = $catid";
+			$query4="SELECT * FROM subtype WHERE id = $catid"; //querys to grab category and name of thing
 			$cat=$db->runQuery($query4);
 			
 			
 			
-			array_push($annoData,array(
+			array_push($annoData,array( //putting things in an array 
 			"title"=>$anno['title'],
 			"id"=>$anno['id'],
 			"content"=>$anno['description'],
@@ -52,7 +51,7 @@ foreach($catids as $catid){
 			"eventDate"=>$anno['date'],
 			"eventTime"=>$anno['time'],
 			"eventLocation"=>$anno['location'],
-			"author"=>$authordata,
+			"author"=>$authordata[0],
 			"topCategory"=>$topCat[0]['name'],
 			"category"=>$cat[0]['name']
 			
@@ -61,11 +60,11 @@ foreach($catids as $catid){
 		}
 	
 	
-		array_push($entries,$annoData);
+		
 }
-
+$feedinfo=array(); //structured similarly as above to add the "Feeds" section
 foreach($catids as $catid){
-	$feedinfo=array();
+	
 	$query1 = "SELECT * FROM subtype WHERE id = $catid";
 	$catinfo=$db->runQuery($query1);
 	
@@ -83,17 +82,26 @@ foreach($catids as $catid){
 	
 	));
 
-	array_push($feeds,$feedinfo);
+	
 
 }
-array_push($massive_array_dos,$entries);
-array_push($massive_array_dos,$feeds);
+$feed_array=array( //final array structure
 
+		"feed"=>array(
+		"feedUrl"=>$feedUrl,	
+		"entries"=>$annoData,
+		"feeds"=>$feedinfo
+	));
+
+
+$massive_array_dos = array(); //Bak'tun based array
+$massive_array_dos[]=$feed_array; 
 
  
 
 
-echo"<pre>"; 
+/*echo"<pre>"; 
 PRINT_R($massive_array_dos); //transfers data from spirit world --> our world
-echo"</pre>"; //pre cannot be used for json transcription, vardump or something has to be used l8r
+echo"</pre>"; //pre cannot be used for json transcription, vardump or something has to be used l8r */
+echo JSON_encode($massive_array_dos[0]); //where the magic happens
 ?>
