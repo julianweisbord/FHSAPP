@@ -11,7 +11,7 @@
 	$query = "DELETE FROM announcements WHERE id='$anno_id'";
 	mysql_query($query);
 	$query = "DELETE FROM anno_subtype WHERE anno_id='$anno_id'";
-	
+	mysql_query($query);
 	$current_id = $_REQUEST['current_id'];
 	if($current_id) {
 		header('Location: main.php?subtype_id='.$current_id.'');
