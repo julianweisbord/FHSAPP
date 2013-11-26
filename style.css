@@ -655,12 +655,33 @@ pre {
 	width: 100%;
 }
 
+.create_title {
+	padding: 1em;
+	background-color: white;
+	margin: 0;
+	float: left;
+	width: 100%;
+	box-sizing: border-box;
+}
+
+.create_title h1 {
+	margin: 0;
+	float: left;
+}
+
+.add_image_title {
+	float: left;
+	width: 2.7em;
+	height: 2.7em;
+	padding: 0 1em 0 0;
+}
+
 .anno_form {
 
 }
 
 .anno_left {
-	width: 84.5%;
+	width: 82%;
 	float: left;
 	background-color: rgb(76,16,9);
 	border: 1px solid black;
@@ -668,7 +689,7 @@ pre {
 }
 
 .anno_right {
-	width: 15%;
+	width: 17.5%;
 	float:right;
 	background-color: white;
 	border: 1px solid black;
@@ -687,7 +708,7 @@ pre {
 	float:left;
 	width: 100%;
 	padding: 1em 0;
-	margin-top: .5em;
+	/*margin-top: .5em;*/
 	border-top: 1px solid rgb(200,200,200);
 	border-bottom: 1px solid rgb(200,200,200);
 	background: white url(images/gradient-lightgray.png) repeat-x top;
@@ -711,7 +732,7 @@ pre {
 	border-top: 1px solid rgb(200,200,200);
 	border-bottom: 1px solid rgb(200,200,200);
 	background: white url(images/gradient-lightgray.png) repeat-x top;
-	margin-top: .5em;
+	/*margin-top: .5em;*/
 }
 
 .anno_description_label {
@@ -732,7 +753,7 @@ pre {
 	float:left;
 	clear: left;
 	width: 100%;
-	padding: .5em 0;
+	/*padding: .5em 0;*/
 	border-top: 1px solid rgb(200,200,200);
 	border-bottom: 1px solid rgb(200,200,200);
 	background-color: rgb(76,16,9);
@@ -850,21 +871,37 @@ pre {
 }
 
 .anno_cats {
-
+	float: right;
+	box-sizing: border-box;
 }
 
 .cat_div {
-
+	float: left;
+	width: 98%;
+	box-sizing: border-box;
 }
 
 .cat_label {
+	float: left;
+	width: 100%;
+	box-sizing: border-box;
 }
 
 .cat_subtype_label {
+	float: left;
+	width: 80%;
+	box-sizing: border-box;
+}
+
+.cat_check {
+	float:right;
+	box-sizing: border-box;
 }
 
 .anno_submit {
-
+	float: right;
+	clear: both;
+	width: 100%;
 }
 
 /*
