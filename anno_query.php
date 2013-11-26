@@ -7,6 +7,7 @@ $db = new Db($dbConfig); //boilerplate stuff FOR moctezuma
 
 $massive_array_dos = array(); //Bak'tun based array
 $entries = array();
+$feeds= array();
 $catids = explode(',', $_REQUEST['catids']); //sacrifical captives were made of the catids, their individual strings quartered at each comma
 //PRINT_R($catids); //temporary ceremonial display pyramid
 
@@ -37,6 +38,9 @@ foreach($catids as $catid){
 					WHERE subtype.id = $catid";
 			$topCat=$db->runQuery($query3);
 			
+			$query4="SELECT * FROM subtype WHERE id = $catid";
+			$cat=$db->runQuery($query4);
+			
 			
 			
 			array_push($annoData,array(
@@ -49,7 +53,8 @@ foreach($catids as $catid){
 			"eventTime"=>$anno['time'],
 			"eventLocation"=>$anno['location'],
 			"author"=>$authordata,
-			"topCategory"=>$topCat[0]['name']
+			"topCategory"=>$topCat[0]['name'],
+			"category"=>$cat[0]['name']
 			
 			));
 	
@@ -59,7 +64,30 @@ foreach($catids as $catid){
 		array_push($entries,$annoData);
 }
 
+foreach($catids as $catid){
+	$feedinfo=array();
+	$query1 = "SELECT * FROM subtype WHERE id = $catid";
+	$catinfo=$db->runQuery($query1);
+	
+	$query3="SELECT type.name,type.id FROM type
+			INNER JOIN subtype
+				ON type.id=subtype.type_id
+			WHERE subtype.id = $catid";
+	$topcatofcat=$db->runQuery($query3);
+					
+	
+	array_push($feedinfo,array(
+	"title"=>$catinfo[0]['name'],
+	"catId"=>$catinfo[0]['id'],
+	"topCategory"=>$topcatofcat[0]['name']
+	
+	));
+
+	array_push($feeds,$feedinfo);
+
+}
 array_push($massive_array_dos,$entries);
+array_push($massive_array_dos,$feeds);
 
 
  
