@@ -1,9 +1,10 @@
 body {
 	background-color: rgb(76,16,9);
 	font-size: 14px;
+	font-family: 'Open Sans', sans-serif;
 	margin: 0;
 	padding: 0;
-	font-family: "lucida grande", tahoma, sans-serif;
+	/*font-family: "lucida grande", tahoma, sans-serif;*/
 }
 
 h2{
