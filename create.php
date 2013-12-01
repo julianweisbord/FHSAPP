@@ -115,8 +115,6 @@ $sports_p = $_SESSION['sports'];
 			<a href="settings.php"><img src="images/settings_gear.png" width="40" height="40"/></a>
 		</div>
 		
-		
-		
 		<div class="home_button_div">
 		 <a class="home_button" href="main.php?current=1">Home</a>
 		</div>
