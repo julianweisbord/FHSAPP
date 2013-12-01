@@ -190,6 +190,7 @@ $db = new Db($dbConfig);
 
 					<div class="row inline_checkboxes">
 						<div id="categories">I Am A:<br/>
+							<input type="checkbox" name="admin"/> Admin
 							<input type="checkbox" name="teacher"/> Teacher
 							<input type="checkbox" name="coach"/> Coach 
 							<input type="checkbox" name="club_leader"/> Club Leader 
