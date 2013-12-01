@@ -217,7 +217,16 @@ h2{
 	text-decoration: none;
 }
 
+.new_user_button a {
+	text-decoration: none;
+	color: black;
+}
+
 .new_user_button:hover{
+	color: blue;
+}
+
+.new_user_button a:hover{
 	color: blue;
 }
 
