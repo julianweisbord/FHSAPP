@@ -1,9 +1,10 @@
 body {
 	background-color: rgb(76,16,9);
 	font-size: 14px;
+	font-family: 'Open Sans', sans-serif;
 	margin: 0;
 	padding: 0;
-	font-family: "lucida grande", tahoma, sans-serif;
+	/*font-family: "lucida grande", tahoma, sans-serif;*/
 }
 
 h2{
@@ -216,7 +217,16 @@ h2{
 	text-decoration: none;
 }
 
+.new_user_button a {
+	text-decoration: none;
+	color: black;
+}
+
 .new_user_button:hover{
+	color: blue;
+}
+
+.new_user_button a:hover{
 	color: blue;
 }
 
@@ -684,15 +694,15 @@ pre {
 	width: 82%;
 	float: left;
 	background-color: rgb(76,16,9);
-	border: 1px solid black;
+	/*border: 1px solid black;*/
 	overflow: auto;	
 }
 
 .anno_right {
 	width: 17.5%;
 	float:right;
-	background-color: white;
-	border: 1px solid black;
+	background-color: rgb(76,16,9);
+	/*border: 1px solid black;*/
 	overflow: auto;	
 }
 
@@ -712,18 +722,23 @@ pre {
 	border-top: 1px solid rgb(200,200,200);
 	border-bottom: 1px solid rgb(200,200,200);
 	border-radius: 8px;
-	background: white url(images/gradient-lightgray.png) repeat-x top;
+	background: white /*url(images/gradient-lightgray.png) repeat-x top*/;
 }
 
 .anno_title_label {
 	font-size: 20px;
 	font-weight: bold;
+	padding-left: 0;
+	margin: 0 .3em 0 1.1em;
+	padding-top: .3em;
+	padding-bottom: .3em;
+	/*border-bottom: 1px solid grey;*/
 }
 
 .anno_text_title {
 	height: 2em;
 	font-size: 16px;
-	width: 88%;
+	width: 86%;
 }
 
 .anno_description {
@@ -734,7 +749,8 @@ pre {
 	border-top: 1px solid rgb(200,200,200);
 	border-bottom: 1px solid rgb(200,200,200);
 	border-radius: 8px;
-	background: white url(images/gradient-lightgray.png) repeat-x top;
+	background: white /*url(images/gradient-lightgray.png) repeat-x top*/;
+	padding-bottom: .5em;
 	/*margin-top: .5em;*/
 }
 
@@ -742,6 +758,8 @@ pre {
 	font-size: 20px;
 	font-weight: bold;
 	margin-left: 2%;
+	width: 96.5%;
+	/*border-bottom: 1px solid grey;*/
 }
 
 .anno_textarea {
@@ -769,7 +787,7 @@ pre {
 	float:left;
 	width: 95%;
 	padding: .5em 0;
-	margin: 1em 2.5% 0 2.5%;
+	margin: 0 2.5%;
 	border: 1px solid rgb(200,200,200);
 	border-radius: 6px;
 	background: white url(images/gradient-lightgray.png) repeat-x top;
@@ -789,7 +807,7 @@ pre {
 	float:left;
 	width: 95%;
 	padding: .5em 0;
-	margin: 0 2.5% 1em 2.5%;
+	margin: 0 2.5%;
 	border: 1px solid rgb(200,200,200);
 	border-radius: 6px;
 	background: white url(images/gradient-lightgray.png) repeat-x top;
@@ -815,13 +833,15 @@ pre {
 	border-bottom: 1px solid rgb(150,150,150);
 	border-radius: 8px;
 	/*background: white url(images/gradient-lightgray.png) repeat-x top;*/
-	background: rgb(150,150,150);
+	background: white;
 }
 
 .anno_optional_label{
 	font-size: 20px;
 	font-weight: bold;
 	margin-left: 2.5%;
+	margin-top: .5em;
+	width: 95%;
 }
 
 .anno_date {
@@ -891,16 +911,37 @@ pre {
 	box-sizing: border-box;
 }
 
+.anno_cats_label {
+	font-size: 20px;
+	font-weight: bold;
+	margin: .5em;
+	padding: 1em 0;
+	width: 93%;
+	box-sizing: border-box;
+	text-align: center;
+	background: white;
+	border: 1px solid rgb(200,200,200);
+	border-radius: 5px;
+}
+
 .cat_div {
 	float: left;
-	width: 98%;
+	width: 93%;
 	box-sizing: border-box;
+	margin: .5em;
+	background: white;
+	border: 1px solid rgb(200,200,200);
+	border-radius: 5px;
+	padding-bottom: 1em;
 }
 
 .cat_label {
 	float: left;
-	width: 100%;
+	width: 95%;
+	font-size: 16px;
 	box-sizing: border-box;
+	font-weight: bold;
+	border-bottom: 1px solid grey;
 }
 
 .cat_subtype_label {
@@ -918,6 +959,11 @@ pre {
 	float: right;
 	clear: both;
 	width: 100%;
+}
+
+.anno_submit input[type=text]{
+	float: none;
+	margin: 
 }
 
 /*

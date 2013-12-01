@@ -63,6 +63,7 @@ $db = new Db($dbConfig);
 		}
 	);
 	</script>
+	<link href='http://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800' rel='stylesheet' type='text/css'>
 	<link rel="stylesheet" href="style.css" />
 </head>
 
@@ -103,7 +104,12 @@ $db = new Db($dbConfig);
 						return 0;
 					}
 				};
-				if(!empty($_REQUEST)) {
+
+				/*echo "<pre>";
+				print_r($_REQUEST);
+				echo "</pre>";*/
+
+				if(!empty($_REQUEST['username'])) {
 					$username = $_REQUEST['username'];
 					$e_password = $_REQUEST['password']; //For emailing
 					$password = md5($_REQUEST['password']);
@@ -189,6 +195,7 @@ $db = new Db($dbConfig);
 
 					<div class="row inline_checkboxes">
 						<div id="categories">I Am A:<br/>
+							<input type="checkbox" name="admin"/> Admin
 							<input type="checkbox" name="teacher"/> Teacher
 							<input type="checkbox" name="coach"/> Coach 
 							<input type="checkbox" name="club_leader"/> Club Leader 

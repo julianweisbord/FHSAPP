@@ -96,6 +96,7 @@ $sports_p = $_SESSION['sports'];
 	);
 	</script>
 	<!--<link rel="stylesheet" href="style.css" />-->
+	<link href='http://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800' rel='stylesheet' type='text/css'>
 	<link rel="stylesheet" href="style.css" />
 	<link rel="stylesheet" href="css/ui-lightness/jquery-ui-1.10.3.custom.min.css" />
 </head>
@@ -160,7 +161,13 @@ $sports_p = $_SESSION['sports'];
 				<br />
 			</div>
 			
-			<div class="anno_start_end">
+			<!--<div class="anno_start_end">
+				
+			</div>-->
+			
+			<div class="anno_optional">
+				<label class="anno_optional_label">Additional Information:</label>
+				
 				<div class="anno_start_date">
 					<label class="anno_start_date_label">Announcement Starting Date:</label>
 					<input id="start_date" name="start_date" type="text" value="" class="anno_text_start_date"/>
@@ -172,10 +179,6 @@ $sports_p = $_SESSION['sports'];
 					<input id="end_date" name="end_date" type="text" value="" class="anno_text_end_date"/>
 					<br />
 				</div>
-			</div>
-			
-			<div class="anno_optional">
-				<label class="anno_optional_label">Optional:</label>
 				
 				<div class="anno_date">
 					<label class="anno_date_label">Actual Date of Event:</label>
@@ -199,7 +202,7 @@ $sports_p = $_SESSION['sports'];
 			
 			<div class="anno_right">
 			<div class="anno_cats">
-				<h3>Categories:</h3>
+				<label class="anno_cats_label">Categories:</label>
 				<!--php must generate these...-->
 				<?php
 				if($admin_p) {

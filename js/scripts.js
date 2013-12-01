@@ -47,7 +47,7 @@ function initDescrHeight() {
 		toolbar: "insertfile undo redo | styleselect | bold italic | alignleft aligncenter alignright alignjustify | bullist numlist outdent indent | link image",
 		height: mceHeight,
 	});
-	} else { //If the height of the mce is bigger than the actual descr div, then resize the div to the mce
+	} else { //*If the height of the mce is bigger than the actual descr div, then resize the div to the mce
 		/*console.log("resizing div");
 		var aDescrLabelHeight = $(".anno_description_label").outerHeight();
 		console.log("Description Height: " + aDescrLabelHeight);*/
