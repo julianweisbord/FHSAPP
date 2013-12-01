@@ -13,19 +13,24 @@
 
 <body>
 	<?php
-	
+	ini_set('display_errors',0);
 //////////Database Connect////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-		$link = mysql_connect('localhost', 'fhsapp_v2', 'rainorshine4');
+		/*$link = mysql_connect('localhost', 'root', '');
 		if(!$link) { //Errors
 			die('Could not connect: ' . mysql_error());
 		}
-		echo "<p>Connected successfully.</p>"; //It works!
+		echo "<p>Connected successfully.</p>"; //It works! //antiquated system of db connecting
 		
-		$select_db = mysql_select_db('fhsapp_v2');
+		$select_db = mysql_select_db('fhsapp');  //fixed below
 		if(!$select_db) { //Errors
 			die('Could not select DB: ' . mysql_error());
 		}
-		echo "<p>Select DB worked.</p>"; //It works!
+		echo "<p>Select DB worked.</p>"; //It works!*/
+		
+		include('lib/config.php');
+		include('lib/db.class.php');
+		//include_once('functions.php'); 
+		$db = new Db($dbConfig); //boilerplate stuff
 		
 //////////Put your xDates in the db/////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 		$checked = $_GET['xDates']; //Get the checkbox values out of the form submit
@@ -33,11 +38,12 @@
 			$xDates_String = implode (",", $checked); //Turn the checked dates array in to a string
 			//echo $xDates_String; //See the string
 			//$sql = "UPDATE AB_Calendar SET excluded_dates='$xDates_String'"; //Query for putting the string in the db
-			$sql = "UPDATE misc SET value='$xDates_String' WHERE name='excluded_dates' ";
-			$set_excluded_dates = mysql_query($sql, $link);                  //Put the string in the db
-			if(!$set_excluded_dates) { //Errors
+			$query = "UPDATE misc SET value='$xDates_String' WHERE name='excluded_dates' ";
+			echo "query=$query";
+			$set_excluded_dates = $db->runQuery($query);                  //Put the string in the db
+			/*if(!$set_excluded_dates) { //Errors
 				die('Could not insert excluded dates: ' . mysql_error() );
-			}
+			}*/
 			echo "Ya done good pal.";  //It worked
 			echo "<br />";
 		}
@@ -45,29 +51,30 @@
 		$startDate = $_GET['startDate'];
 		$endDate = $_GET['endDate'];
 		if($startDate && $endDate){
-			$sqlStart = "UPDATE misc SET value='$startDate' WHERE name='start_date' ";
-			$sqlEnd = "UPDATE misc SET value='$endDate' WHERE name='end_date' ";
-			$update_Start= mysql_query($sqlStart, $link);
-			$update_End = mysql_query($sqlEnd, $link);
+			$query2 = "UPDATE misc SET value='$startDate' WHERE name='start_date' ";
+			$query3 = "UPDATE misc SET value='$endDate' WHERE name='end_date' ";
+			$update_Start= $db->runQuery($query2);
+			$update_End = $db->runQuery($query3);
 		}
 
-		$sqlStart = "SELECT value FROM misc WHERE name='start_date'";
-		$sqlEnd = "SELECT value FROM misc WHERE name='end_date'";
-		$select_Start= mysql_query($sqlStart, $link);
-		$select_End = mysql_query($sqlEnd, $link);
-		while($row = mysql_fetch_array($select_Start, MYSQL_ASSOC)) {
-			$betterStartDate = $row['value'];
-		}
-		while($row = mysql_fetch_array($select_End, MYSQL_ASSOC)){
-			$betterEndDate = $row['value'];
-		}
+		$query4 = "SELECT value FROM misc WHERE name='start_date'";
+		$query5 = "SELECT value FROM misc WHERE name='end_date'";
+		$select_Start= $db->runQuery($query4);
+		$select_End = $db->runQuery($query5);
+		
+		//while($row = mysql_fetch_array($select_Start, MYSQL_ASSOC)) {
+			$betterStartDate = $select_Start[0]['value'];
+		//}
+		//while($row = mysql_fetch_array($select_End, MYSQL_ASSOC)){
+			$betterEndDate = $select_End[0]['value'];
+		//}
 ////////Get your xDates out of the db/////////////////////////////////////////////////////////////////////////////////////////////////////////
 		//$sql = "select excluded_dates from AB_Calendar"; //Query for taking out the xDates
-		$sql = "SELECT value FROM misc WHERE name='excluded_dates'";
-		$select_x_dates = mysql_query($sql, $link);		 //Get the xDates
-		while($row = mysql_fetch_array($select_x_dates, MYSQL_ASSOC)) { //look up fetch_array function
-			$excluded_dates_from_db = $row['value']; //Store the excluded dates string in the variable $excluded_dates_from_db
-		}
+		$query6 = "SELECT value FROM misc WHERE name='excluded_dates'";
+		$select_x_dates = $db->runQuery($query6);		 //Get the xDates
+		//while($row = mysql_fetch_array($select_x_dates, MYSQL_ASSOC)) { //look up fetch_array function
+			$excluded_dates_from_db = $select_x_dates[0]['value']; //Store the excluded dates string in the variable $excluded_dates_from_db
+		//}
 		$excluded_dates_from_db = explode(",", $excluded_dates_from_db); //Turn the string into an array
 
 ////////Generating the list of the days///////////////////////////////////////////////////////////////////////////////////////////////////////////////		
