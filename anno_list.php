@@ -1,4 +1,6 @@
 <?php
+header('content-type: application/json; charset=utf-8');
+
 include('lib/config.php');
 include('lib/db.class.php');
 //include_once('functions.php'); 
@@ -83,6 +85,15 @@ $massive_array=array(  //a massive array full of everything good
 /*echo "<pre>";
 print_r($massive_array); //--better for testing
 echo "</pre>"; */
+	
+$callback = $_GET["callback"];
+
+// dynamically determine if JSON or JSONP is being used
+if ( isset($_GET['callback']) ) echo "{$_GET['callback']}(";
+
 echo json_encode($massive_array); //final product
+
+// dynamically determine if JSON or JSONP is being used
+if ( isset($_GET['callback']) ) echo ")";
 
 ?>
