@@ -136,10 +136,10 @@ $sports_p = $_SESSION['sports'];
 	</div>	
 
 	<div class="create_wrapper">
-		<div class="create_title">
+		<!--<div class="create_title">
 			<img class="add_image_title" src="images/add.png" /> <!--Icons by DryIcons-->
-			<h1>Add Announcement</h1>
-		</div>
+		<!--	<h1>Add Announcement</h1>
+		</div>-->
 	
 		<form id="form" method="get" action="create.php" class="anno_form">
 			<!--<label></label>

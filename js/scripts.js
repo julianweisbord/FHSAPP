@@ -18,7 +18,7 @@ function initTitles() {
 
 function initLRHeight() {
 	var docHeight = $(window).height();
-	var titleHeight = $(".create_title").outerHeight();
+	var titleHeight = 0; //$(".create_title").outerHeight();
 	var totalHeight = docHeight - 40 - titleHeight - 2;
 	$(".anno_left, .anno_right").css("height", totalHeight);
 }
