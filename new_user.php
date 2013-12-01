@@ -104,7 +104,12 @@ $db = new Db($dbConfig);
 						return 0;
 					}
 				};
-				if(!empty($_REQUEST)) {
+
+				/*echo "<pre>";
+				print_r($_REQUEST);
+				echo "</pre>";*/
+
+				if(!empty($_REQUEST['username'])) {
 					$username = $_REQUEST['username'];
 					$e_password = $_REQUEST['password']; //For emailing
 					$password = md5($_REQUEST['password']);
