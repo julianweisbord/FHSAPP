@@ -4,15 +4,11 @@ include('lib/db.class.php');
 //include_once('functions.php'); "it comes standard"
 $db = new Db($dbConfig); //boilerplate stuff FOR moctezuma
 
-
-
-
 $catids = explode(',', $_REQUEST['catids']); //sacrifical captives were made of the catids, their individual strings quartered at each comma
 //PRINT_R($catids); //temporary ceremonial display pyramid
 
 $feedUrl ="http://$_SERVER[HTTP_HOST]$_SERVER[REQUEST_URI]";  //seedlings to quetzalcoatl 
 //array_push($massive_array_dos, array("feedUrl"=>$feedUrl));
-
 
 foreach($catids as $catid){
 	$annoData = array();
@@ -22,27 +18,26 @@ foreach($catids as $catid){
 			WHERE anno_subtype.subtype_id = $catid";
 	$annos=$db->runQuery($query1); 
 	//var_dump($annos); temporary annos proving ground
-		foreach($annos as $anno) { //more joins -- linking announcement data with catid 
-			$query2="SELECT users.first_name, users.last_name, users.id FROM users
-					INNER JOIN announcements 
-						ON users.id = announcements.author
-					WHERE announcements.id = {$anno['id']}";
-			$author=$db->runQuery($query2); //brutal, without remorse author grabs
-			$authordata=array();
-				array_push($authordata,array("name"=>$author[0]['first_name']." ".$author[0]['last_name'])); //pushes to the authordata array in the entries array
+	
+	foreach($annos as $anno) { //more joins -- linking announcement data with catid 
+		$query2="SELECT users.first_name, users.last_name, users.id FROM users
+			INNER JOIN announcements 
+				ON users.id = announcements.author
+			WHERE announcements.id = {$anno['id']}";
+		$author=$db->runQuery($query2); //brutal, without remorse author grabs
+		$authordata=array();
+		array_push($authordata,array("name"=>$author[0]['first_name']." ".$author[0]['last_name'])); //pushes to the authordata array in the entries array
 			
-			$query3="SELECT type.name,type.id FROM type
-					INNER JOIN subtype
-						ON type.id=subtype.type_id
-					WHERE subtype.id = $catid";
-			$topCat=$db->runQuery($query3);
+		$query3="SELECT type.name,type.id FROM type
+			INNER JOIN subtype
+				ON type.id=subtype.type_id
+			WHERE subtype.id = $catid";
+		$topCat=$db->runQuery($query3);
 			
-			$query4="SELECT * FROM subtype WHERE id = $catid"; //querys to grab category and name of thing
-			$cat=$db->runQuery($query4);
-			
-			
-			
-			array_push($annoData,array( //putting things in an array 
+		$query4="SELECT * FROM subtype WHERE id = $catid"; //querys to grab category and name of thing
+		$cat=$db->runQuery($query4);
+
+		array_push($annoData,array( //putting things in an array 
 			"title"=>$anno['title'],
 			"id"=>$anno['id'],
 			"content"=>$anno['description'],
@@ -54,54 +49,45 @@ foreach($catids as $catid){
 			"author"=>$authordata[0],
 			"topCategory"=>$topCat[0]['name'],
 			"category"=>$cat[0]['name']
-			
-			));
-	
-		}
-	
-	
-		
+			)
+		);
+	}
 }
+
 $feedinfo=array(); //structured similarly as above to add the "Feeds" section
+
 foreach($catids as $catid){
-	
 	$query1 = "SELECT * FROM subtype WHERE id = $catid";
 	$catinfo=$db->runQuery($query1);
 	
 	$query3="SELECT type.name,type.id FROM type
-			INNER JOIN subtype
-				ON type.id=subtype.type_id
-			WHERE subtype.id = $catid";
+		INNER JOIN subtype
+			ON type.id=subtype.type_id
+		WHERE subtype.id = $catid";
 	$topcatofcat=$db->runQuery($query3);
-					
 	
 	array_push($feedinfo,array(
-	"title"=>$catinfo[0]['name'],
-	"catId"=>$catinfo[0]['id'],
-	"topCategory"=>$topcatofcat[0]['name']
-	
-	));
-
-	
-
+		"title"=>$catinfo[0]['name'],
+		"catId"=>$catinfo[0]['id'],
+		"topCategory"=>$topcatofcat[0]['name']
+		)
+	);
 }
+
 $feed_array=array( //final array structure
-
-		"feed"=>array(
-		"feedUrl"=>$feedUrl,	
-		"entries"=>$annoData,
-		"feeds"=>$feedinfo
-	));
-
+	"feed"=>array(
+	"feedUrl"=>$feedUrl,	
+	"entries"=>$annoData,
+	"feeds"=>$feedinfo
+	)
+);
 
 $massive_array_dos = array(); //Bak'tun based array
 $massive_array_dos[]=$feed_array; 
 
- 
-
-
 /*echo"<pre>"; 
 PRINT_R($massive_array_dos); //transfers data from spirit world --> our world
 echo"</pre>"; //pre cannot be used for json transcription, vardump or something has to be used l8r */
+
 echo JSON_encode($massive_array_dos[0]); //where the magic happens
 ?>
