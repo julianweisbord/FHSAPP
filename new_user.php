@@ -197,8 +197,8 @@ $db = new Db($dbConfig);
 						<div id="categories">I Am A:<br/>
 							<input type="checkbox" name="admin"/> Admin
 							<input type="checkbox" name="teacher"/> Teacher
-							<input type="checkbox" name="coach"/> Coach 
-							<input type="checkbox" name="club_leader"/> Club Leader 
+							<input type="checkbox" name="sports"/> Coach 
+							<input type="checkbox" name="club"/> Club Leader 
 						</div>
 					</div>
 
