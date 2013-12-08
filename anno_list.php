@@ -60,14 +60,15 @@ $surveyUrl=$db->runQuery($query);
 $surveyUrl = $surveyUrl[0]["value"];
 
 $massive_array=array(  //a massive array full of everything good
-	"feed"=>array(
-		"entries"=>$entries, 
-		"entryCount"=>$entry_count,
+		
+		"feed"=>array(
+			"entries"=>$entries, 
+			"entryCount"=>$entry_count
+		),
 		"allcats"=>$allcats,
 		"allteachers"=>$allteachers,
 		"surveyUrl"=>$surveyUrl		
-		)
-	);
+		); 
 /*echo "<pre>";
 print_r($massive_array); //--better for testing
 echo "</pre>"; */
