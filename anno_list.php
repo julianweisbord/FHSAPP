@@ -30,12 +30,29 @@ foreach($subtypes as $subtype) {
 			$category = $type["name"];
 		}
 	}
+	if($subtype['type_id'] = 1) {
+		$subtype_author_id = $subtype['author_id'];
+		$queryTeach = "SELECT first_name, last_name FROM users WHERE id='$subtype_author_id'";
+		$teacher = $db->runQuery($queryTeach); 
+		$teacher_last_name = $teacher[0]['last_name'];
+		$teacher_first_name = $teacher[0]['first_name'];
+		$teacher_name = "$teacher_last_name, $teacher_first_name";
+		array_push($entries,array(
+			"catId"=>$subtype['id'],
+			"title"=>$subtype['name'],
+			"category"=>$category,
+			"teacher"=>$teacher_name
+			)
+		);
+	} else {
+		array_push($entries,array(
+			"catId"=>$subtype['id'],
+			"title"=>$subtype['name'],
+			"category"=>$category,
+			)
+		);
+	}
 	
-	array_push($entries,array(
-		"catId"=>$subtype['id'],
-		"title"=>$subtype['name'],
-		"category"=>$category)
-	);
 }
 
 $query = "SELECT * FROM type";   //grabs the types
