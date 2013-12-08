@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: 127.0.0.1
--- Generation Time: Nov 26, 2013 at 11:42 PM
+-- Generation Time: Dec 08, 2013 at 11:34 PM
 -- Server version: 5.6.11
 -- PHP Version: 5.5.0
 
@@ -40,7 +40,18 @@ CREATE TABLE IF NOT EXISTS `announcements` (
   `author` int(10) NOT NULL COMMENT 'Go by id',
   `timestamp` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM  DEFAULT CHARSET=latin1 AUTO_INCREMENT=51 ;
+) ENGINE=MyISAM  DEFAULT CHARSET=latin1 AUTO_INCREMENT=56 ;
+
+--
+-- Dumping data for table `announcements`
+--
+
+INSERT INTO `announcements` (`id`, `title`, `description`, `date`, `location`, `time`, `start_date`, `end_date`, `author`, `timestamp`) VALUES
+(51, 'HW', '<p>Read Chpt. 1 - 4 by Thursday.</p>', '0000-00-00', '', '', '2013-11-25', '2013-12-07', 1, '2013-11-26 22:45:31'),
+(52, 'General Announcement', '<p>General</p>', '2013-12-08', '', '', '2013-12-07', '2013-12-14', 1, '2013-12-08 22:29:00'),
+(53, 'Class', '<p>Class</p>', '2013-12-08', '', '', '2013-12-07', '2013-12-14', 1, '2013-12-08 22:29:28'),
+(54, 'Club', '<p>Clubby stuff</p>', '2013-12-08', '', '', '2013-12-07', '2013-12-14', 1, '2013-12-08 22:29:48'),
+(55, 'Sports', '<p>Sporty stuff</p>', '2013-12-08', '', '', '2013-12-07', '2013-12-14', 1, '2013-12-08 22:30:04');
 
 -- --------------------------------------------------------
 
@@ -53,7 +64,34 @@ CREATE TABLE IF NOT EXISTS `anno_subtype` (
   `anno_id` int(10) NOT NULL,
   `subtype_id` int(10) NOT NULL,
   PRIMARY KEY (`index`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=239 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=260 ;
+
+--
+-- Dumping data for table `anno_subtype`
+--
+
+INSERT INTO `anno_subtype` (`index`, `anno_id`, `subtype_id`) VALUES
+(239, 51, 11),
+(240, 51, 13),
+(241, 51, 15),
+(242, 51, 41),
+(243, 51, 43),
+(244, 51, 46),
+(245, 51, 137),
+(246, 52, 11),
+(247, 52, 12),
+(248, 52, 13),
+(249, 52, 14),
+(250, 52, 15),
+(251, 53, 40),
+(252, 53, 41),
+(253, 53, 42),
+(254, 53, 43),
+(255, 53, 44),
+(256, 53, 45),
+(257, 53, 46),
+(258, 54, 133),
+(259, 55, 137);
 
 -- --------------------------------------------------------
 
@@ -188,14 +226,18 @@ CREATE TABLE IF NOT EXISTS `users` (
   `club` tinyint(1) NOT NULL,
   `sports` tinyint(1) NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM  DEFAULT CHARSET=latin1 COMMENT='The teachers.' AUTO_INCREMENT=11 ;
+) ENGINE=MyISAM  DEFAULT CHARSET=latin1 COMMENT='The teachers.' AUTO_INCREMENT=15 ;
 
 --
 -- Dumping data for table `users`
 --
 
 INSERT INTO `users` (`id`, `username`, `password`, `email`, `first_name`, `last_name`, `teacher`, `admin`, `club`, `sports`) VALUES
-(1, 'fhsapp', 'e91bde1d1f1c4fbab46f3ec44a354f8b', 'dustindiep0@gmail.com', 'Supreme', 'Admin', 1, 1, 1, 1);
+(1, 'fhsapp', 'e91bde1d1f1c4fbab46f3ec44a354f8b', 'dustindiep0@gmail.com', 'Supreme', 'Admin', 1, 1, 1, 1),
+(14, 'Sports', '81dc9bdb52d04dc20036dbd8313ed055', 'dustindiep0@gmail.com', 'Sports', 'User', 0, 0, 0, 1),
+(13, 'Clubs', '81dc9bdb52d04dc20036dbd8313ed055', 'dustindiep0@gmail.com', 'Club', 'User', 0, 0, 1, 0),
+(12, 'Teacher', '81dc9bdb52d04dc20036dbd8313ed055', 'dustindiep0@gmail.com', 'Teacher', 'User', 1, 0, 0, 0),
+(11, 'Admin', '81dc9bdb52d04dc20036dbd8313ed055', 'dustindiep0@gmail.com', 'Admin', 'User', 0, 1, 0, 0);
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
