@@ -8,8 +8,8 @@ ini_set('display_errors', 0);
 $db = new Db($dbConfig); //boilerplate stuff
 
 $entry_count=0;
-$query1 = "SELECT * FROM announcements";
-$announcements=$db->runQuery($query1);
+$query1 = "SELECT * FROM subtype";
+$subtypes=$db->runQuery($query1);
 
 /*$query2 = "SELECT * FROM anno_subtype";
 $anno_subtype=$db->runQuery($query2);
@@ -20,22 +20,21 @@ $subtypes=$db->runQuery($query3); */
 
 $entries=array();
 
-foreach($announcements as $announcement) {
+foreach($subtypes as $subtype) {
 	$entry_count++;
-	//yo it's a triple join-- please be impressed 
-	$query1 = "SELECT type.name, type.id FROM type 
-		INNER JOIN subtype
-			ON type.id=subtype.type_id
-		INNER JOIN anno_subtype
-			ON subtype.id = anno_subtype.subtype_id
-		INNER JOIN announcements
-			ON anno_subtype.anno_id = announcements.id
-		WHERE announcements.id = '{$announcement['id']}'";
-	$category=$db->runQuery($query1); 
+	//yo it's a triple join-- please be impressed (NOT ANYMORE!!!!!!!)
+	$query1 = "SELECT * FROM type";
+	$types=$db->runQuery($query1); 
+	foreach($types as $type) {
+		if($type["id"] == $subtype['type_id']) {
+			$category = $type["name"];
+		}
+	}
+	
 	array_push($entries,array(
-		"catId"=>$announcement['id'],
-		"title"=>$announcement['title'],
-		"category"=>$category[0]['name'])
+		"catId"=>$subtype['id'],
+		"title"=>$subtype['name'],
+		"category"=>$category)
 	);
 }
 
