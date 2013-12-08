@@ -3,6 +3,7 @@ header('content-type: application/json; charset=utf-8');
 
 include('lib/config.php');
 include('lib/db.class.php');
+ini_set('display_errors', 0);
 //include_once('functions.php'); 
 $db = new Db($dbConfig); //boilerplate stuff
 
@@ -72,6 +73,7 @@ $massive_array=array(  //a massive array full of everything good
 print_r($massive_array); //--better for testing
 echo "</pre>"; */
 
+//?The problem is rooted here.
 $callback = $_GET["callback"]; //?Dis be broke yo. Methinks you needs to actually set this when calling it. Maybe just hardcode it yo -Dustin
 
 //?Be feelin' like dis be all wack too yo. -Dustin
