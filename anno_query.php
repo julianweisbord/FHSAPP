@@ -1,6 +1,8 @@
 <?php
 include('lib/config.php'); //having a database connection is a good idea
 include('lib/db.class.php');
+ini_set('display_errors', 0);
+error_reporting(E_ALL);
 //include_once('functions.php'); "it comes standard"
 $db = new Db($dbConfig); //boilerplate stuff FOR moctezuma
 
