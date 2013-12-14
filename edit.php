@@ -343,7 +343,7 @@ DONE-Grab the subtypes from db so you can check them. Remember checked="checked"
 			</div>
 			
 			<div class="anno_submit">
-				<input type="submit" value="Create Announcement" />
+				<input type="submit" value="Save Changes" />
 			</div>
 			<br />
 			</div>
