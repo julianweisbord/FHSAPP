@@ -1,4 +1,5 @@
 <?php
+header('content-type: application/json; charset=utf-8');
 include('lib/config.php'); //having a database connection is a good idea
 include('lib/db.class.php');
 ini_set('display_errors', 0);
@@ -99,6 +100,9 @@ $massive_array_dos[]=$feed_array;
 /*echo"<pre>"; 
 PRINT_R($massive_array_dos); //transfers data from spirit world --> our world
 echo"</pre>"; //pre cannot be used for json transcription, vardump or something has to be used l8r */
+$callback = $_GET["callback"];
 
+if ( isset($_GET['callback']) ) echo "{$_GET['callback']}(";
 echo JSON_encode($massive_array_dos[0]); //where the magic happens
+if ( isset($_GET['callback']) ) echo ")";
 ?>
