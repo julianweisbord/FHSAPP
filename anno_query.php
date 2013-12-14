@@ -9,7 +9,7 @@ $db = new Db($dbConfig); //boilerplate stuff FOR moctezuma
 $catids = explode(',', $_REQUEST['catids']); //sacrifical captives were made of the catids, their individual strings quartered at each comma
 //PRINT_R($catids); //temporary ceremonial display pyramid
 $annoData = array();
-
+$entry_count=0;
 $feedUrl ="http://$_SERVER[HTTP_HOST]$_SERVER[REQUEST_URI]";  //seedlings to quetzalcoatl 
 //array_push($massive_array_dos, array("feedUrl"=>$feedUrl));
 
@@ -23,6 +23,7 @@ foreach($catids as $catid){
 	//var_dump($annos); temporary annos proving ground
 	
 	foreach($annos as $anno) { //more joins -- linking announcement data with catid 
+		
 		$query2="SELECT users.first_name, users.last_name, users.id FROM users
 			INNER JOIN announcements 
 				ON users.id = announcements.author
@@ -55,10 +56,12 @@ foreach($catids as $catid){
 			"author"=>$authordata[0],
 			"topCategory"=>$topCat[0]['name'],
 			"category"=>$cat[0]['name'],
-			"catId"=>$catid
+			"catId"=>$catid,
+			"teacher"=>$author[0]['last_name'].", ".$author[0]['first_name'],
+			"entry count"=>"$entry_count"
 			)
 		);
-		
+		$entry_count++;
 	}
 }
 
