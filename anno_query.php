@@ -36,7 +36,7 @@ foreach($catids as $catid){
 				ON type.id=subtype.type_id
 			WHERE subtype.id = $catid";
 		$topCat=$db->runQuery($query3);
-			
+		
 		$query4="SELECT * FROM subtype WHERE id = $catid"; //querys to grab category and name of thing
 		$cat=$db->runQuery($query4);
 		
@@ -58,7 +58,7 @@ foreach($catids as $catid){
 			"catId"=>$catid
 			)
 		);
-	
+		
 	}
 }
 
