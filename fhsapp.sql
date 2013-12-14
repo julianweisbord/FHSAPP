@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: 127.0.0.1
--- Generation Time: Dec 08, 2013 at 11:34 PM
+-- Generation Time: Dec 14, 2013 at 09:54 PM
 -- Server version: 5.6.11
 -- PHP Version: 5.5.0
 
@@ -40,18 +40,19 @@ CREATE TABLE IF NOT EXISTS `announcements` (
   `author` int(10) NOT NULL COMMENT 'Go by id',
   `timestamp` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM  DEFAULT CHARSET=latin1 AUTO_INCREMENT=56 ;
+) ENGINE=MyISAM  DEFAULT CHARSET=latin1 AUTO_INCREMENT=57 ;
 
 --
 -- Dumping data for table `announcements`
 --
 
 INSERT INTO `announcements` (`id`, `title`, `description`, `date`, `location`, `time`, `start_date`, `end_date`, `author`, `timestamp`) VALUES
-(51, 'HW', '<p>Read Chpt. 1 - 4 by Thursday.</p>', '0000-00-00', '', '', '2013-11-25', '2013-12-07', 1, '2013-11-26 22:45:31'),
-(52, 'General Announcement', '<p>General</p>', '2013-12-08', '', '', '2013-12-07', '2013-12-14', 1, '2013-12-08 22:29:00'),
-(53, 'Class', '<p>Class</p>', '2013-12-08', '', '', '2013-12-07', '2013-12-14', 1, '2013-12-08 22:29:28'),
-(54, 'Club', '<p>Clubby stuff</p>', '2013-12-08', '', '', '2013-12-07', '2013-12-14', 1, '2013-12-08 22:29:48'),
-(55, 'Sports', '<p>Sporty stuff</p>', '2013-12-08', '', '', '2013-12-07', '2013-12-14', 1, '2013-12-08 22:30:04');
+(51, 'HW', '<p>Read Chpt. 1 - 4 by Thursday.</p>', '0000-00-00', '', '', '2013-11-25', '2013-12-16', 1, '2013-12-14 20:04:09'),
+(52, 'General Announcement', '<p>General</p>', '2013-12-08', '', '', '2013-12-07', '2013-12-16', 1, '2013-12-14 20:02:17'),
+(53, 'Class', '<p>Class</p>', '2013-12-08', '', '', '2013-12-07', '2013-12-16', 1, '2013-12-14 20:03:23'),
+(54, 'Club', '<p>Clubby stuff</p>', '2013-12-08', '', '', '2013-12-07', '2013-12-16', 1, '2013-12-14 20:03:33'),
+(55, 'Sports', '<p>Sporty stuff</p>', '2013-12-08', '', '', '2013-12-07', '2013-12-16', 1, '2013-12-14 20:03:53'),
+(56, 'Announcement for the masses', '<p>Study things.</p>', '2013-12-08', '', '', '2013-12-07', '2013-12-16', 12, '2013-12-14 20:35:42');
 
 -- --------------------------------------------------------
 
@@ -64,34 +65,42 @@ CREATE TABLE IF NOT EXISTS `anno_subtype` (
   `anno_id` int(10) NOT NULL,
   `subtype_id` int(10) NOT NULL,
   PRIMARY KEY (`index`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=260 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=298 ;
 
 --
 -- Dumping data for table `anno_subtype`
 --
 
 INSERT INTO `anno_subtype` (`index`, `anno_id`, `subtype_id`) VALUES
-(239, 51, 11),
-(240, 51, 13),
-(241, 51, 15),
-(242, 51, 41),
-(243, 51, 43),
-(244, 51, 46),
-(245, 51, 137),
-(246, 52, 11),
-(247, 52, 12),
-(248, 52, 13),
-(249, 52, 14),
-(250, 52, 15),
-(251, 53, 40),
-(252, 53, 41),
-(253, 53, 42),
-(254, 53, 43),
-(255, 53, 44),
-(256, 53, 45),
-(257, 53, 46),
-(258, 54, 133),
-(259, 55, 137);
+(268, 52, 11),
+(269, 52, 12),
+(270, 52, 13),
+(271, 52, 14),
+(272, 52, 15),
+(273, 53, 40),
+(274, 53, 41),
+(275, 53, 42),
+(276, 53, 43),
+(277, 53, 44),
+(278, 53, 45),
+(279, 53, 46),
+(281, 54, 133),
+(282, 55, 137),
+(283, 51, 11),
+(284, 51, 13),
+(285, 51, 15),
+(286, 51, 41),
+(287, 51, 43),
+(288, 51, 46),
+(289, 51, 137),
+(290, 56, 138),
+(291, 56, 139),
+(292, 56, 140),
+(293, 56, 141),
+(294, 56, 142),
+(295, 56, 143),
+(296, 56, 144),
+(297, 56, 145);
 
 -- --------------------------------------------------------
 
@@ -153,23 +162,13 @@ CREATE TABLE IF NOT EXISTS `subtype` (
   `author_id` int(11) NOT NULL,
   `period` int(1) NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM  DEFAULT CHARSET=latin1 AUTO_INCREMENT=138 ;
+) ENGINE=MyISAM  DEFAULT CHARSET=latin1 AUTO_INCREMENT=146 ;
 
 --
 -- Dumping data for table `subtype`
 --
 
 INSERT INTO `subtype` (`id`, `name`, `type_id`, `author_id`, `period`) VALUES
-(1, 'Test English 1-2', 2, 2, 1),
-(2, 'Test English 1-2', 2, 2, 2),
-(3, 'Test English 3-4', 2, 2, 3),
-(4, 'Test English 3-4', 2, 2, 4),
-(5, 'Test English 1-2', 2, 2, 5),
-(6, 'Test English 5-6', 2, 2, 6),
-(7, 'Test English 3-4', 2, 2, 7),
-(8, 'Test English 3-4', 2, 2, 8),
-(9, 'MESA', 3, 3, 0),
-(10, 'Cross Country', 4, 3, 0),
 (11, 'College, Career, and Counseling Info', 1, 1, 0),
 (12, 'Important Continuing Items', 1, 1, 0),
 (13, 'New/Timely Entries', 1, 1, 0),
@@ -184,7 +183,15 @@ INSERT INTO `subtype` (`id`, `name`, `type_id`, `author_id`, `period`) VALUES
 (44, 'Testing Testing', 2, 1, 5),
 (45, 'Test Period', 2, 1, 6),
 (46, 'Still Testing', 2, 1, 7),
-(47, '', 2, 1, 8);
+(47, '', 2, 1, 8),
+(138, 'Period 1', 2, 12, 1),
+(139, 'Period 2', 2, 12, 2),
+(140, 'Period 3', 2, 12, 3),
+(141, 'Period 4', 2, 12, 4),
+(142, 'Period 5', 2, 12, 5),
+(143, 'Period 6', 2, 12, 6),
+(144, 'Period 7', 2, 12, 7),
+(145, 'Period 8', 2, 12, 8);
 
 -- --------------------------------------------------------
 
