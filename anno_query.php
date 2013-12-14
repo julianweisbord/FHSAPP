@@ -8,16 +8,17 @@ $db = new Db($dbConfig); //boilerplate stuff FOR moctezuma
 
 $catids = explode(',', $_REQUEST['catids']); //sacrifical captives were made of the catids, their individual strings quartered at each comma
 //PRINT_R($catids); //temporary ceremonial display pyramid
+$annoData = array();
 
 $feedUrl ="http://$_SERVER[HTTP_HOST]$_SERVER[REQUEST_URI]";  //seedlings to quetzalcoatl 
 //array_push($massive_array_dos, array("feedUrl"=>$feedUrl));
 
 foreach($catids as $catid){
-	$annoData = array();
+	
 	$query1="SELECT * FROM announcements
 			INNER JOIN anno_subtype
 				ON announcements.id = anno_subtype.anno_id
-			WHERE anno_subtype.subtype_id = $catid";
+			WHERE anno_subtype.subtype_id = '$catid'";
 	$annos=$db->runQuery($query1); 
 	//var_dump($annos); temporary annos proving ground
 	
@@ -39,8 +40,8 @@ foreach($catids as $catid){
 		$query4="SELECT * FROM subtype WHERE id = $catid"; //querys to grab category and name of thing
 		$cat=$db->runQuery($query4);
 		
-		$query5="SELECT * FROM subtype WHERE subtype.id = $catid";
-		$catId=$db->runQuery($query5);
+		/*$query5="SELECT * FROM subtype WHERE subtype.id = $catid";
+		$cat_id=$db->runQuery($query5); */
 
 		array_push($annoData,array( //putting things in an array 
 			"title"=>$anno['title'],
