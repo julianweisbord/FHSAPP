@@ -36,6 +36,9 @@ foreach($catids as $catid){
 			
 		$query4="SELECT * FROM subtype WHERE id = $catid"; //querys to grab category and name of thing
 		$cat=$db->runQuery($query4);
+		
+		$query5="SELECT * FROM subtype WHERE subtype.id = $catid";
+		$catId=$db->runQuery($query5);
 
 		array_push($annoData,array( //putting things in an array 
 			"title"=>$anno['title'],
@@ -48,9 +51,11 @@ foreach($catids as $catid){
 			"eventLocation"=>$anno['location'],
 			"author"=>$authordata[0],
 			"topCategory"=>$topCat[0]['name'],
-			"category"=>$cat[0]['name']
+			"category"=>$cat[0]['name'],
+			"catId"=>$catid
 			)
 		);
+	
 	}
 }
 
