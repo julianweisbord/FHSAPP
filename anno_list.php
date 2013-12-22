@@ -41,7 +41,8 @@ foreach($subtypes as $subtype) {
 			"catId"=>$subtype['id'],
 			"title"=>$subtype['name'],
 			"category"=>$category,
-			"teacher"=>$teacher_name
+			"teacher"=>$teacher_name,
+			"period"=>$subtype['period']
 			)
 		);
 	} else {

@@ -81,6 +81,7 @@ foreach($catids as $catid){
 	array_push($feedinfo,array(
 		"title"=>$catinfo[0]['name'],
 		"catId"=>$catinfo[0]['id'],
+		"period"=>$catinfo[0]['period'],
 		"topCategory"=>$topcatofcat[0]['name']
 		)
 	);
