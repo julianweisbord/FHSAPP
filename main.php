@@ -100,7 +100,7 @@ it submit with the variable that tells it to get only the selected categories.
 		?>
 		
 		<a href="create.php">
-			<div class="add_announcements_wrapper">
+			
 			<div class="add_announcements_button">Add Announcement</div>
 			<img class="add_image" src="images/add.png" /> <!--Icons by DryIcons-->
 			</div>

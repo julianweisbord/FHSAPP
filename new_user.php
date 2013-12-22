@@ -90,13 +90,25 @@ $db = new Db($dbConfig);
 			<img class="add_image" src="images/add.png" />
 			</div>
 		</a>-->
+		
 		<div class="buttons">
-			<a class="add_button" href="create.php"> Add Announcement</a>
+			
 			<a class="home_button" href="main.php?current=1">Home</a>
-			<a class="settings_button" href="settings.php"><img src="images/settings_gear.png" width="20" height="20"/></a>
 			<a class="logout_button" href="logout.php">Log Out</a>		
+		</div>
+
+		<div class="settings_button">
+			<a href="settings.php"><img src="images/settings_gear.png" width="40" height="40"/></a>
+		</div>
+
+		<a href="create.php">
+			<div class="add_announcements_button">Add Announcement</div>
+			<img class="add_image" src="images/add.png" /> <!--Icons by DryIcons-->
+			</div>
+		</a>
+
 		</div>	
-	</div>	
+
 
 	<div class="columns_wrapper">
 		<div class="columns">
