@@ -263,11 +263,7 @@ h2{
 	color: blue;
 }
 
-.header .buttons{
-	float: right;
-	clear: none;
-	width: auto;
-}
+
 
 .header .logo{
 	height: 40px;
@@ -329,6 +325,8 @@ input[type=checkbox]{
 		background-color: white;
 		color: black;
 		border: 1px solid #bbb;
+		border-right: 1px solid rgb(200,200,200);
+		border-left: 1px solid rgb(200,200,200);
 		border-radius: 10px;
 		display: block;
 		margin: 7px .3em .1em 0em;
@@ -356,27 +354,40 @@ input[type=checkbox]{
 		margin-right: 4px;
 	}
 	
-	.add_announcements_button {
-		float: right;
+	
+	.header .buttons a.add_button{
+		background:white url("images/add.png") no-repeat left center;
+		background-size: 20px;
+		padding-left: 25px;
+	}
+	
+	.header .buttons a{
+		display: block;
+		float: left;
+		width: auto;
+		clear: none;
 		font-size:1em;
 		background-color: white;
 		color: black;
 		border: 1px solid #bbb;
-		border-radius: 10px;
+		border-radius: 15px;
 		display: block;
 		margin: 7px .3em .1em 0em;
 		padding: .2em .2em;
 		text-decoration: none;
+		
+
+
 	}
-	
-	.add_announcements_button:hover{
+	.header .buttons a:hover {
 		color: blue;
 	}
-	
+
 	.header .buttons{
 		float: right;
 		clear: none;
 		width: auto;
+
 	}
 
 	
@@ -436,90 +447,22 @@ input[type=checkbox]{
 
 			}
 
-			.logout_button{
-				font-size:1em;
-				background-color: white;
-				color: black;
-				border: 1px solid #bbb;
-				border-radius: 15px;
-				display: block;
-				margin: 7px .3em .1em 0em;
-				padding: .2em .2em;
-				text-decoration: none;
-				float: right;
-
-			}
+			
 			.logout_button:hover{
-				color: blue;
-				
+				color: blue;	
 			}
-			.home_button{
-				font-size:1em;
-				background-color: white;
-				color: black;
-				border: 1px solid #bbb;
-				border-radius: 15px;
-				display: block;
-				margin: 7px .5em .1em 0em;
-				padding: .2em .2em;
-				float:right;
-				text-decoration: none;
-			}
-			.home_button:hover{
-				color: blue;
-				
-			}
-
+			
 
 
 input[type=submit]:hover{
 	color: blue;
 }
 
-.logout_button{
-	font-size:1em;
-	background-color: white;
-	color: black;
-	border: 1px solid #bbb;
-	border-radius: 15px;
-	display: block;
-	margin: 7px .3em .1em 0em;
-	padding: .2em .2em;
-	text-decoration: none;
-	float: right;
-}
 
-.logout_button:hover{
-	color: blue;
-}
 
-.home_button{
-	float: right;
-	font-size:1em;
-	background-color: white;
-	color: black;
-	border: 1px solid #bbb;
-	border-radius: 10px;
-	display: block;
-	margin: 7px .3em .1em 0em;
-	padding: .2em .2em;
-	text-decoration: none;
-	
-}
-.home_button_div{
-	float:right;
-	height: 40px;
-	border-right: 1px solid rgb(200,200,200);
-	border-left: 1px solid rgb(200,200,200);
-	padding: 0 1px;
-	padding-left: 5px;
-	margin-right: 10px
 
-}
 
-.home_button:hover{
-	color: blue;
-}
+
 
  .new_user #form-wrap {
 	max-width: 600px;

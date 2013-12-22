@@ -53,13 +53,17 @@ enforce_log();
 		<img class="logo" src="http://fhsapp.com/v2/Images/daytime.png">
 		<img class="beta" src="http://fhsapp.com/v2/Images/betterbeta.png">
 		<h1>FHS APP	</h1>
-		<div class="buttons">
-			 <a class="logout_button" href="logout.php">Log Out</a>
-		</div>	
 
-		<div class="home_button_div">
-		 <a class="home_button" href="main.php">Home</a>
+		<div class="buttons">
+			<a class="add_button" href="create.php"> Add Announcement</a>
+		 	<a class="home_button" href="main.php?current=1">Home</a>
+			<a class="logout_button" href="logout.php">Log Out</a>
+			<a class="new_user" href
+		 </div>
 		</div>
+
+
+	
 		
 		<?php
 		if($_SESSION['admin']) {

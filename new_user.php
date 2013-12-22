@@ -72,7 +72,7 @@ $db = new Db($dbConfig);
 		<img class="logo" src="http://fhsapp.com/v2/Images/daytime.png">
 		<img class="beta" src="http://fhsapp.com/v2/Images/betterbeta.png">
 		<h1>FHS APP	</h1>
-		<div class="buttons">
+		<!--<div class="buttons">
 			 <a class="logout_button" href="logout.php">Log Out</a>
 		</div>	
 		
@@ -87,10 +87,15 @@ $db = new Db($dbConfig);
 		<a href="create.php">
 			<div class="add_announcements_wrapper">
 			<div class="add_announcements_button">Add Announcement</div>
-			<img class="add_image" src="images/add.png" /> <!--Icons by DryIcons-->
+			<img class="add_image" src="images/add.png" />
 			</div>
-		</a>
-		
+		</a>-->
+		<div class="buttons">
+			<a class="add_button" href="create.php"> Add Announcement</a>
+			<a class="home_button" href="main.php?current=1">Home</a>
+			<a class="settings_button" href="settings.php"><img src="images/settings_gear.png" width="20" height="20"/></a>
+			<a class="logout_button" href="logout.php">Log Out</a>		
+		</div>	
 	</div>	
 
 	<div class="columns_wrapper">
