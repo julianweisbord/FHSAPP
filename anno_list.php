@@ -71,6 +71,7 @@ $teachers =$db->runQuery($query);
 $allteachers=array(); 
 foreach($teachers as $teacher){
 	array_push($allteachers, $teacher['last_name'].", ".$teacher['first_name']);
+	//this is gage's favorite part
 }
 
 $query = "SELECT value FROM misc WHERE name='SurveyUrl'";
