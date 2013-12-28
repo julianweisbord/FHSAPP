@@ -5,7 +5,7 @@ include('lib/db.class.php');
 include_once('functions.php');
 assist_log();
 
-ini_set('display_errors',0);
+ini_set('display_errors',1);
 error_reporting(E_ALL);
 $db = new Db($dbConfig);
 
@@ -21,8 +21,10 @@ function set_session($typedusername) {
 		$_SESSION['username'] = $typedusername;
 	}
 
-if(!empty($_REQUEST)) {
+if(!empty($_POST)) {
 	login();
+} else {
+	//echo "The post is empty!";
 }
 
 function login(){
@@ -48,7 +50,9 @@ if($typedhash === $hash){
 	header('Location: main.php?current=1');
 	exit();
 	} else {
-		 //echo "Login Failed."; 
+		/*echo "typedhash = ". $typedhash;
+		echo "hash = ". $hash; 
+		echo "Login Failed."; */
 	}
 }
 
