@@ -82,6 +82,7 @@
 			header('Location: main.php?current=1');
 		}else{
 			header('Location: login.php');
+			//echo "<h1>There is no spoon.</h1>";
 		}
 	}
 	
