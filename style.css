@@ -891,16 +891,40 @@ pre {
 }
 
 .anno_submit {
-	float: right;
+	float: left;
 	clear: both;
 	width: 100%;
+	box-sizing: border-box;
 }
 
 .anno_submit input[type=text]{
-	float: none;
+	float: left;
 	margin: 
 }
 
+.anno_cancel {
+	float: right;
+}
+
+.anno_cancel a {
+	display: block;
+	float: right;
+	width: auto;
+	clear: none;
+	font-size:1em;
+	background-color: white;
+	color: black;
+	border: 1px solid #bbb;
+	border-radius: 15px;
+	display: block;
+	margin: 7px .3em .1em 0em;
+	padding: .2em .2em;
+	text-decoration: none;
+}
+
+.anno_cancel a:hover {
+	color: blue;
+}
 /*
 . {
 

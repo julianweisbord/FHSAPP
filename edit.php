@@ -225,6 +225,16 @@ DONE-Grab the subtypes from db so you can check them. Remember checked="checked"
 				<input name="anno_id" type="hidden" value="<?php echo $anno_id;?>"/>
 				
 			</div>
+			
+			<div class="anno_submit">
+				<input type="submit" value="Create Announcement" />
+			</div>
+			<br />
+			
+			<div class="anno_cancel">
+				<a class="home_button" href="main.php?current=1">Cancel</a>
+			</div>
+			
 			</div>
 			
 			<div class="anno_right">

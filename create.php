@@ -112,21 +112,13 @@ $sports_p = $_SESSION['sports'];
 
 
 		<div class="buttons">
-			
 			 <a class="home_button" href="main.php?current=1">Home</a>
 			 <a class="logout_button" href="logout.php">Log Out</a>
 		</div>
 			
-		
 		<div class="settings_button" >
 			<a href="settings.php"><img src="images/settings_gear.png" width="40" height="40"/></a>
 
-
-		
-
-
-
-		
 		</div>
 		<?php
 		if($_SESSION['admin']) {
@@ -200,6 +192,16 @@ $sports_p = $_SESSION['sports'];
 					<br />
 				</div>
 			</div>
+			
+			<div class="anno_submit">
+				<input type="submit" value="Create Announcement" />
+			</div>
+			<br />
+			
+			<div class="anno_cancel">
+				<a class="home_button" href="main.php?current=1">Cancel</a>
+			</div>
+			
 			</div>
 			
 			<div class="anno_right">
@@ -270,11 +272,7 @@ $sports_p = $_SESSION['sports'];
 				?>
 			</div>
 			
-			<div class="anno_submit">
-				<input type="submit" value="Create Announcement" />
-			</div>
-			<br />
-			</div>
+			
 				
 			<br />
 		</form>
