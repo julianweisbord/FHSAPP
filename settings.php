@@ -7,90 +7,14 @@ error_reporting(E_ALL);
 $db = new Db($dbConfig);
 require_once('functions.php');
 enforce_log();
-?>
-
-<!DOCTYPE HTML>
-
-<!--Notes:
-	-Remember mysql_insert_id(); Gets the id of the last executed query, so will be important
--->
-<html>
-
-<head>
-	<meta http-equiv="Content-type" content="text/html;charset=UTF-8"/>
-	<title>Settings</title>
-	<script type="text/javascript" src="js/jquery-1.7.2.min.js"></script>
-	<script type="text/javascript" src="js/jquery.validate.min.js"></script>
-	<script type="text/javascript" src="js/scripts.js"></script>
-	<script type="text/javascript"> //The easy way to validate. Credit this later.
-	$(document).ready(
-		function(){	
-			$("#form").validate({
-				rules: {
-					new_password_2: {
-						equalTo: "input[name=new_password]" //To make sure the new password is working
-					},
-					cname: {
-						required: true
-					}
-				}
-			});
-		}
-	);
-	</script>
-	<link href='http://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800' rel='stylesheet' type='text/css'>
-	<link rel="stylesheet" href="style.css" />
-</head>
-
-<body>
-
-<?php
 
 
-
-?>
-<div class="header">
-		<img class="logo" src="http://fhsapp.com/v2/Images/daytime.png">
-		<img class="beta" src="http://fhsapp.com/v2/Images/betterbeta.png">
-		<h1>FHS APP	</h1>
-
-		<div class="buttons">
-		 	<a class="home_button" href="main.php?current=1">Home</a>
-			<a class="logout_button" href="logout.php">Log Out</a>
-			
-		 </div>
-		
-
-
-	
-		
-		<?php
-		if($_SESSION['admin']) {
-			echo '<div class="new_user_button" >';
-			echo '<a href="new_user.php">Create New User</a><br />';
-			echo '</div>';
-		}
-		?>
-		
-		<a href="create.php">
-			
-			<div class="add_announcements_button">Add Announcement</div>
-			<img class="add_image" src="images/add.png" /> <!--Icons by DryIcons-->
-			</div>
-		</a>
-		
-	</div>	
-
-	
-	<div class="wrapper">
-		
-		<?php
 ////////////SESSION VARIABLES//////////////////////////////////////////////////////////////////////////////////////////////////////
-			$user_id = $_SESSION['user_id']; 
-			$admin = $_SESSION['admin'];
-			$teacher = $_SESSION['teacher'];
-			$club_p = $_SESSION['club'];
-			$sports = $_SESSION['sports'];
+$user_id = $_SESSION['user_id']; 
+$admin = $_SESSION['admin'];
+$teacher = $_SESSION['teacher'];
+$club_p = $_SESSION['club'];
+$sports = $_SESSION['sports'];
 			
 //////////////**SUBMITTING THE FORM**///////////////////////////////////////////////////////////////////////////////////////////////			
 				if(!empty($_REQUEST)) {//*Checks if anything has been submitted from the form yet.
@@ -282,7 +206,82 @@ enforce_log();
 						
 						//echo "<b>Classes have been updated!</b><br />";
 					}
+					
 				}
+?>
+
+<!DOCTYPE HTML>
+
+<!--Notes:
+	-Remember mysql_insert_id(); Gets the id of the last executed query, so will be important
+-->
+<html>
+
+<head>
+	<meta http-equiv="Content-type" content="text/html;charset=UTF-8"/>
+	<title>Settings</title>
+	<script type="text/javascript" src="js/jquery-1.7.2.min.js"></script>
+	<script type="text/javascript" src="js/jquery.validate.min.js"></script>
+	<script type="text/javascript" src="js/scripts.js"></script>
+	<script type="text/javascript"> //The easy way to validate. Credit this later.
+	$(document).ready(
+		function(){	
+			$("#form").validate({
+				rules: {
+					new_password_2: {
+						equalTo: "input[name=new_password]" //To make sure the new password is working
+					},
+					cname: {
+						required: true
+					}
+				}
+			});
+		}
+	);
+	</script>
+	<link href='http://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800' rel='stylesheet' type='text/css'>
+	<link rel="stylesheet" href="style.css" />
+</head>
+
+<body>
+
+<?php
+
+
+
+?>
+<div class="header">
+		<img class="logo" src="http://fhsapp.com/v2/Images/daytime.png">
+		<img class="beta" src="http://fhsapp.com/v2/Images/betterbeta.png">
+		<h1>FHS APP	</h1>
+
+		<div class="buttons">
+		 	<a class="home_button" href="main.php?current=1">Home</a>
+			<a class="logout_button" href="logout.php">Log Out</a>
+			
+		 </div
+	
+		<?php
+		if($_SESSION['admin']) {
+			echo '<div class="new_user_button" >';
+			echo '<a href="new_user.php">Create New User</a><br />';
+			echo '</div>';
+		}
+		?>
+		
+		<a href="create.php">
+			
+			<div class="add_announcements_button">Add Announcement</div>
+			<img class="add_image" src="images/add.png" /> <!--Icons by DryIcons-->
+			</div>
+		</a>
+		
+	</div>	
+
+	
+	<div class="wrapper">
+		
+		<?php
 				
 ////////////////SELECTING VALUES FOR INPUTS////////////////////////////////////////////////////////////////////////////////////////
 				
@@ -341,8 +340,6 @@ enforce_log();
 				else {
 					$number_columns= 2;
 				}
-
-
 				?>				
 					<div class="settings_columns <?php echo "number_columns_$number_columns"?>">
 
@@ -467,12 +464,6 @@ enforce_log();
 								}
 								?>
 							</div>
-								
-								
-								
-							
-						
-
 								<div class="settings_save_div"><input id="settings_save_button" type="submit" value="Save"/></div>			
 							</div>	<!--end inner-->	
 						</div>
