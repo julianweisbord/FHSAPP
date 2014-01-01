@@ -206,7 +206,7 @@ $sports = $_SESSION['sports'];
 						
 						//echo "<b>Classes have been updated!</b><br />";
 					}
-					
+				$updated = 1;
 				}
 ?>
 
@@ -257,9 +257,8 @@ $sports = $_SESSION['sports'];
 
 		<div class="buttons">
 		 	<a class="home_button" href="main.php?current=1">Home</a>
-			<a class="logout_button" href="logout.php">Log Out</a>
-			
-		 </div
+			<a class="logout_button" href="logout.php">Log Out</a>	
+		 </div>
 	
 		<?php
 		if($_SESSION['admin']) {
@@ -464,7 +463,16 @@ $sports = $_SESSION['sports'];
 								}
 								?>
 							</div>
-								<div class="settings_save_div"><input id="settings_save_button" type="submit" value="Save"/></div>			
+							
+							<div class="settings_save_div">
+								<?php 
+									if($updated) {
+										echo "<div class='settings_updated_alert'>Settings Updated</div>";
+									}
+								?>
+								<input id="settings_save_button" type="submit" value="Save"/>
+							</div>			
+							
 							</div>	<!--end inner-->	
 						</div>
 

@@ -552,6 +552,10 @@ input[type=submit]:hover{
 	margin-right: 30px;
 }
 
+.settings_updated_alert {
+	color: red;
+}
+
 pre {
 	width: 100%;
 	float: left;
