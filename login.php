@@ -5,7 +5,7 @@ include('lib/db.class.php');
 include_once('functions.php');
 assist_log();
 
-ini_set('display_errors',1);
+ini_set('display_errors',0);
 error_reporting(E_ALL);
 $db = new Db($dbConfig);
 

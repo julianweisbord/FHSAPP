@@ -15,6 +15,14 @@ $db = new Db($dbConfig);
 enforce_log();
 $user_id = $_SESSION['user_id'];
 
+//*First time login with no classes set.
+$query = "SELECT * FROM subtype WHERE author_id = $user_id";
+$subtypes_check = $db->runQuery($query);
+if(empty($subtypes_check)) {
+	header('Location: settings.php');
+}
+
+
 if(isset($_REQUEST['current'])) {
 	$current = $_REQUEST['current'];
 } else {
