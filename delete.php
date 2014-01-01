@@ -16,6 +16,6 @@
 	if($current_id) {
 		header('Location: main.php?subtype_id='.$current_id.'');
 	} else {
-		header('Location: main.php');
+		header('Location: main.php?current=1');
 	}
 ?>
