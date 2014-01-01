@@ -166,6 +166,15 @@ h2{
 	color: black;
 }
 
+.table_empty {
+	background-color: white;
+	padding: .5em;
+}
+
+.table_empty td {
+	padding: .5em;
+}
+
 /*Column stuff, important for settings and new_user (I think)*/
 .columns_wrapper{
 	float: left;
