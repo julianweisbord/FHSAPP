@@ -42,6 +42,7 @@ $sports_p = $_SESSION['sports'];
 				mysql_query($query);
 			}
 			//redirect here maybe?
+			header("Location: main.php?current=1");
 		} //else {
 			//$need_check = true; //*Use this to make a comment that says something needs to be checked.
 		//}
@@ -271,8 +272,6 @@ $sports_p = $_SESSION['sports'];
 				}
 				?>
 			</div>
-			
-			
 				
 			<br />
 		</form>

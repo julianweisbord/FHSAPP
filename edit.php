@@ -69,6 +69,7 @@ $sports_p = $_SESSION['sports'];
 		$query = "SELECT * FROM anno_subtype WHERE anno_id='$anno_id'";
 		$anno_cb = $db->runQuery($query); //*This is where the the checkbox info is
 		//redirect here maybe?
+		header("Location: main.php?current=1");
 	} //else {
 		//$need_check = true; //*Use this to make a comment that says something needs to be checked.
 	//}
