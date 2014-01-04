@@ -23,13 +23,13 @@ $sports_p = $_SESSION['sports'];
 		$subtype_ids = $_REQUEST['check'];
 		if(!empty($subtype_ids)) {
 			//*Insert the actual announcement into the announcement table
-			$title = $_REQUEST['title'];
+			$title = mysql_real_escape_string($_REQUEST['title']);
 			$description = mysql_real_escape_string( $_REQUEST['description'] );
-			$start_date = $_REQUEST['start_date'];
-			$end_date = $_REQUEST['end_date'];
-			$date = $_REQUEST['date'];
-			$location = $_REQUEST['location'];
-			$time = $_REQUEST['time'];
+			$start_date = mysql_real_escape_string( $_REQUEST['start_date']);
+			$end_date = mysql_real_escape_string( $_REQUEST['end_date']);
+			$date = mysql_real_escape_string($_REQUEST['date']);
+			$location = mysql_real_escape_string($_REQUEST['location']);
+			$time = mysql_real_escape_string($_REQUEST['time']);
 			
 			$query = "INSERT INTO announcements(title, description, start_date, end_date, date, location, time, author) VALUES('$title', '$description', '$start_date', '$end_date', '$date', '$location', '$time', '$user_id');";
 			mysql_query($query);

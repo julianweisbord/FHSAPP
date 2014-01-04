@@ -127,12 +127,12 @@ $db = new Db($dbConfig);
 				echo "</pre>";*/
 
 				if(!empty($_REQUEST['username'])) {
-					$username = $_REQUEST['username'];
-					$e_password = $_REQUEST['password']; //For emailing
-					$password = md5($_REQUEST['password']);
-					$first_name = $_REQUEST['first_name']; 
-					$last_name = $_REQUEST['last_name']; 
-					$email = $_REQUEST['email']; 
+					$username = mysql_real_escape_string($_REQUEST['username']);
+					$e_password = mysql_real_escape_string($_REQUEST['password']); //For emailing
+					$password = mysql_real_escape_string(md5($_REQUEST['password']));
+					$first_name = mysql_real_escape_string($_REQUEST['first_name']); 
+					$last_name = mysql_real_escape_string($_REQUEST['last_name']); 
+					$email = mysql_real_escape_string($_REQUEST['email']); 
 					$admin = checkbox_checked($_REQUEST['admin']);
 					$teacher = checkbox_checked($_REQUEST['teacher']);
 					$club = checkbox_checked($_REQUEST['club']);
@@ -160,7 +160,7 @@ $db = new Db($dbConfig);
 								mysql_query($query);
 								echo "<p>New user has been created!</p>";
 							} else {
-								echo "<p style='color:red;'>Email not valid.</p>";
+								echo "<p style='color:red;'>Unable to send e-mail.</p>";
 							}
 						} else {
 							echo "<p style='color:red;'>Please select a permission.</p>";
