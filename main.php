@@ -76,7 +76,7 @@ it submit with the variable that tells it to get only the selected categories.
 
 <head>
 	<meta http-equiv="Content-type" content="text/html;charset=UTF-8"/>
-	<title></title>
+	<title>Homepage</title>
 	<script type="text/javascript" src="js/jquery-1.7.2.min.js"></script>
 	<script type="text/javascript" src="js/__jquery.tablesorter/jquery.tablesorter.min.js"></script>
 	<script type="text/javascript" src="js/jquery.hmc-paginatetable.js"></script>
