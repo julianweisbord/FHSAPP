@@ -167,7 +167,7 @@ it submit with the variable that tells it to get only the selected categories.
 				<thead>
 				<tr class="anno_header_row"> <!--Headers-->
 					<th class="anno_header">Name</th>
-					<th class="anno_header">Categories</th>
+					<th class="anno_header"><!--Categories-->Description</th>
 					<th class="anno_header">Expiration Date</th>
 					<th class="anno_header">Edit</th>
 					<th class="anno_header">Delete</th>
@@ -190,7 +190,7 @@ it submit with the variable that tells it to get only the selected categories.
 								//*Title
 								echo '<td class="anno_row_title"><a href="edit.php?anno_id='.$announcement["id"].'">'.$announcement["title"].'</a></td>';
 							
-								//*Categories
+								/*Categories
 								echo'<td class="anno_row_cats">';
 								foreach ($cats as $cat) {
 									if($cat['period']) {
@@ -201,8 +201,11 @@ it submit with the variable that tells it to get only the selected categories.
 									echo $cat['name'].". ";
 									//echo '.<br />';
 								}	
-								echo '</td>';
-						
+								echo '</td>';*/
+								
+								echo'<td class="anno_row_description">'.$announcement["description"].'</td>';
+								
+								
 								echo '<td class="anno_row_end_date">'.$announcement["end_date"].'</td>'; //?make betterer later
 						
 								//*Edit link
@@ -222,7 +225,7 @@ it submit with the variable that tells it to get only the selected categories.
 							echo '<td class="anno_row_title"><a href="edit.php?anno_id='.$announcement["id"].'">'.$announcement["title"].'</a></td>';
 							
 							//*Categories
-							echo'<td class="anno_row_cats">';
+							/*echo'<td class="anno_row_cats">';
 							foreach ($cats as $cat) {
 								if($cat['period']) {
 									echo "Period ";
@@ -232,7 +235,7 @@ it submit with the variable that tells it to get only the selected categories.
 								echo $cat['name'].". ";
 								//echo '.<br />';
 							}
-							echo '</td>';
+							echo '</td>';*/
 						
 							echo '<td class="anno_row_end_date">'.$announcement["end_date"].'</td>'; //?make betterer later
 						
@@ -256,7 +259,17 @@ it submit with the variable that tells it to get only the selected categories.
 						}
 					}
 					
+					function  initDescrLength() {
+						for(var i=0; i < $(".anno_row_description").length; i++) {
+							if($(".anno_row_description").eq(i).text().length > 100) {
+   								var description = $(".anno_row_description").eq(i).text().substring(0,99)+"...";
+								$(".anno_row_description").eq(i).text(description);
+							}	
+						}
+					}
+					
 					initEmptyTable();
+					initDescrLength();
 				</script>
 				</tbody>
 			</table>

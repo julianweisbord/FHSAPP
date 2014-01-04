@@ -115,9 +115,16 @@ h2{
 	width: 20%
 }
 
-.anno_row_cats {
+/*.anno_row_cats {
 	padding: .5em;
 	width: 55%
+}*/
+
+
+.anno_row_description {
+	padding: .5em;
+	width: 55%;
+	color: gray;
 }
 
 .anno_row_end_date {
