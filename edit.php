@@ -48,6 +48,7 @@ $sports_p = $_SESSION['sports'];
 				$query = "INSERT INTO anno_subtype(anno_id, subtype_id) VALUES('$anno_id', '$subtype_id');";
 				mysql_query($query);
 			}
+			header("Location: main.php?current=1");
 		}
 		
 		$query = "SELECT * FROM announcements WHERE id='$anno_id'"; //*Get the announcement
@@ -69,7 +70,7 @@ $sports_p = $_SESSION['sports'];
 		$query = "SELECT * FROM anno_subtype WHERE anno_id='$anno_id'";
 		$anno_cb = $db->runQuery($query); //*This is where the the checkbox info is
 		//redirect here maybe?
-		header("Location: main.php?current=1");
+		
 	} //else {
 		//$need_check = true; //*Use this to make a comment that says something needs to be checked.
 	//}
@@ -228,7 +229,7 @@ DONE-Grab the subtypes from db so you can check them. Remember checked="checked"
 			</div>
 			
 			<div class="anno_submit">
-				<input type="submit" value="Create Announcement" />
+				<input type="submit" value="Save Changes" />
 			</div>
 			<br />
 			
@@ -353,10 +354,6 @@ DONE-Grab the subtypes from db so you can check them. Remember checked="checked"
 			?>
 			</div>
 			
-			<div class="anno_submit">
-				<input type="submit" value="Save Changes" />
-			</div>
-			<br />
 			</div>
 		</form>
 	</div>
