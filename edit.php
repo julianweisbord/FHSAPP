@@ -142,16 +142,15 @@ DONE-Grab the subtypes from db so you can check them. Remember checked="checked"
 		<img class="logo" src="http://fhsapp.com/v2/Images/daytime.png">
 		<img class="beta" src="http://fhsapp.com/v2/Images/betterbeta.png">
 		<h1>FHS APP	</h1>
-		<div class="buttons">
-			 <a class="logout_button" href="logout.php">Log Out</a>
-		</div>	
 		
+		<div class="buttons">
+			 <a class="home_button" href="main.php?current=1">Home</a>
+			 <a class="logout_button" href="logout.php">Log Out</a>
+		</div>
+			
 		<div class="settings_button" >
 			<a href="settings.php"><img src="images/settings_gear.png" width="40" height="40"/></a>
-		</div>
-		
-		<div class="home_button_div">
-		 <a class="home_button" href="main.php?current=1">Home</a>
+
 		</div>
 		<?php
 		if($_SESSION['admin']) {
@@ -160,6 +159,7 @@ DONE-Grab the subtypes from db so you can check them. Remember checked="checked"
 			echo '</div>';
 		}
 		?>
+		
 		<a href="create.php">
 			<div class="add_announcements_wrapper">
 			<div class="add_announcements_button">Add Announcement</div>
