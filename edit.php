@@ -27,13 +27,13 @@ $sports_p = $_SESSION['sports'];
 		$subtype_ids = $_REQUEST['check']; //check is the name of the checkbox array. Subtype_ids contains all the subtypes that the announcement is associated with.
 		if(!empty($subtype_ids)) {
 			//*Insert the actual announcement into the announcement table
-			$title = $_REQUEST['title'];
+			$title = mysql_real_escape_string($_REQUEST['title']);
 			$description = mysql_real_escape_string( $_REQUEST['description'] );
-			$start_date = $_REQUEST['start_date'];
-			$end_date = $_REQUEST['end_date'];
-			$date = $_REQUEST['date'];
-			$location = $_REQUEST['location'];
-			$time = $_REQUEST['time'];
+			$start_date = mysql_real_escape_string($_REQUEST['start_date']);
+			$end_date = mysql_real_escape_string($_REQUEST['end_date']);
+			$date = mysql_real_escape_string($_REQUEST['date']);
+			$location = mysql_real_escape_string($_REQUEST['location']);
+			$time = mysql_real_escape_string($_REQUEST['time']);
 			
 			$query = "UPDATE announcements SET title='$title', description='$description', start_date='$start_date', end_date='$end_date', date='$date', location='$location', time='$time' WHERE id='$anno_id';";
 			mysql_query($query);
