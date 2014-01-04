@@ -160,7 +160,7 @@ $db = new Db($dbConfig);
 								mysql_query($query);
 								echo "<p>New user has been created!</p>";
 							} else {
-								echo "<p style='color:red;'>Email not valid.</p>";
+								echo "<p style='color:red;'>Unable to send e-mail.</p>";
 							}
 						} else {
 							echo "<p style='color:red;'>Please select a permission.</p>";
