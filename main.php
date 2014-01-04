@@ -205,7 +205,6 @@ it submit with the variable that tells it to get only the selected categories.
 								
 								echo'<td class="anno_row_description">'.$announcement["description"].'</td>';
 								
-								
 								echo '<td class="anno_row_end_date">'.$announcement["end_date"].'</td>'; //?make betterer later
 						
 								//*Edit link
@@ -236,6 +235,8 @@ it submit with the variable that tells it to get only the selected categories.
 								//echo '.<br />';
 							}
 							echo '</td>';*/
+						
+							echo'<td class="anno_row_description">'.$announcement["description"].'</td>';
 						
 							echo '<td class="anno_row_end_date">'.$announcement["end_date"].'</td>'; //?make betterer later
 						
