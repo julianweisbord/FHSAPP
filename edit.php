@@ -146,6 +146,7 @@ DONE-Grab the subtypes from db so you can check them. Remember checked="checked"
 		<div class="buttons">
 			 <a class="home_button" href="main.php?current=1">Home</a>
 			 <a class="logout_button" href="logout.php">Log Out</a>
+			 <!--<a class="add_announcements_button" href="create.php">-->
 		</div>
 			
 		<div class="settings_button" >
@@ -160,13 +161,13 @@ DONE-Grab the subtypes from db so you can check them. Remember checked="checked"
 		}
 		?>
 		
-		<a href="create.php">
+		<!--<a href="create.php">
 			<div class="add_announcements_wrapper">
 			<div class="add_announcements_button">Add Announcement</div>
-			<img class="add_image" src="images/add.png" /> <!--Icons by DryIcons-->
+			<img class="add_image" src="images/add.png" /> 
 			</div>
 		</a>
-		
+		-->
 	</div>	
 	
 	<div class="create_wrapper">
