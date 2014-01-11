@@ -8,7 +8,12 @@ error_reporting(E_ALL);
 $db = new Db($dbConfig);
 enforce_log();
 
-$query = "SELECT * FROM users";
+//REQUEST var e_user_id
+$e_user_id = $_REQUEST['e_user_id'];
+//Testing purposes:
+$e_user_id = 1;
+
+$query = "SELECT * FROM users WHERE id = '$e_user_id'";
 $users=$db->runQuery($query);
 ?>
 
