@@ -160,7 +160,7 @@ DONE-Grab the subtypes from db so you can check them. Remember checked="checked"
 			echo '</div>';
 		}
 		?>
-		<a class="add_announcements_button" href="create.php">Add Anouncement<img class="add_image" src="images/add.png"</a>
+		<a class="add_announcements_button" href="create.php">Add Anouncement<img class="add_image" src="images/add.png" /></a>
 		<!--<a href="create.php">
 			<div class="add_announcements_wrapper">
 			<div class="add_announcements_button">Add Announcement</div>

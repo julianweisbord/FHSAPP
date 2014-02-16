@@ -58,6 +58,7 @@ $users=$db->runQuery($query);
 		<!--<pre>
 			<?php print_r($users);?>
 		</pre>-->
+<<<<<<< HEAD
 		<div class="settings_columns">
 
 			<table class="nice_table">
@@ -94,6 +95,41 @@ $users=$db->runQuery($query);
 				</tbody>
 			</table>
 		</div>
+=======
+		
+		<table border="1px border black" style="background-color:white">
+			<thead>
+				<tr> <!--Headers-->
+					<th>Last Name</th>
+					<th>First Name</th>
+					<th>Username</th>
+					<th></th>
+					<th></th>
+				</tr>
+			</thead>
+			<tbody>
+				<!--<tr>
+					<th><a href="edit_user.php?=1">Edit</a></th>
+					<th>Last name</th>
+					<th>First name</th>
+					<th>Username</th>
+					<th><a href="delete.user.php?=1">Delete</a></th>
+				</tr>-->
+				<?php 
+					foreach($users as $user) {
+						echo '
+						<tr>
+							<th>'.$user["last_name"].'</th>
+							<th>'.$user["first_name"].'</th>
+							<th>'.$user["username"].'</th>
+							<th><a href="edit_user.php?e_user_id='.$user["id"].'">Reset Password</a></th>
+							<th><a href="delete_user.php?d_user_id='.$user["id"].'">Delete</a></th>
+						</tr>';
+					}
+				?>
+			</tbody>
+		</table>
+>>>>>>> 73fd3b0bb82f95ba52ab2c30fb0b53aad054eb5a
 
 	</div>
 </body>

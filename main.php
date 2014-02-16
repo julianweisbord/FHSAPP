@@ -105,6 +105,12 @@ it submit with the variable that tells it to get only the selected categories.
 			echo '<a href="new_user.php">Create New User</a><br />';
 			echo '</div>';
 		}
+		
+		if($_SESSION['admin']) {
+			echo '<div class="new_user_button" >';
+			echo '<a href="users.php">Manage Users</a><br />';
+			echo '</div>';
+		}
 		?>
 		
 		<a href="create.php">
