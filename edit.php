@@ -146,12 +146,12 @@ DONE-Grab the subtypes from db so you can check them. Remember checked="checked"
 		<div class="buttons">
 			 <a class="home_button" href="main.php?current=1">Home</a>
 			 <a class="logout_button" href="logout.php">Log Out</a>
-			 <!--<a class="add_announcements_button" href="create.php">-->
+			 
 		</div>
 			
 		<div class="settings_button" >
 			<a href="settings.php"><img src="images/settings_gear.png" width="40" height="40"/></a>
-
+			
 		</div>
 		<?php
 		if($_SESSION['admin']) {
@@ -160,7 +160,7 @@ DONE-Grab the subtypes from db so you can check them. Remember checked="checked"
 			echo '</div>';
 		}
 		?>
-		
+		<a class="add_announcements_button" href="create.php">Add Anouncement<img class="add_image" src="images/add.png"</a>
 		<!--<a href="create.php">
 			<div class="add_announcements_wrapper">
 			<div class="add_announcements_button">Add Announcement</div>
