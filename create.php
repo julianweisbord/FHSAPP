@@ -218,8 +218,8 @@ $sports_p = $_SESSION['sports'];
 						$id = $general['id'];
 						$name = $general['name'];
 						if(!empty($name)) {
-							echo '<label class="cat_subtype_label">'.$name.':</label>
-							<input class="cat_check" name="check[]" type="checkbox" value="'.$id.'" />
+							echo '<label class="cat_subtype_label" for="cat_'.$id.'">'.$name.':</label>
+							<input id="cat_'.$id.'" class="cat_check" name="check[]" type="checkbox" value="'.$id.'" />
 							<br />';
 						}
 					}
@@ -235,8 +235,8 @@ $sports_p = $_SESSION['sports'];
 						$name = $period['name'];
 						$number = $period['period'];
 						if(!empty($name)) {
-							echo '<label class="cat_subtype_label">Period '.$number.': '.$name.'</label>
-							<input class="cat_check" name="check[]" type="checkbox" value="'.$id.'" />
+							echo '<label class="cat_subtype_label" for="cat_'.$id.'">Period '.$number.': '.$name.'</label>
+							<input id="cat_'.$id.'"class="cat_check" name="check[]" type="checkbox" value="'.$id.'" />
 							<br />';
 						}
 					}
@@ -250,8 +250,8 @@ $sports_p = $_SESSION['sports'];
 					foreach($clubs as $club) {
 						$id = $club['id'];
 						$name = $club['name'];
-						echo '<label class="cat_subtype_label">'.$name.':</label>
-						<input class="cat_check" name="check[]" type="checkbox" value="'.$id.'" />
+						echo '<label class="cat_subtype_label" for="cat_'.$id.'">'.$name.':</label>
+						<input id="cat_'.$id.'" class="cat_check" name="check[]" type="checkbox" value="'.$id.'" />
 						<br />';
 					}
 					echo "</div>";
@@ -264,8 +264,8 @@ $sports_p = $_SESSION['sports'];
 					foreach($sports as $sport) {
 						$id = $sport['id'];
 						$name = $sport['name'];
-						echo '<label class="cat_subtype_label">'.$name.':</label>
-						<input class="cat_check" name="check[]" type="checkbox" value="'.$id.'" />
+						echo '<label class="cat_subtype_label" for="cat_'.$id.'">'.$name.':</label>
+						<input id="cat_'.$id.'" class="cat_check" name="check[]" type="checkbox" value="'.$id.'" />
 						<br />';
 					}
 					echo "</div>";
