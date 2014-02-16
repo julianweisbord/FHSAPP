@@ -84,7 +84,7 @@ $users=$db->runQuery($query);
 							<th>'.$user["first_name"].'</th>
 							<th>'.$user["username"].'</th>
 							<th><a href="edit_user.php?e_user_id='.$user["id"].'">Reset Password</a></th>
-							<th><a href="delete.user.php?d_user_id='.$user["id"].'">Delete</a></th>
+							<th><a href="delete_user.php?d_user_id='.$user["id"].'">Delete</a></th>
 						</tr>';
 					}
 				?>
