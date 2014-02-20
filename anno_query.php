@@ -58,6 +58,7 @@ foreach($catids as $catid){
 			"topCategory"=>$topCat[0]['name'],
 			"category"=>$cat[0]['name'],
 			"catId"=>$catid,
+			"period"=>$cat[0]['period'], //New change, will be used for announcement icons.
 			"teacher"=>$author[0]['last_name'].", ".$author[0]['first_name'],
 			"entry count"=>"$entry_count"
 			)
