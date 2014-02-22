@@ -58,7 +58,7 @@ $users=$db->runQuery($query);
 		<!--<pre>
 			<?php print_r($users);?>
 		</pre>-->
-<<<<<<< HEAD
+
 		<div class="settings_columns">
 
 			<table class="nice_table">
@@ -95,11 +95,11 @@ $users=$db->runQuery($query);
 				</tbody>
 			</table>
 		</div>
-=======
-		
+
+		<!--
 		<table border="1px border black" style="background-color:white">
 			<thead>
-				<tr> <!--Headers-->
+				<tr> <!--Headers
 					<th>Last Name</th>
 					<th>First Name</th>
 					<th>Username</th>
@@ -114,7 +114,7 @@ $users=$db->runQuery($query);
 					<th>First name</th>
 					<th>Username</th>
 					<th><a href="delete.user.php?=1">Delete</a></th>
-				</tr>-->
+				</tr>
 				<?php 
 					foreach($users as $user) {
 						echo '
@@ -129,8 +129,7 @@ $users=$db->runQuery($query);
 				?>
 			</tbody>
 		</table>
->>>>>>> 73fd3b0bb82f95ba52ab2c30fb0b53aad054eb5a
-
+		-->
 	</div>
 </body>
 
