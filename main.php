@@ -166,6 +166,13 @@ it submit with the variable that tells it to get only the selected categories.
 			</pre>-->
 			<div class="table_title">
 				<p>Announcements:</p>
+				<?php 
+					if($_SESSION['admin']) {
+						echo '<div class="gen_anno_button" >';
+						echo '<a href="gen_anno.php">Generate Bulletin</a><br />';
+						echo '</div>';
+					}
+				?>
 			</div>
 			<div class="table_spacer">
 			</div>
