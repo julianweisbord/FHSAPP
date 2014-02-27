@@ -44,25 +44,33 @@ foreach($catids as $catid){
 		
 		/*$query5="SELECT * FROM subtype WHERE subtype.id = $catid";
 		$cat_id=$db->runQuery($query5); */
-
-		array_push($annoData,array( //putting things in an array 
-			"title"=>$anno['title'],
-			"id"=>$anno['id'],
-			"content"=>$anno['description'],
-			"startDate"=>$anno['start_date'],
-			"endDate"=>$anno['end_date'],
-			"eventDate"=>$anno['date'],
-			"eventTime"=>$anno['time'],
-			"eventLocation"=>$anno['location'],
-			"author"=>$authordata[0],
-			"topCategory"=>$topCat[0]['name'],
-			"category"=>$cat[0]['name'],
-			"catId"=>$catid,
-			"period"=>$cat[0]['period'], //New change, will be used for announcement icons.
-			"teacher"=>$author[0]['last_name'].", ".$author[0]['first_name'],
-			"entry count"=>"$entry_count"
-			)
-		);
+		$current_timestamp = time();
+		$end_date = $anno["end_date"];
+		$end_timestamp = strtotime($end_date);
+		$start_date = $anno["start_date"];
+		$start_timestamp = strtotime($start_date);
+		
+		if($end_timestamp > $current_timestamp && $start_timestamp < $current_timestamp) {
+			array_push($annoData,array( //putting things in an array 
+				"title"=>$anno['title'],
+				"id"=>$anno['id'],
+				"content"=>$anno['description'],
+				"startDate"=>$anno['start_date'],
+				"endDate"=>$anno['end_date'],
+				"eventDate"=>$anno['date'],
+				"eventTime"=>$anno['time'],
+				"eventLocation"=>$anno['location'],
+				"author"=>$authordata[0],
+				"topCategory"=>$topCat[0]['name'],
+				"category"=>$cat[0]['name'],
+				"catId"=>$catid,
+				"period"=>$cat[0]['period'], //New change, will be used for announcement icons.
+				"teacher"=>$author[0]['last_name'].", ".$author[0]['first_name'],
+				"entry count"=>"$entry_count"
+				)
+			);
+		}
+		
 		$entry_count++;
 	}
 }
