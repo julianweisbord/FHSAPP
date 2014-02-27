@@ -151,7 +151,7 @@ $db = new Db($dbConfig);
 					if(!$already_exists) { //*Check if they exist.
 						if($admin||$teacher||$club||$sports) {	//*Has permission been selected?
 							$e_subject = "Fhsapp Username and Password";
-							$e_content = "Your login credentials for Fhsapp: \n\nUsername: $username\nPassword: $e_password\n\nhttp://fhsapp.com/admin/login.php\n\nThe website the students use: www.fhsapp.com";
+							$e_content = "Your login credentials for Fhsapp: \n\nUsername: $username\nPassword: $e_password\n\nhttp://fhsapp.com/admin/login.php\n\nWe recommend using Google Chrome: https://www.google.com/intl/en/chrome/browser/\n\nThe website the students use: www.fhsapp.com\nHave them save it to their home screen on their mobile devices.\n\nThank you\nThe FHS Appteam";
 							$mail = mail($email, $e_subject, $e_content); //*EMAIL!!!
 							if($mail) {
 								//*Once the mail has worked
