@@ -10,6 +10,8 @@ enforce_log();
 
 //Right now, only getting the announcements. Still need to format the title a bit. Also, club news will be different.
 
+//?INCLUDE CHECK FOR START DATE
+
 $query = "SELECT * FROM announcements INNER JOIN anno_subtype ON anno_subtype.anno_id = announcements.id WHERE anno_subtype.subtype_id = 13";
 $nt_anno = $db->runQuery($query); //New/Timely
 
@@ -49,8 +51,10 @@ $ccc_anno = $db->runQuery($query); //Career, College, and Counseling
 	foreach($nt_anno as $nt) {
 		$end_date = $nt["end_date"];
 		$end_timestamp = strtotime($end_date);
-	
-		if($end_timestamp > $current_timestamp) {
+		$start_date = $nt["start_date"];
+		$start_timestamp = strtotime($start_date);
+		
+		if($end_timestamp > $current_timestamp && $start_timestamp < $current_timestamp) {
 			echo "<li>";
 			$title = $nt['title'];
 			$description = $nt['description'];
@@ -74,8 +78,10 @@ $ccc_anno = $db->runQuery($query); //Career, College, and Counseling
 	foreach($ic_anno as $ic) {
 		$end_date = $ic["end_date"];
 		$end_timestamp = strtotime($end_date);
-	
-		if($end_timestamp > $current_timestamp) {
+		$start_date = $ic["start_date"];
+		$start_timestamp = strtotime($start_date);
+		
+		if($end_timestamp > $current_timestamp && $start_timestamp < $current_timestamp) {
 			echo "<li>";
 			$title = $ic['title'];
 			$description = $ic['description'];
@@ -102,8 +108,10 @@ $ccc_anno = $db->runQuery($query); //Career, College, and Counseling
 	foreach($ccc_anno as $ccc) {
 		$end_date = $ccc["end_date"];
 		$end_timestamp = strtotime($end_date);
+		$start_date = $ccc["start_date"];
+		$start_timestamp = strtotime($start_date);
 	
-		if($end_timestamp > $current_timestamp) {
+		if($end_timestamp > $current_timestamp && $start_timestamp < $current_timestamp) {
 			echo "<li>";
 			$title = $ccc['title'];
 			$description = $ccc['description'];
