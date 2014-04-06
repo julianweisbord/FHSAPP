@@ -5,5 +5,16 @@
 	$e_subject = "Feedback";
 	$e_content = "Grade: $grade\n\nFeedback: $feedback";
 	$mail = mail($email, $e_subject, $e_content);
-	header('Location: http://www.fhsapp.com');
 ?>
+
+<!DOCTYPE html>
+
+<head>
+	<title>Thank You</title>
+</head>
+
+<body>
+	<div>
+		<p>Your feedback has been recorded. Thank you.</p>
+	</div>
+</body>
