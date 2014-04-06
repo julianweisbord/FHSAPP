@@ -11,6 +11,20 @@
 
 <head>
 	<title>Thank You</title>
+	<style type="text/css">
+	@font-face {
+		font-family: MyriadPro;
+		src: url(fonts/MyriadPro-Regular.eot);
+	}
+	
+	body {
+		font-family: "MyriadPro", Helvetica, Arial, Lucieda Grande, Sans-Serif;
+		font-size: 16px;
+		margin: 0;
+		padding: 0 1em;
+		background: white;
+	}
+	</style>
 </head>
 
 <body>
