@@ -4,7 +4,7 @@ header('content-type: application/json; charset=utf-8');
 include('lib/config.php');
 include('lib/db.class.php');
 ini_set('display_errors', 0);
-//include_once('functions.php'); 
+include_once('functions.php'); //"it comes standard"
 $db = new Db($dbConfig); //boilerplate stuff
 
 $entry_count=0;
@@ -77,6 +77,7 @@ foreach($teachers as $teacher){
 $query = "SELECT value FROM misc WHERE name='SurveyUrl'";
 $surveyUrl=$db->runQuery($query);
 $surveyUrl = $surveyUrl[0]["value"];
+
 
 $massive_array=array(  //a massive array full of everything good
 		

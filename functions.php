@@ -1,5 +1,10 @@
 <?php 
 	//For all your error needs
+include('lib/config.php');
+include('lib/db.class.php');
+ini_set('display_errors', 1);
+error_reporting(E_ALL);
+$db = new Db($dbConfig); //boilerplate stuff
 	function query_error($query) {
 		if(!$query) {
 			die('Could not connect: ' . mysql_error());
@@ -47,6 +52,50 @@
 		$_SESSION['username'] = $typedusername;
 	}*/
 
+	function returnDaytype() {//stolen code, snips, snails, puppy dog tails, etc
+		global $db;
+		$query4 = "SELECT value FROM misc WHERE name='start_date'";
+		$query5 = "SELECT value FROM misc WHERE name='end_date'";
+		$select_Start= $db->runQuery($query4);
+		$select_End = $db->runQuery($query5);
+		
+			$betterStartDate = $select_Start[0]['value'];
+			$betterEndDate = $select_End[0]['value'];
+			
+			
+		$abDays = GetDays($betterStartDate,$betterEndDate); //marks all days between yay and yay as "school days"
+	$schoolDays = array();
+	$query = "SELECT * FROM misc WHERE name='excluded_dates'";
+	$xDatesPressed = $db->runQuery($query);
+	$xDates = explode(",",$xDatesPressed[0]['value']);
+				
+				
+		for($i=0;$i<count($abDays);$i++) { //your standard for loops
+			$day=strftime("%A",strtotime($abDays[$i])); //gives an actual day instead of a numerical date
+			if($day != "Saturday" && $day != "Sunday" && !in_array($abDays[$i],$xDates) ) { //sets sats and suns to not be pushed
+				array_push($schoolDays,$abDays[$i]);
+				}}
+		$ABN = "N";
+		//$today = date("Y-m-d");
+		$today = "2014-04-17";
+		for($i=0;$i<count($schoolDays);$i++) {
+			if($today == $schoolDays[$i]) {
+				if($i%2 == 0) {
+					$ABN = "A";
+				} else if($i%2 == 1) {
+					$ABN = "B";
+				}
+			}
+		}
+		//echo $ABN;
+		if($ABN){
+			$query9 = "UPDATE misc SET value = '$ABN' WHERE name = 'currentDay'";
+			$db -> runQuery($query9); }
+		
+		}
+	
+	//echo "<h2>".returnDaytype()."<h2>";
+	
 	
 	function set_cookie_session(){
 		$user_id = $_SESSION['user_id'];
@@ -104,6 +153,8 @@
 			header('Location: main.php?current=1');
 		}
 	}
+
 	
+				
 	
 ?>
