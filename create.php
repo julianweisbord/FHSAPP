@@ -28,7 +28,7 @@ $sports_p = $_SESSION['sports'];
 					move_uploaded_file($_FILES["file"]["tmp_name"], "upload/" . $_FILES["file"]["name"]);
 					$file_location = mysql_real_escape_string("upload/" . $_FILES["file"]["name"]);
 				} else {
-					$file_location = 0;
+					$file_location = "";
 				}
 				
 				/*if ($_FILES["file"]["error"] > 0) {

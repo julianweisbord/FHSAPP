@@ -26,6 +26,15 @@ $sports_p = $_SESSION['sports'];
 		//*This is for updating the announcements
 		$subtype_ids = $_REQUEST['check']; //check is the name of the checkbox array. Subtype_ids contains all the subtypes that the announcement is associated with.
 		if(!empty($subtype_ids)) {
+			if (!empty($_FILES)) {
+					$temp = explode(".", $_FILES["file"]["name"]);
+					$extension = end($temp);
+					move_uploaded_file($_FILES["file"]["tmp_name"], "upload/" . $_FILES["file"]["name"]);
+					$file_location = mysql_real_escape_string("upload/" . $_FILES["file"]["name"]);
+				} else {
+					$file_location = 0;
+				}
+				
 			//*Insert the actual announcement into the announcement table
 			$title = mysql_real_escape_string($_REQUEST['title']);
 			$description = mysql_real_escape_string( $_REQUEST['description'] );
@@ -35,7 +44,7 @@ $sports_p = $_SESSION['sports'];
 			$location = mysql_real_escape_string($_REQUEST['location']);
 			$time = mysql_real_escape_string($_REQUEST['time']);
 			
-			$query = "UPDATE announcements SET title='$title', description='$description', start_date='$start_date', end_date='$end_date', date='$date', location='$location', time='$time' WHERE id='$anno_id';";
+			$query = "INSERT INTO announcements(title, description, start_date, end_date, date, location, time, author, file_location) VALUES('$title', '$description', '$start_date', '$end_date', '$date', '$location', '$time', '$user_id', '$file_location');";
 			mysql_query($query);
 
 			//*Insert the anno_subtype relationship into its table
@@ -78,16 +87,6 @@ $sports_p = $_SESSION['sports'];
 
 ?>
 <!DOCTYPE HTML>
-
-<!--
-Okay, this is gonna be more work. The focus of this page is to update the announcements. It's going to be few a variable from the
-main page like ?id=# and this is going to have to grab that variable and use the id to fill up the slots. Then it'll fill up the
-inputs based on that and ONLY UPDATE the announcement when submitted.
-
-To do:
-DONE-Grab the subtypes from db so you can check them. Remember checked="checked"
--Make it update.
--->
 
 <html>
 
@@ -172,7 +171,7 @@ DONE-Grab the subtypes from db so you can check them. Remember checked="checked"
 	
 	<div class="create_wrapper">
 		
-		<form id="form" method="get" action="edit.php" class="anno_form">
+		<form id="form" method="post" action="edit.php" class="anno_form">
 			<!--<label></label>
 			<input name="" type="text" value=""/>
 			<br />-->
@@ -208,7 +207,7 @@ DONE-Grab the subtypes from db so you can check them. Remember checked="checked"
 				</div>
 			
 				<div class="anno_date">
-					<label class="anno_date_label">>Actual Date of Event:</label>
+					<label class="anno_date_label">Actual Date of Event:</label>
 					<input id="date" name="date" type="text" value="<?php if($date != "0000-00-00"){echo $date;}?>" class="anno_text_date"/>
 					<br />
 				</div>
@@ -223,6 +222,11 @@ DONE-Grab the subtypes from db so you can check them. Remember checked="checked"
 					<label class="anno_location_label">Location:</label>
 					<input name="location" type="text" value="<?php echo $location;?>" class="anno_text_location"/>
 					<br />
+				</div>
+				
+				<div class="anno_upload">
+					<label class="anno_upload_label">Upload file (If you have already uploaded a file, it will not show up in this box. Uploading another file will replace the old file):</label>
+					<input name="file" type="file" class="anno_text_file"/>
 				</div>
 				
 				<input name="anno_id" type="hidden" value="<?php echo $anno_id;?>"/>
