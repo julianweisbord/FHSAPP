@@ -21,7 +21,33 @@ $sports_p = $_SESSION['sports'];
 	//Inserting stuff.
 	if(!empty($_REQUEST)) {
 		$subtype_ids = $_REQUEST['check'];
-		if(!empty($subtype_ids)) {
+			if(!empty($subtype_ids)) {
+				if (!empty($_FILES)) {
+					$temp = explode(".", $_FILES["file"]["name"]);
+					$extension = end($temp);
+					move_uploaded_file($_FILES["file"]["tmp_name"], "upload/" . $_FILES["file"]["name"]);
+					$file_location = mysql_real_escape_string("upload/" . $_FILES["file"]["name"]);
+				} else {
+					$file_location = 0;
+				}
+				
+				/*if ($_FILES["file"]["error"] > 0) {
+					//echo "Return Code: " . $_FILES["file"]["error"] . "<br>";
+    			//} else {
+				    //echo "Upload: " . $_FILES["file"]["name"] . "<br>";
+    				//echo "Type: " . $_FILES["file"]["type"] . "<br>";
+    				//echo "Size: " . ($_FILES["file"]["size"] / 1024) . " kB<br>";
+				    //echo "Temp file: " . $_FILES["file"]["tmp_name"] . "<br>";
+
+    				//if (file_exists("upload/" . $_FILES["file"]["name"])) {
+					//    echo $_FILES["file"]["name"] . " already exists. ";
+      				//} else {
+						//move_uploaded_file($_FILES["file"]["tmp_name"], "upload/" . $_FILES["file"]["name"]);
+     				//	echo "Stored in: " . "upload/" . $_FILES["file"]["name"];
+					//}
+    			//}*/
+    		
+		
 			//*Insert the actual announcement into the announcement table
 			$title = mysql_real_escape_string($_REQUEST['title']);
 			$description = mysql_real_escape_string( $_REQUEST['description'] );
@@ -31,7 +57,7 @@ $sports_p = $_SESSION['sports'];
 			$location = mysql_real_escape_string($_REQUEST['location']);
 			$time = mysql_real_escape_string($_REQUEST['time']);
 			
-			$query = "INSERT INTO announcements(title, description, start_date, end_date, date, location, time, author) VALUES('$title', '$description', '$start_date', '$end_date', '$date', '$location', '$time', '$user_id');";
+			$query = "INSERT INTO announcements(title, description, start_date, end_date, date, location, time, author, file_location) VALUES('$title', '$description', '$start_date', '$end_date', '$date', '$location', '$time', '$user_id', '$file_location');";
 			mysql_query($query);
 			
 			//*Insert the anno_subtype relationship into its table
@@ -41,9 +67,13 @@ $sports_p = $_SESSION['sports'];
 				$query = "INSERT INTO anno_subtype(anno_id, subtype_id) VALUES('$anno_id', '$subtype_id');";
 				mysql_query($query);
 			}
-			//redirect here maybe?
-			header("Location: main.php?current=1");
-		} //else {
+			
+			//header("Location: main.php?current=1");
+		} 
+/*
+*/
+  
+		//else {
 			//$need_check = true; //*Use this to make a comment that says something needs to be checked.
 		//}
 	}
@@ -137,7 +167,7 @@ $sports_p = $_SESSION['sports'];
 		<!--	<h1>Add Announcement</h1>
 		</div>-->
 	
-		<form id="form" method="get" action="create.php" class="anno_form">
+		<form id="form" method="post" action="create.php" class="anno_form" enctype="multipart/form-data">
 			<!--<label></label>
 			<input name="" type="text" value=""/>
 			<br />-->
@@ -191,6 +221,11 @@ $sports_p = $_SESSION['sports'];
 					<label class="anno_location_label">Location:</label>
 					<input name="location" type="text" value="" class="anno_text_location"/>
 					<br />
+				</div>
+				
+				<div class="anno_upload">
+					<label class="anno_upload_label">Upload file:</label>
+					<input name="file" type="file" class="anno_text_file"/>
 				</div>
 			</div>
 			
